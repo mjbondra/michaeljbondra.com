@@ -1,0 +1,92 @@
+
+/**
+ *                     88 88                                           88
+ *                     "" 88                                           88
+ *                        88                                           88
+ *  88,dPYba,,adPYba,  88 88,dPPYba,   ,adPPYba,  8b,dPPYba,   ,adPPYb,88 8b,dPPYba, ,adPPYYba,
+ *  88P'   "88"    "8a 88 88P'    "8a a8"     "8a 88P'   `"8a a8"    `Y88 88P'   "Y8 ""     `Y8
+ *  88      88      88 88 88       d8 8b       d8 88       88 8b       88 88         ,adPPPPP88
+ *  88      88      88 88 88b,   ,a8" "8a,   ,a8" 88       88 "8a,   ,d88 88         88,    ,88
+ *  88      88      88 88 8Y"Ybbd8"'   `"YbbdP"'  88       88  `"8bbdP"Y8 88         `"8bbdP"Y8
+ *                    ,88
+ *                  888P"
+ */
+/*
+  Sass/Compass Generated Stylesheet for SIGGRAPH 2014 ePromotion -- https://github.com/qltd/s2014-epromo
+
+*/
+/*------------------------------------*\
+    TABLE OF CONTENTS
+\*------------------------------------*/
+
+/*---------------------------------------------------------------------*\
+
+  1. LIBRARIES..................Stylesheet Related Resources
+    a. 3rd Party Libraries......Non-Native Stylesheets and Mixins
+    b. App Libraries............App Specific Variables and Mixins
+  2. UNIVERSAL STYLES...........Styles Applied to All Elements
+  3. ELEMENTAL STYLES...........Styles for HTML Elements
+    a. Root Elements............Styles for Root Elements
+    b. Heading Elements.........Styles for Heading Tags
+    c. Form Elements............Styles for Form Elements
+    d. Sectioning Elements......Styles for Sectioning Elements
+    e. Flow Elements............Styles for Flow Elements
+  4. UTILITIES..................Reusable Utility Classes
+  5. CONTENT....................Page Content
+    a. Header...................Styles for Brand Images and Headings
+    b. Navigation...............Styles for Navigation
+    c. Primary Content..........Styles for Focal Content
+    d. Ancillary Content........Styles for Supplemental Content
+    e. Footer...................Footer Content
+  6. MEDIA QUERIES..............Media Queries
+    a. Screen Width.............Imports Screen Width Stylesheet(s)
+    b. Pixel Density............Imports HiDPI Stylesheet(s)
+    c. Print....................Imports Print Stylesheet(s)
+  7. APPENDIX...................Additional Information
+    a. Rule Structure...........Heirarchy of CSS Rules
+    b. Citations................Giving Credit Where Credit is Due
+
+\*---------------------------------------------------------------------*/
+
+/*------------------------------------*\
+    LIBRARIES
+\*------------------------------------*/
+
+/*--Third Party Libraries--*/
+@import "normalize"; // symlinked css as scss from ../lib/normalize-css/normalize.css
+@import "html5-boilerplate"; // symlinked css as scss from ../lib/html5-boilerplate/css/main.css
+@import "compass"; // requires compass -- 'gem install compass' or 'bundle install'
+@import "../lib/font-awesome/scss/font-awesome";
+
+/*--App Libraries--*/
+@import "vars";
+@import "font-face";
+@import "mixins";
+
+/*------------------------------------*\
+    UNIVERSAL STYLES
+\*------------------------------------*/
+
+*, *:before, *:after {
+  @include box-sizing(border-box);
+}
+
+/*------------------------------------*\
+    ELEMENTAL STYLES
+\*------------------------------------*/
+
+body {
+  min-width: 320px;
+}
+
+/*------------------------------------*\
+    UTILITIES
+\*------------------------------------*/
+
+/*------------------------------------*\
+    CONTENT
+\*------------------------------------*/
+
+/*------------------------------------*\
+    MEDIA QUERIES
+\*------------------------------------*/
