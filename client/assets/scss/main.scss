@@ -77,16 +77,106 @@
 
 body {
   min-width: 320px;
+  background-color: $blue-dark;
+  @include EncodeSans(16px, white);
+  text-shadow: 1px 1px 1px darken($blue-dark, 25%);
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+h1 {
+  @include Troika(2.25em);
+}
+
+h2 {
+  @include font-details(1.25em, $blue-light, 900);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 /*------------------------------------*\
     UTILITIES
 \*------------------------------------*/
 
+nav {
+  &.primary {
+    ul {
+      display: table;
+      li {
+        display: table-cell;
+        width: 75px;
+        height: 25px;
+        text-align: center;
+        vertical-align: middle;
+        a {
+          @include font-details(null, $orange, 900);
+        }
+      }
+    }
+  }
+}
+
 /*------------------------------------*\
     CONTENT
 \*------------------------------------*/
 
+header {
+  @extend .clearfix;
+  margin: {
+    bottom: 2em;
+  }
+  padding: 0.5em 1em 0.25em 0.5em;
+  background-color: darken($blue-dark, 19%);
+  background-color: rgba(black, 0.5);
+  h1 {
+    float: left;
+  }
+  nav {
+    float: right;
+    margin: {
+      top: 5px;
+    }
+  }
+}
+
+main {
+  margin: 0 0.75em;
+}
+
 /*------------------------------------*\
     MEDIA QUERIES
 \*------------------------------------*/
+
+/*--Screen Width--*/
+
+// Tablet
+@media only screen and (min-width: 768px) {
+  @import 'tablet';
+}
+
+// Desktop
+@media only screen and (min-width: 960px) {
+  @import 'desktop';
+}
+
+/*--Pixel Density--*/
+
+// @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+//   only screen and (min--moz-device-pixel-ratio: 1.3),
+//   only screen and (-o-min-device-pixel-ratio: 13/10),
+//   only screen and (min-resolution: 1.3dppx) {
+//   @import 'high-pixel-density';
+// }
+
+/*--Print--*/

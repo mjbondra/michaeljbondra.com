@@ -1,0 +1,44 @@
+  ////////////////////////////
+ // FONT FACE DECLARATIONS //
+////////////////////////////
+
+  //----------------------------------//
+ //  Troika
+//----------------------------------//
+
+@font-face {
+  font-family: 'Troika';
+  src: url('../fonts/troika-webfont.eot');
+  src: url('../fonts/troika-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/troika-webfont.woff') format('woff'),
+    url('../fonts/troika-webfont.ttf') format('truetype'),
+    url('troika-webfont.svg#troikaregular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+//----------------------------------//
+//  Encode Sans
+//----------------------------------//
+
+@font-face {
+  font-family: 'EncodeSans';
+  src: url('../fonts/encodesansnormal-400-regular-webfont.eot');
+  src: url('../fonts/encodesansnormal-400-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/encodesansnormal-400-regular-webfont.woff') format('woff'),
+    url('../fonts/encodesansnormal-400-regular-webfont.ttf') format('truetype'),
+    url('../fonts/encodesansnormal-400-regular-webfont.svg#encode_sans_normalregular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EncodeSans';
+  src: url('../fonts/encodesansnormal-900-black-webfont.eot');
+  src: url('../fonts/encodesansnormal-900-black-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/encodesansnormal-900-black-webfont.woff') format('woff'),
+    url('../fonts/encodesansnormal-900-black-webfont.ttf') format('truetype'),
+    url('../fonts/encodesansnormal-900-black-webfont.svg#encode_sans_normalblack') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}

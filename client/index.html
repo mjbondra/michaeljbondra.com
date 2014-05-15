@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en" id="ng-app" data-ng-app="mjbondra">
-  <head data-ng-controller="html.head">
+  <head>
     <base href="/">
     <meta name="fragment" content="!">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
-    <!-- <meta name="description" content="" data-ng-attr-content="{{ Head.description() }}"> -->
+    <meta name="description" content="I am a full-stack web developer based in Ann Arbor." data-ng-attr-content="{{ getDescription() }}">
     <link href="assets/css/main.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <link href="assets/css/ie.min.css" rel="stylesheet">
@@ -14,13 +14,14 @@
       <script src="assets/lib/respond/dest/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="assets/js/app.min.js"></script>
-    <title data-ng-bind="Head.title()">Michael J. Bondra</title>
+    <title data-ng-bind="getTitle()">Michael J. Bondra</title>
   </head>
   <body>
     <header>
-      <h1>Michael J. Bondra</h1>
+      <h1><a href="/">MJB</a></h1>
+      <nav class="primary" data-ng-include="'app/views/navigation.html'"></nav>
     </header>
     <main data-ng-view></main>
-    <aside></aside>
+    <footer></footer>
   </body>
 </html>
