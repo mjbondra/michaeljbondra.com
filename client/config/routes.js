@@ -11,7 +11,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
   $routeProvider.when('/about', {
     templateUrl: '/app/views/about/index.html',
-    controller: 'home'
+    controller: 'about'
   });
 
   $routeProvider.when('/contact', {
@@ -21,7 +21,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
   $routeProvider.when('/work', {
     templateUrl: '/app/views/work/index.html',
-    controller: 'work.show'
+    controller: 'work.index'
   });
   $routeProvider.when('/work/:work', {
     templateUrl: '/app/views/work/show.html',
