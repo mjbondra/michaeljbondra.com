@@ -30,7 +30,6 @@ gulp.task('compass', ['bower'], function () {
     .pipe(rename(function (path) { path.basename += '.min'; }))
     .pipe(csso())
     .pipe(gulp.dest('./client/assets/css/'));
-
 });
 
 gulp.task('watch', function () {

@@ -32,7 +32,7 @@ require('./config/mongo')(config);
 require('./config/app')(app, config);
 
 // server routes
-// require('./config/routes')(app, socketEmitter);
+require('./config/routes')(app, config);
 
 // listen
 app.listen(config.port, function () {

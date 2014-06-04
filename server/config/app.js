@@ -45,7 +45,7 @@ module.exports = function (app, config) {
   // app.use(user());
 
   // api routes
-  // app.use(router(app));
+  app.use(router(app));
 
   // 404 Not Found
   // app.use(notFound());

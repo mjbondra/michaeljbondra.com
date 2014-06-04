@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" id="ng-app" data-ng-app="mjbondra">
+<html lang="en" data-ng-app="mjbondra">
   <head>
     <base href="/">
     <meta name="fragment" content="!">
@@ -7,19 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
     <meta name="description" content="I am a full-stack web developer based in Ann Arbor." data-ng-attr-content="{{ getDescription() }}">
-    <link href="assets/css/main.min.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <link href="assets/css/ie.min.css" rel="stylesheet">
-      <script src="assets/lib/html5shiv/dist/html5shiv.min.js"></script>
-      <script src="assets/lib/respond/dest/respond.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="assets/js/app.min.js"></script>
+    <link href="/assets/css/main.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/assets/js/app.min.js"></script>
     <title data-ng-bind="getTitle()">Michael J. Bondra</title>
   </head>
   <body>
     <header>
-      <h1><a href="/">MJB</a></h1>
-      <nav class="primary" data-ng-include="'app/views/navigation.html'"></nav>
+      <nav class="primary" data-ng-include="'/app/views/navigation/index.html'"></nav>
     </header>
     <main data-ng-view></main>
     <footer></footer>

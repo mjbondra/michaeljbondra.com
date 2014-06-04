@@ -9,18 +9,27 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.when('/', {
-    templateUrl: '/app/views/home.html',
+  $routeProvider.when('/about', {
+    templateUrl: '/app/views/about/index.html',
     controller: 'home'
   });
 
-  $routeProvider.when('/projects', {
-    templateUrl: '/app/views/projects.html',
-    controller: 'projects.index'
+  $routeProvider.when('/contact', {
+    templateUrl: '/app/views/contact/index.html',
+    controller: 'contact'
+  });
+
+  $routeProvider.when('/work', {
+    templateUrl: '/app/views/work/index.html',
+    controller: 'work.show'
+  });
+  $routeProvider.when('/work/:work', {
+    templateUrl: '/app/views/work/show.html',
+    controller: 'work.show'
   });
 
   // default route
   $routeProvider.otherwise({
-    redirectTo: '/'
+    redirectTo: '/about'
   });
 }]);
