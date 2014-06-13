@@ -19,13 +19,13 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     controller: 'contact'
   });
 
-  $routeProvider.when('/work', {
-    templateUrl: '/app/views/work/index.html',
-    controller: 'work.index'
+  $routeProvider.when('/projects', {
+    templateUrl: '/app/views/projects/index.html',
+    controller: 'projects.index'
   });
-  $routeProvider.when('/work/:work', {
-    templateUrl: '/app/views/work/show.html',
-    controller: 'work.show'
+  $routeProvider.when('/projects/:project', {
+    templateUrl: '/app/views/projects/show.html',
+    controller: 'project.show'
   });
 
   // default route
