@@ -56,8 +56,8 @@ app.controller('projects.show', ['$scope', 'Head', function ($scope, Head) {
  * TEMPLATE /app/views/projects/new.html
  */
 app.controller('projects.new', ['$scope', 'Head', function ($scope, Head) {
-  Head.setDescription('Project Description');
-  Head.setTitle('Project Title');
+  Head.setDescription('Create a new project.');
+  Head.setTitle('New Project');
 }]);
 
 /**
@@ -66,8 +66,8 @@ app.controller('projects.new', ['$scope', 'Head', function ($scope, Head) {
  * TEMPLATE /app/views/projects/edit.html
  */
 app.controller('projects.edit', ['$scope', 'Head', function ($scope, Head) {
-  Head.setDescription('Project Description');
-  Head.setTitle('Project Title');
+  Head.setDescription('Edit this project.');
+  Head.setTitle('Edit Project');
 }]);
 
 /*------------------------------------*\

@@ -68,10 +68,10 @@ module.exports = {
    */
   msg: function (message, type, related, value) {
     var msgObj = {};
-    if (!message) msgObj.message = message;
-    if (!type) msgObj.type = type;
-    if (!related) msgObj.related = related;
-    if (typeof value !== 'undefined') msgObj.value = value;
+    if (message) msgObj.message = message;
+    if (type) msgObj.type = type;
+    if (related) msgObj.related = related;
+    if (typeof value !== 'undefined') msgObj.value = value; // value can be boolean
     return msgObj;
   },
 

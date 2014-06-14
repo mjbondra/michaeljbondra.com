@@ -26,7 +26,7 @@ var env = process.env.NODE_ENV || 'development'
 require('./config/mongo')(config);
 
 // models
-// require('./config/models')(__dirname + '/app/models/');
+require('./config/models')(__dirname + '/app/models/');
 
 // koa configuration
 require('./config/app')(app, config);

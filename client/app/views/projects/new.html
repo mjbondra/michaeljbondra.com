@@ -1,1 +1,11 @@
 <h2>New Project</h2>
+<form novalidate>
+  <label>Title<input type="text" data-ng-model="project.title"></label>
+  <label>Description<textarea data-ng-model="project.body"></textarea></label>
+  <label>Link</label>
+  <label>Tags</label>
+  <img data-ng-if="project.images" data-ng-src="{{ project.images[0] }}">
+  <label>Upload Image<input type="file"></label>
+  <button data-ng-if="project.images">Delete Image</button>
+  <button>Add Project</button>
+</form>

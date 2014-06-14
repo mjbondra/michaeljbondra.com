@@ -9,6 +9,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
 
+  // home
+
   // static page routes
   $routeProvider.when('/about', {
     templateUrl: '/app/views/about/index.html',

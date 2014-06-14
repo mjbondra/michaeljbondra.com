@@ -60,6 +60,9 @@ module.exports = {
   title: {
     isNull: 'Title cannot be empty'
   },
+  username: {
+    notNull: 'Username cannot be empty'
+  },
   url: {
     notUrl: 'Url must be valid'
   },
