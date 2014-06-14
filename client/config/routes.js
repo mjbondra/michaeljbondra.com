@@ -9,9 +9,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
 
-  // home
-
   // static page routes
+  $routeProvider.when('/', {
+    templateUrl: '/app/views/index.html',
+    controller: 'home'
+  });
   $routeProvider.when('/about', {
     templateUrl: '/app/views/about/index.html',
     controller: 'about'
@@ -58,6 +60,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
   // default route
   $routeProvider.otherwise({
-    redirectTo: '/about'
+    redirectTo: '/'
   });
 }]);

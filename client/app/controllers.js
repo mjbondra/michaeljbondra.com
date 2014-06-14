@@ -26,6 +26,16 @@ app.controller('contact', ['$scope', 'Head', function ($scope, Head) {
   Head.setTitle('Contact');
 }]);
 
+/**
+ * Home
+ * ROUTE /#!/
+ * TEMPLATE /app/views/index.html
+ */
+app.controller('home', ['$scope', 'Head', function ($scope, Head) {
+  Head.setDescription('Hello! I am Michael J. Bondra, a full-stack web developer based in Ann Arbor.');
+  Head.setTitle('Home');
+}]);
+
 /*------------------------------------*\
     PROJECT CONTROLLERS
 \*------------------------------------*/
