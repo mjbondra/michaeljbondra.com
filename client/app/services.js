@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('mjbondra.services', []);
+var app = angular.module('mjbondra.services', ['ngResource']);
 
 app.factory('Head', ['$rootScope', function ($rootScope) {
   var description, title;
@@ -19,3 +19,7 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
     }
   };
 }]);
+
+// app.factory('Project', [function () {
+//   return;
+// }]);
