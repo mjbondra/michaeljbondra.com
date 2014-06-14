@@ -98,18 +98,22 @@ module.exports = {
    * @param {string} contentType - content-type name
    * @param {object} mongooseDoc - Mongoose-modeled document
    * @param {string} [title] - value by which content is known, addressed, or referred
+   * @param {array} blacklist - list of keys to censor
    * @returns {object} - a response-ready JSON object that can be passed directly to this.body
    */
-  created: function *(contentType, mongooseDoc, title) {
+  created: function *(contentType, mongooseDoc, title, blacklist) {
+    blacklist = blacklist || [];
     title = title || mongooseDoc.title;
-    return this.body(this.msg(msg[contentType].created(title), 'success', contentType, yield this.censor(mongooseDoc)));
+    return this.body(this.msg(msg[contentType].created(title), 'success', contentType, yield this.censor(mongooseDoc, blacklist)));
   },
-  updated: function *(contentType, mongooseDoc, title) {
+  updated: function *(contentType, mongooseDoc, title, blacklist) {
+    blacklist = blacklist || [];
     title = title || mongooseDoc.title;
-    return this.body(this.msg(msg[contentType].updated(title), 'success', contentType, yield this.censor(mongooseDoc)));
+    return this.body(this.msg(msg[contentType].updated(title), 'success', contentType, yield this.censor(mongooseDoc, blacklist)));
   },
-  deleted: function *(contentType, mongooseDoc, title) {
+  deleted: function *(contentType, mongooseDoc, title, blacklist) {
+    blacklist = blacklist || [];
     title = title || mongooseDoc.title;
-    return this.body(this.msg(msg[contentType].deleted(title), 'success', contentType, yield this.censor(mongooseDoc)));
+    return this.body(this.msg(msg[contentType].deleted(title), 'success', contentType, yield this.censor(mongooseDoc, blacklist)));
   }
 };
