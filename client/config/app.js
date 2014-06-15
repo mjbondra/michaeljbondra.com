@@ -15,6 +15,7 @@
 
 // Core Angular modules
 require('../assets/lib/angular/angular');
+require('../assets/lib/angular-cookies/angular-cookies');
 require('../assets/lib/angular-animate/angular-animate');
 require('../assets/lib/angular-resource/angular-resource');
 require('../assets/lib/angular-route/angular-route');
@@ -32,6 +33,7 @@ require('./routes');
 // AngularJS/App modules
 var app = angular.module('mjbondra', [
   'ngAnimate',
+  'ngCookies',
   'ngRoute',
   'ngTouch',
   'mjbondra.controllers',

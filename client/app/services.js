@@ -20,6 +20,6 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
   };
 }]);
 
-// app.factory('Project', [function () {
-//   return;
-// }]);
+app.factory('Project', [function () {
+  return;
+}]);
