@@ -18,8 +18,8 @@ var Image = mongoose.model('Image')
 /**
  * Censor blacklist and Mongo projection paramater; includes or excludes fields
  */
-var blacklist = ['_id', '__v', 'path']
-  , projection = { _id: 0, __v: 0, 'images._id': 0, 'images.__v': 0, 'images.path': 0 };
+var blacklist = [ '_id', '__v' ]
+  , projection = { _id: 0, __v: 0, 'images._id': 0, 'images.__v': 0 };
 
 module.exports = {
   findOne: function *(next) {

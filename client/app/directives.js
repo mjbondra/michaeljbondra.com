@@ -4,6 +4,8 @@ var app = angular.module('mjbondra.directives', []);
 
 /**
  * Add field
+ *
+ * @param {string} attribute.addField - array in parent scope upon which additional objects may be added
  */
 app.directive('addField', [function () {
   return {
@@ -26,6 +28,9 @@ app.directive('addField', [function () {
 
 /**
  * Remove field
+ *
+ * @param {number} attribute.index - index of value to remove in parent scope array
+ * @param {string} attribute.removeField - array in parent scope upon which objects may be removed
  */
 app.directive('removeField', [function () {
   return {
