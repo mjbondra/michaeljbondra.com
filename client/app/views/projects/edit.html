@@ -1,1 +1,16 @@
-<h2>Edit Project</h2>
+<h2>Edit {{ project.title }}</h2>
+<form data-novalidate>
+  <label>Title<input type="text" data-ng-model="project.title"></label>
+  <label>Description<textarea data-ng-model="project.body"></textarea></label>
+  <fieldset>Tags
+    <ul>
+      <li data-ng-repeat="tag in project.tags">
+        <label>{{ $index + 1 }}<input type="text" data-ng-model="tag.title"></label>
+        <button data-remove-field="project.tags" data-index="{{ $index }}">Remove Tag</button>
+      </li>
+    </ul>
+    <button data-add-field="project.tags">Add Tag</button>
+  </fieldset>
+  <label>URL<input type="url" data-ng-model="project.url"></label>
+  <button data-ng-click="project.$update({ project: project.slug })">Update Project</button>
+</form>

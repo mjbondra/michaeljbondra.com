@@ -45,9 +45,10 @@ app.controller('home', ['$scope', 'Head', function ($scope, Head) {
  * ROUTE /#!/projects
  * TEMPLATE /app/views/projects/index.html
  */
-app.controller('projects.index', ['$scope', 'Head', function ($scope, Head) {
+app.controller('projects.index', ['$scope', 'Head', 'Project', function ($scope, Head, Project) {
   Head.setDescription('Here are some highlights of the work that I\'ve done');
   Head.setTitle('Project');
+  $scope.projects = Project.query();
 }]);
 
 /**
@@ -55,9 +56,14 @@ app.controller('projects.index', ['$scope', 'Head', function ($scope, Head) {
  * ROUTE /#!/projects/:project
  * TEMPLATE /app/views/projects/show.html
  */
-app.controller('projects.show', ['$scope', 'Head', function ($scope, Head) {
-  Head.setDescription('Project Description');
-  Head.setTitle('Project Title');
+app.controller('projects.show', ['$location', '$scope', '$routeParams', 'Head', 'Project', function ($location, $scope, $routeParams, Head, Project) {
+  var project = $scope.project = Project.get({ project: $routeParams.project });
+  project.$promise.then(function (project) {
+    Head.setDescription(project.body);
+    Head.setTitle(project.title);
+  }).catch(function (err) {
+    $location.path('/projects');
+  });
 }]);
 
 /**
@@ -65,9 +71,11 @@ app.controller('projects.show', ['$scope', 'Head', function ($scope, Head) {
  * ROUTE /#!/projects/new
  * TEMPLATE /app/views/projects/new.html
  */
-app.controller('projects.new', ['$scope', 'Head', function ($scope, Head) {
+app.controller('projects.new', ['$scope', 'Head', 'Project', function ($scope, Head, Project) {
   Head.setDescription('Create a new project.');
   Head.setTitle('New Project');
+  $scope.project = new Project();
+  $scope.project.tags = [];
 }]);
 
 /**
@@ -75,9 +83,14 @@ app.controller('projects.new', ['$scope', 'Head', function ($scope, Head) {
  * ROUTE /#!/projects/:project/edit
  * TEMPLATE /app/views/projects/edit.html
  */
-app.controller('projects.edit', ['$scope', 'Head', function ($scope, Head) {
-  Head.setDescription('Edit this project.');
-  Head.setTitle('Edit Project');
+app.controller('projects.edit', ['$location', '$scope', '$routeParams', 'Head', 'Project', function ($location, $scope, $routeParams, Head, Project) {
+  var project = $scope.project = Project.get({ project: $routeParams.project });
+  project.$promise.then(function (project) {
+    Head.setDescription('Edit' + project.title);
+    Head.setTitle('Edit' + project.title);
+  }).catch(function (err) {
+    $location.path('/projects');
+  });
 }]);
 
 /*------------------------------------*\

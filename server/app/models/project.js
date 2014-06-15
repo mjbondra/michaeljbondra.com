@@ -27,4 +27,23 @@ var ProjectSchema = new Schema({
   url: String
 });
 
+/**
+ * Pre-validation hook; Sanitizers
+ */
+ProjectSchema.pre('validate', function (next) {
+  this.body = sanitize.escape(this.body);
+  this.github = sanitize.escape(this.github);
+  this.title = sanitize.escape(this.title);
+  this.url = sanitize.escape(this.url);
+  next();
+});
+
+/**
+ * Pre-save hook
+ */
+ProjectSchema.pre('save', function (next) {
+  this.slug = cU.slug(this.title);
+  next();
+});
+
 mongoose.model('Project', ProjectSchema);

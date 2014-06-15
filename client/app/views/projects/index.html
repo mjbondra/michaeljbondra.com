@@ -1,1 +1,6 @@
 <h2>Projects</h2>
+<ul>
+  <li data-ng-repeat="project in projects">
+    <a data-ng-href="/projects/{{ project.slug }}">{{ project.title }}</a>
+  </li>
+</ul>

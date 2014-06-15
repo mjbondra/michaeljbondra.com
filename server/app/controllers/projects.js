@@ -18,7 +18,7 @@ var Image = mongoose.model('Image')
 /**
  * Censor blacklist and Mongo projection paramater; includes or excludes fields
  */
-var blacklist = ['id', '__v', 'path']
+var blacklist = ['_id', '__v', 'path']
   , projection = { _id: 0, __v: 0, 'images._id': 0, 'images.__v': 0, 'images.path': 0 };
 
 module.exports = {
@@ -47,7 +47,7 @@ module.exports = {
 
   /**
    * Create
-   * POST /api/projects/new
+   * POST /api/projects
    */
   create: function *(next) {
     this.project = new Project(yield coBody(this));
