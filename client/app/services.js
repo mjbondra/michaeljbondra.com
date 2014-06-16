@@ -40,10 +40,10 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
  * Service that checks for the existence of nested keys
  *
  * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
- * usage: isset(object, 'key 1', 'key 2', ... 'key n')
+ * usage: exists(object, 'key 1', 'key 2', ... 'key n')
  */
-app.factory('isset', function () {
-  return require('../../server/assets/lib/utilities/isset');
+app.factory('exists', function () {
+  return require('../../server/assets/lib/utilities/exists');
 });
 
 /*------------------------------------*\
@@ -84,12 +84,12 @@ app.factory('Session', ['$resource', function ($resource) {
 \*------------------------------------*/
 
 app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
-  $provide.factory('mjbondraInterceptor', ['$location', '$rootScope', '$q', '_', 'isset', function ($location, $rootScope, $q, _, isset) {
+  $provide.factory('mjbondraInterceptor', ['$location', '$rootScope', '$q', '_', 'exists', function ($location, $rootScope, $q, _, exists) {
     var redirect = {
       methods: ['DELETE', 'POST', 'PUT'], // methods after which redirection should occur
       path: function (res) { // redirection function
         var path = res.config.url.replace(/\/*api/, '');
-        var slug = isset(res, 'data', 'messages', 0, 'value', 'slug') ? res.data.messages[0].value.slug : '';
+        var slug = exists(res, 'data', 'messages', 0, 'value', 'slug') ? res.data.messages[0].value.slug : '';
         if (!slug || !path) path = '/'; // redirect to root if other redirect data does not exist
         else switch (res.config.method) {
           case 'DELETE':
