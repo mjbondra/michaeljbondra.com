@@ -6,8 +6,9 @@
 /**
  * Module dependencies
  */
-var msg = require('../../config/messages')
-  , slug = require('./slug-utilities').slug
+var isset = require('./utilities/isset')
+  , msg = require('../../config/messages')
+  , slug = require('./utilities/slug')
   , _ = require('underscore');
 
 module.exports = {
@@ -41,6 +42,14 @@ module.exports = {
     }
     return _obj;
   },
+
+  /**
+   * Service that checks for the existence of nested keys
+   *
+   * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
+   * usage: isset(object, 'key 1', 'key 2', ... 'key n')
+   */
+  isset: isset,
 
   /**
    * Convert string to slug

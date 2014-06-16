@@ -36,6 +36,16 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
     GENERAL UTILITY SERVICES
 \*------------------------------------*/
 
+/**
+ * Service that checks for the existence of nested keys
+ *
+ * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
+ * usage: isset(object, 'key 1', 'key 2', ... 'key n')
+ */
+app.factory('isset', function () {
+  return require('../../server/assets/lib/utilities/isset');
+});
+
 /*------------------------------------*\
     RESOURCE SERVICES
 \*------------------------------------*/
@@ -44,7 +54,7 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
  * Project service
  */
 app.factory('Project', ['$resource', function ($resource) {
-  return $resource('api/projects/:project', {}, {
+  return $resource('/api/projects/:project', {}, {
     save: { method: 'POST' },
     update: { method: 'PUT' }
   });
@@ -54,7 +64,7 @@ app.factory('Project', ['$resource', function ($resource) {
  * User service
  */
 app.factory('User', ['$resource', function ($resource) {
-  return $resource('api/users/:username', {}, {
+  return $resource('/api/users/:username', {}, {
     update: { method: 'PUT' }
   });
 }]);
@@ -63,7 +73,7 @@ app.factory('User', ['$resource', function ($resource) {
  * Session service
  */
 app.factory('Session', ['$resource', function ($resource) {
-  return $resource('api/sessions/:session', {}, {
+  return $resource('/api/sessions/:session', {}, {
     create: { method: 'POST' },
     destroy: { method: 'DELETE' }
   });
@@ -74,14 +84,12 @@ app.factory('Session', ['$resource', function ($resource) {
 \*------------------------------------*/
 
 app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
-  $provide.factory('mjbondraInterceptor', ['$location', '$rootScope', '$q', '_', function ($location, $rootScope, $q, _) {
+  $provide.factory('mjbondraInterceptor', ['$location', '$rootScope', '$q', '_', 'isset', function ($location, $rootScope, $q, _, isset) {
     var redirect = {
       methods: ['DELETE', 'POST', 'PUT'], // methods after which redirection should occur
       path: function (res) { // redirection function
-        var path = res.config.url ? res.config.url.replace(/\/*api/, '') : '';
-        var slug = res.data.messages && res.data.messages[0] && res.data.messages[0].value && res.data.messages[0].value.slug ?
-          res.data.messages[0].value.slug :
-          '';
+        var path = res.config.url.replace(/\/*api/, '');
+        var slug = isset(res, 'data', 'messages', 0, 'value', 'slug') ? res.data.messages[0].value.slug : '';
         if (!slug || !path) path = '/'; // redirect to root if other redirect data does not exist
         else switch (res.config.method) {
           case 'DELETE':
@@ -99,7 +107,7 @@ app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
     };
     return {
       response: function (res) {
-        if (res.config && res.data && _.indexOf(redirect.methods, res.config.method) > -1) redirect.path(res);
+        if (res.config && String(res.config.url).indexOf('/api') === 0 && _.indexOf(redirect.methods, res.config.method) > -1) redirect.path(res);
         return res || $q.when(res);
       },
       responseError: function (res) {

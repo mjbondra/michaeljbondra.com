@@ -10,7 +10,7 @@
  * @param {boolean} strip - removes non-word characters; do not replace with '-'
  * @returns {string} - slug
  */
-exports.slug = function (str, strip) {
+module.exports = function (str, strip) {
   if (!str) return;
   if (strip === true) return str.toLowerCase().replace(/[_]/g, '').replace(/[^\w]+/g,'');
   return str.toLowerCase().replace(/[ |_]/g, '-').replace(/[^\w-]+/g,'');
