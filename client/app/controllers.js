@@ -86,8 +86,8 @@ app.controller('projects.new', ['$scope', 'Head', 'Project', function ($scope, H
 app.controller('projects.edit', ['$location', '$scope', '$routeParams', 'Head', 'Project', function ($location, $scope, $routeParams, Head, Project) {
   var project = $scope.project = Project.get({ project: $routeParams.project });
   project.$promise.then(function (project) {
-    Head.setDescription('Edit' + project.title);
-    Head.setTitle('Edit' + project.title);
+    Head.setDescription('Edit ' + project.title);
+    Head.setTitle('Edit ' + project.title);
   }).catch(function (err) {
     $location.path('/projects');
   });
@@ -112,7 +112,7 @@ app.controller('users.edit', ['$scope', 'Head', function ($scope, Head) {
  * ROUTE /#!/users
  * TEMPLATE /app/views/users/sessions/new.html
  */
-app.controller('users.sessions.new', ['$scope', 'Head', function ($scope, Head) {
-  Head.setDescription('User edit');
-  Head.setTitle('User edit');
+app.controller('sessions.new', ['$scope', 'Head', function ($scope, Head) {
+  Head.setDescription('Sign in to a new session.');
+  Head.setTitle('Sign-in');
 }]);

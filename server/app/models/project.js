@@ -15,15 +15,28 @@ var cU = require('../../assets/lib/common-utilities')
 var ImageSchema = mongoose.model('Image').schema;
 
 var ProjectSchema = new Schema({
-  body: String,
+  body: {
+    type: String,
+    validate: [
+      { validator: validate.notNull, msg: msg.body.isNull }
+    ]
+  },
   github: String,
   images: [ ImageSchema ],
-  slug: String,
+  slug: {
+    type: String,
+    index: { unique: true }
+  },
   tags: [{
     slug: String,
     title: String
   }],
-  title: String,
+  title: {
+    type: String,
+    validate: [
+      { validator: validate.notNull, msg: msg.title.isNull }
+    ]
+  },
   url: String
 });
 

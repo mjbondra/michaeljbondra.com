@@ -6,6 +6,10 @@ var app = angular.module('mjbondra.services', ['ngResource']);
     EXTERNAL LIBRARY SERVICES
 \*------------------------------------*/
 
+app.factory('_', function () {
+  return require('underscore');
+});
+
 /*------------------------------------*\
     ROOT SCOPE SERVICES
 \*------------------------------------*/
@@ -32,15 +36,6 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
     GENERAL UTILITY SERVICES
 \*------------------------------------*/
 
-app.factory('Slug', [function () {
-  return {
-    create: function () {},
-    get: function (res, index) {
-      return res && res.data && res.data.messages && res.data.messages[index] && res.data.messages[index].value && res.data.messages[index].value.slug ? res.data.messages[index].value.slug : '';
-    }
-  };
-}]);
-
 /*------------------------------------*\
     RESOURCE SERVICES
 \*------------------------------------*/
@@ -48,26 +43,29 @@ app.factory('Slug', [function () {
 /**
  * Project service
  */
-app.factory('Project', ['$resource', '$location', 'Slug', function ($resource, $location, Slug) {
+app.factory('Project', ['$resource', function ($resource) {
   return $resource('api/projects/:project', {}, {
-    save: {
-      method:'POST',
-      interceptor: {
-        response: function (res) {
-          var slug = Slug.get(res, 0);
-          $location.path('/projects/' + slug);
-        }
-      }
-    },
-    update: {
-      method:'PUT',
-      interceptor: {
-        response: function (res) {
-          var slug = Slug.get(res, 0);
-          $location.path('/projects/' + slug);
-        }
-      }
-    }
+    save: { method: 'POST' },
+    update: { method: 'PUT' }
+  });
+}]);
+
+/**
+ * User service
+ */
+app.factory('User', ['$resource', function ($resource) {
+  return $resource('api/users/:username', {}, {
+    update: { method: 'PUT' }
+  });
+}]);
+
+/**
+ * Session service
+ */
+app.factory('Session', ['$resource', function ($resource) {
+  return $resource('api/sessions/:session', {}, {
+    create: { method: 'POST' },
+    destroy: { method: 'DELETE' }
   });
 }]);
 
@@ -75,16 +73,39 @@ app.factory('Project', ['$resource', '$location', 'Slug', function ($resource, $
     RESPONSE SERVICES
 \*------------------------------------*/
 
-// app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
-//   $provide.factory('mjbondraInterceptor', ['$rootScope', '$q', function ($rootScope, $q) {
-//     return {
-//       response: function (res) {
-//         return res || $q.when(res);
-//       },
-//       responseError: function (res) {
-//         return $q.reject(res);
-//       }
-//     };
-//   }]);
-//   $httpProvider.interceptors.push('mjbondraInterceptor');
-// }]);
+app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
+  $provide.factory('mjbondraInterceptor', ['$location', '$rootScope', '$q', '_', function ($location, $rootScope, $q, _) {
+    var redirect = {
+      methods: ['DELETE', 'POST', 'PUT'], // methods after which redirection should occur
+      path: function (res) { // redirection function
+        var path = res.config.url ? res.config.url.replace(/\/*api/, '') : '';
+        var slug = res.data.messages && res.data.messages[0] && res.data.messages[0].value && res.data.messages[0].value.slug ?
+          res.data.messages[0].value.slug :
+          '';
+        if (!slug || !path) path = '/'; // redirect to root if other redirect data does not exist
+        else switch (res.config.method) {
+          case 'DELETE':
+            path = String(path.match(/.*(?=\/)/)); // redirect to content type index
+            break;
+          case 'POST':
+            path = path + '/' + slug; // redirect to created content
+            break;
+          case 'PUT':
+            path = String(path.match(/.*\//)) + slug; // redirect to updated content
+            break;
+        }
+        $location.path(path);
+      }
+    };
+    return {
+      response: function (res) {
+        if (res.config && res.data && _.indexOf(redirect.methods, res.config.method) > -1) redirect.path(res);
+        return res || $q.when(res);
+      },
+      responseError: function (res) {
+        return $q.reject(res);
+      }
+    };
+  }]);
+  $httpProvider.interceptors.push('mjbondraInterceptor');
+}]);

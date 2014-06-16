@@ -41,19 +41,21 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     controller: 'projects.edit'
   });
 
-  // user/session routes
+  // user routes
   $routeProvider.when('/users/:username', {
     templateUrl: '/app/views/users/edit.html',
     controller: 'users.edit'
   });
-  $routeProvider.when('/users/sessions/new', {
-    templateUrl: '/app/views/users/sessions/new.html',
-    controller: 'users.sessions.new'
+
+  // session routes
+  $routeProvider.when('/sessions/new', {
+    templateUrl: '/app/views/sessions/new.html',
+    controller: 'sessions.new'
   });
   // $routeProvider.when('/users/sessions/destroy', {
   //   resolve: {
-  //     response: ['User', function (User) {
-  //       User.signOut();
+  //     response: ['Session', function (Session) {
+  //       Session.destroy();
   //     }]
   //   }
   // });
