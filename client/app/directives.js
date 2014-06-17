@@ -2,6 +2,10 @@
 
 var app = angular.module('mjbondra.directives', ['angularFileUpload']);
 
+/*------------------------------------*\
+    FORM FIELD DIRECTIVES
+\*------------------------------------*/
+
 /**
  * Add field
  *
