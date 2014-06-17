@@ -1,13 +1,13 @@
 'use strict';
 
-var app = angular.module('mjbondra.directives', []);
+var app = angular.module('mjbondra.directives', ['angularFileUpload']);
 
 /**
  * Add field
  *
  * @param {string} attribute.addField - array in parent scope upon which additional objects may be added
  */
-app.directive('addField', [function () {
+app.directive('addField', function () {
   return {
     scope: {
       addField: '='
@@ -24,7 +24,7 @@ app.directive('addField', [function () {
       });
     }
   };
-}]);
+});
 
 /**
  * Remove field
@@ -32,7 +32,7 @@ app.directive('addField', [function () {
  * @param {number} attribute.index - index of value to remove in parent scope array
  * @param {string} attribute.removeField - array in parent scope upon which objects may be removed
  */
-app.directive('removeField', [function () {
+app.directive('removeField', function () {
   return {
     scope: {
       removeField: '='
@@ -48,6 +48,34 @@ app.directive('removeField', [function () {
           element.off('click');
         });
       });
+    }
+  };
+});
+
+/**
+ * Upload field
+ *
+ * @param {function} attribute.ngFileSelect - upload function (set to 'onFileSelect($files)' for default behavior)
+ * @param {string} attribute.uploadField - url of upload path
+ */
+app.directive('uploadField', ['$upload', function ($upload) {
+  return {
+    scope: true,
+    link: function (scope, element, attributes) {
+      scope.onFileSelect = function ($files) {
+        for (var i = 0; i < $files.length; i++) {
+          var file = $files[i];
+          scope.upload = $upload.upload({
+            url: attributes.uploadField,
+            file: file,
+            fileFormDataName: 'image',
+          }).progress(function (evt) {
+            // $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+          }).success(function (data, status, headers, config) {
+            // success action
+          });
+        }
+      };
     }
   };
 }]);

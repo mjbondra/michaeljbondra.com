@@ -21,6 +21,9 @@ require('../assets/lib/angular-resource/angular-resource');
 require('../assets/lib/angular-route/angular-route');
 require('../assets/lib/angular-touch/angular-touch');
 
+// 3rd-party Angular modules
+require('../assets/lib/ng-file-upload/angular-file-upload');
+
 // App Dependencies
 require('../app/controllers');
 require('../app/directives');

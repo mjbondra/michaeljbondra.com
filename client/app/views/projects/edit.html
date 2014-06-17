@@ -2,6 +2,7 @@
 <form data-novalidate>
   <label>Title<input type="text" data-ng-model="project.title"></label>
   <label>Description<textarea data-ng-model="project.body"></textarea></label>
+  <label>Image<input id="image" type="file" data-ng-file-select="onFileSelect($files)" data-upload-field="/api/projects/{{ project.slug }}/images"></label>
   <fieldset>Tags
     <ul>
       <li data-ng-repeat="tag in project.tags">

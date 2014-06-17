@@ -84,7 +84,32 @@ module.exports = {
      * POST /api/projects/:project/images
      */
     create: function *(next) {
-      yield next;
+      if (!this.project) return yield next; // 404 Not Found
+      var image = new Image()
+        , imageLrg = new Image()
+        , imageMed = new Image()
+        , imageSm = new Image()
+        , imageExSm = new Image();
+
+      // stream image from form data
+      yield image.stream(this, { alt: this.project.title, crop: true, type: 'projects' }); // 400px height / 400px width
+      yield [ // resize multiple images asynchronously; yield until all are complete
+        imageLrg.resize(image), // 50% height / 50% width
+        imageMed.resize(image, { geometry: { height: 25, width: 25 }}), // 25% height / 25% width
+        imageSm.resize(image, { geometry: { height: 50, width: 50 }, percentage: false }), // 50px height / 50px width
+        imageExSm.resize(image, { geometry: { height: 25, width: 25 }, percentage: false }) // 25px height / 25px width
+      ];
+
+      // remove old images
+      if (this.project.images.length > 0) {
+        var i = this.project.images.length;
+        while (i--) yield this.project.images[i].destroy();
+      }
+      this.project.images = [ image, imageLrg, imageMed, imageSm, imageExSm ]; // limit project images to a single (current) image
+
+      yield Promise.promisify(this.project.save, this.project)();
+      this.status = 201;
+      this.body = yield cU.censor(this.project, blacklist);
     },
 
     /**
@@ -92,7 +117,16 @@ module.exports = {
      * DELETE /api/projects/:project/images
      */
     destroy: function *(next) {
-      yield next;
+      if (!this.project) return yield next; // 404 Not Found
+
+      // remove images
+      if (this.project.images.length > 0) {
+        var i = this.project.images.length;
+        while (i--) yield this.project.images[i].destroy();
+      }
+      this.project.images = [];
+      yield Promise.promisify(this.project.save, this.project)();
+      this.body = yield cU.censor(this.project, blacklist);
     }
   }
 };
