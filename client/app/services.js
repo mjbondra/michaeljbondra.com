@@ -90,7 +90,7 @@ app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
       path: function (res) { // redirection function
         var path = res.config.url.replace(/\/*api/, '');
         var slug = exists(res, 'data', 'messages', 0, 'value', 'slug') ? res.data.messages[0].value.slug : '';
-        if (!slug || !path) path = '/'; // redirect to root if other redirect data does not exist
+        if (!slug || !path) return; // do not redirect if slug or path is not present
         else switch (res.config.method) {
           case 'DELETE':
             path = String(path.match(/.*(?=\/)/)); // redirect to content type index

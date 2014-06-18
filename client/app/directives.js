@@ -111,10 +111,9 @@ app.directive('removeField', function () {
 });
 
 /**
- * File field
+ * Image fieldset
  *
- * @param {function} attribute.ngFileSelect - upload function (set to 'onFileSelect($files)' for default behavior)
- * @param {string} attribute.uploadField - url of upload path
+ * @param {string} attribute.imageFieldset - url of upload path
  */
 app.directive('imageFieldset', ['$upload', function ($upload) {
   return {
