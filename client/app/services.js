@@ -14,15 +14,15 @@ app.factory('_', function () {
     ROOT SCOPE SERVICES
 \*------------------------------------*/
 
-app.factory('Head', ['$rootScope', function ($rootScope) {
+app.factory('Head', function () {
   var description, title;
-  $rootScope.getDescription = function () {
-    return description;
-  };
-  $rootScope.getTitle = function () {
-    return title;
-  };
   return {
+    getDescription: function () {
+      return description;
+    },
+    getTitle: function () {
+      return title;
+    },
     setDescription: function (d) {
       description = d;
     },
@@ -30,7 +30,7 @@ app.factory('Head', ['$rootScope', function ($rootScope) {
       title = t;
     }
   };
-}]);
+});
 
 /*------------------------------------*\
     GENERAL UTILITY SERVICES

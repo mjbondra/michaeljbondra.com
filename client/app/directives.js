@@ -3,6 +3,42 @@
 var app = angular.module('mjbondra.directives', ['angularFileUpload']);
 
 /*------------------------------------*\
+    HEAD DIRECTIVES
+\*------------------------------------*/
+
+app.directive('description', ['Head', function (Head) {
+  return {
+    link: function (scope, element, attributes) {
+      var tagName = element.prop('tagName');
+      if (tagName && String(tagName).toLowerCase() !== 'meta') element.ready(function () {
+        Head.setDescription(element.text());
+        scope.$apply();
+      });
+      else scope.getDescription = function () {
+        return Head.getDescription();
+      };
+    },
+    scope: true
+  };
+}]);
+
+app.directive('title', ['Head', function (Head) {
+  return {
+    link: function (scope, element, attributes) {
+      var tagName = element.prop('tagName');
+      if (tagName && String(tagName).toLowerCase() !== 'title') element.ready(function () {
+        Head.setTitle(element.text());
+        scope.$apply();
+      });
+      else scope.getTitle = function () {
+        return Head.getTitle();
+      };
+    },
+    scope: true
+  };
+}]);
+
+/*------------------------------------*\
     FORM FIELD DIRECTIVES
 \*------------------------------------*/
 
@@ -13,9 +49,6 @@ var app = angular.module('mjbondra.directives', ['angularFileUpload']);
  */
 app.directive('addField', function () {
   return {
-    scope: {
-      addField: '='
-    },
     link: function (scope, element, attributes) {
       element.ready(function () {
         element.on('click', function () {
@@ -26,6 +59,9 @@ app.directive('addField', function () {
           element.off('click');
         });
       });
+    },
+    scope: {
+      addField: '='
     }
   };
 });
@@ -38,9 +74,6 @@ app.directive('addField', function () {
  */
 app.directive('removeField', function () {
   return {
-    scope: {
-      removeField: '='
-    },
     link: function (scope, element, attributes) {
       element.ready(function () {
         if (!attributes.index) return;
@@ -52,6 +85,9 @@ app.directive('removeField', function () {
           element.off('click');
         });
       });
+    },
+    scope: {
+      removeField: '='
     }
   };
 });
@@ -64,7 +100,6 @@ app.directive('removeField', function () {
  */
 app.directive('uploadField', ['$upload', function ($upload) {
   return {
-    scope: true,
     link: function (scope, element, attributes) {
       scope.onFileSelect = function ($files) {
         for (var i = 0; i < $files.length; i++) {
@@ -80,6 +115,7 @@ app.directive('uploadField', ['$upload', function ($upload) {
           });
         }
       };
-    }
+    },
+    scope: true
   };
 }]);

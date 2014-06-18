@@ -1,5 +1,5 @@
-<h2>{{ project.title }}</h2>
-<p>{{ project.body }}</p>
+<h2 data-ng-if="project.title" data-title>{{ project.title }}</h2>
+<p data-ng-if="project.body" data-description>{{ project.body }}</p>
 <ul>
   <li data-ng-repeat="tag in project.tags">{{ tag.title }}</li>
 </ul>

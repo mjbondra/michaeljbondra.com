@@ -1,4 +1,4 @@
-<h2>Edit User</h2>
+<h2 data-description data-ng-if="user.username" data-title>Edit {{ user.username }}</h2>
 <form novalidate>
   <label>Username<input type="text" data-ng-model="user.username"></label>
   <label>Username<input type="text" data-ng-model="user.email"></label>

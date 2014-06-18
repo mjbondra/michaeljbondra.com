@@ -1,4 +1,4 @@
-<h2>Edit {{ project.title }}</h2>
+<h2 data-description data-ng-if="project.title" data-title>Edit {{ project.title }}</h2>
 <form data-novalidate>
   <label>Title<input type="text" data-ng-model="project.title"></label>
   <label>Description<textarea data-ng-model="project.body"></textarea></label>
