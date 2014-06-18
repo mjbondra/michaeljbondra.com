@@ -51,6 +51,7 @@ app.directive('addField', function () {
   return {
     link: function (scope, element, attributes) {
       element.ready(function () {
+        if (!scope.addField) scope.addField = [];
         element.on('click', function () {
           scope.addField.push({});
           scope.$apply();

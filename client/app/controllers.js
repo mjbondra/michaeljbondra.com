@@ -45,7 +45,7 @@ app.controller('projects.index', ['$scope', 'Project', function ($scope, Project
  * ROUTE /#!/projects/:project
  * TEMPLATE /app/views/projects/show.html
  */
-app.controller('projects.show', ['$location', '$scope', '$routeParams', 'Project', function ($location, $scope, $routeParams, Project) {
+app.controller('projects.show', ['$location', '$routeParams', '$scope', 'Project', function ($location, $routeParams, $scope, Project) {
   var project = $scope.project = Project.get({ project: $routeParams.project });
   project.$promise.catch(function (err) {
     $location.path('/projects');
@@ -59,7 +59,6 @@ app.controller('projects.show', ['$location', '$scope', '$routeParams', 'Project
  */
 app.controller('projects.new', ['$scope', 'Project', function ($scope, Project) {
   $scope.project = new Project();
-  $scope.project.tags = [];
 }]);
 
 /**
@@ -67,7 +66,7 @@ app.controller('projects.new', ['$scope', 'Project', function ($scope, Project) 
  * ROUTE /#!/projects/:project/edit
  * TEMPLATE /app/views/projects/edit.html
  */
-app.controller('projects.edit', ['$location', '$scope', '$routeParams', 'Project', function ($location, $scope, $routeParams, Project) {
+app.controller('projects.edit', ['$location', '$routeParams', '$scope', 'Project', function ($location, $routeParams, $scope, Project) {
   var project = $scope.project = Project.get({ project: $routeParams.project });
   project.$promise.catch(function (err) {
     $location.path('/projects');
