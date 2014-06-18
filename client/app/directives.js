@@ -6,6 +6,14 @@ var app = angular.module('mjbondra.directives', ['angularFileUpload']);
     HEAD DIRECTIVES
 \*------------------------------------*/
 
+/**
+ * Description directive
+ *
+ * Sets and populates "content" attribute of <meta name="description">
+ *
+ * set: <p data-description>...</p>
+ * get: <meta name="description" data-description data-ng-attr-content="{{ getDescription() }}">
+ */
 app.directive('description', ['Head', function (Head) {
   return {
     link: function (scope, element, attributes) {
@@ -22,6 +30,15 @@ app.directive('description', ['Head', function (Head) {
   };
 }]);
 
+
+/**
+ * Title directive
+ *
+ * Sets and populates <title>
+ *
+ * set: <h2 data-title>...</h2>
+ * get: <title data-ng-bind="getTitle()" data-title></title>
+ */
 app.directive('title', ['Head', function (Head) {
   return {
     link: function (scope, element, attributes) {
@@ -94,19 +111,19 @@ app.directive('removeField', function () {
 });
 
 /**
- * Upload field
+ * File field
  *
  * @param {function} attribute.ngFileSelect - upload function (set to 'onFileSelect($files)' for default behavior)
  * @param {string} attribute.uploadField - url of upload path
  */
-app.directive('uploadField', ['$upload', function ($upload) {
+app.directive('imageFieldset', ['$upload', function ($upload) {
   return {
     link: function (scope, element, attributes) {
       scope.onFileSelect = function ($files) {
         for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
           scope.upload = $upload.upload({
-            url: attributes.uploadField,
+            url: attributes.imageFieldset,
             file: file,
             fileFormDataName: 'image',
           }).progress(function (evt) {
@@ -117,6 +134,7 @@ app.directive('uploadField', ['$upload', function ($upload) {
         }
       };
     },
-    scope: true
+    scope: true,
+    templateUrl: '/app/views/directives/image-fieldset.html'
   };
 }]);
