@@ -4,6 +4,12 @@ var app = angular.module('mjbondra.filters', []);
 
 /**
  * Image selection filter
+ *
+ * @param {array} input - array that contains image objects
+ * @param {number} opts.height - height of images that should be returned
+ * @param {number} otps.width - width of images that should be returned
+ * @param {boolean} [opts.highDpi=true] - will double the value of height and width if screen is high-resolution
+ * @return {array} - an array of images that match the given set of options
  */
 app.filter('imageSelect', ['highDpi', function (highDpi) {
   return function (input, opts) {
@@ -24,6 +30,9 @@ app.filter('imageSelect', ['highDpi', function (highDpi) {
 
 /**
  * Format title
+ *
+ * @param {string} input - raw title
+ * @return {string} - page title
  */
 app.filter('pageTitle', function () {
   return function (input) {
@@ -34,6 +43,9 @@ app.filter('pageTitle', function () {
 
 /**
  * Summarization filter
+ *
+ * @param {string} input - text
+ * @return {string} - trucated text
  */
 app.filter('summarize', function () {
   return function (input, maxLength) {
