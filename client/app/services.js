@@ -20,13 +20,12 @@ app.factory('_', function () {
 /**
  * API Service
  *
- * @param {string} url - url without the '/api' prefix
+ * @param {string} url - url of api resource
  * @param {string} method - http method to use
  * @return {promise} - a promise for the data returned by a given url
  */
 app.factory('api', ['$http', function ($http) {
   return function (url, method) {
-    url = '/api' + url;
     method = method || 'GET';
     return $http({ method: method, url: url, params: { t: new Date().getTime() }});
   };

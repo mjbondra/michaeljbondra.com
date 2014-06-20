@@ -122,8 +122,10 @@ app.directive('removeField', function () {
 app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
   return {
     link: function (scope, element, attributes) {
-      scope.delete = function () {
-
+      scope.delete = function (id) {
+        api(attributes.uploadPath + '/' + id, 'DELETE').success(function (images) {
+          scope.imageFieldset = images;
+        });
       };
       scope.opts = {
         height: attributes.imageHeight,
@@ -140,8 +142,8 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
             fileFormDataName: 'image',
           }).progress(function (evt) {
             // $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-          }).success(function (data, status, headers, config) {
-            scope.imageFieldset = data;
+          }).success(function (images, status, headers, config) {
+            scope.imageFieldset = images;
           });
         }
       };

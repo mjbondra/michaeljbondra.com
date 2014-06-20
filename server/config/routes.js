@@ -18,7 +18,8 @@ module.exports = function (app, config) {
   app.put('/api/projects/:project', projects.findOne, projects.update);
   app.delete('/api/projects/:project', projects.findOne, projects.destroy);
   app.post('/api/projects/:project/images', projects.findOne, projects.images.create);
-  app.delete('/api/projects/:project/images', projects.findOne, projects.images.destroy);
+  app.put('/api/projects/:project/images/:image', projects.findOne, projects.images.update);
+  app.delete('/api/projects/:project/images/:image', projects.findOne, projects.images.destroy);
 
   // redirect all remaining GET method routes to angular router
   app.get('*', function *() {

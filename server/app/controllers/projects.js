@@ -18,8 +18,8 @@ var Image = mongoose.model('Image')
 /**
  * Censor blacklist and Mongo projection paramater; includes or excludes fields
  */
-var blacklist = [ '_id', '__v' ]
-  , projection = { _id: 0, __v: 0, 'images._id': 0, 'images.__v': 0 };
+var blacklist = [ '__v' ]
+  , projection = { __v: 0, 'images.__v': 0 };
 
 module.exports = {
   findOne: function *(next) {
@@ -113,18 +113,30 @@ module.exports = {
     },
 
     /**
+     * Update
+     * PUT /api/projects/:project/images/:image
+     */
+    update: function *(next) {
+      if (!this.project) return yield next; // 404 Not Found
+    },
+
+    /**
      * Destroy
-     * DELETE /api/projects/:project/images
+     * DELETE /api/projects/:project/images/:image
      */
     destroy: function *(next) {
       if (!this.project) return yield next; // 404 Not Found
+      var id = this.params.image
+        , images = [];
 
       // remove images
-      if (this.project.images.length > 0) {
-        var i = this.project.images.length;
-        while (i--) yield this.project.images[i].destroy();
+      var i = this.project.images.length;
+      while (i--) {
+        if (this.project.images[i].id === id || this.project.images[i].related == id) yield this.project.images[i].destroy();
+        else images.push(this.project.images[i]);
       }
-      this.project.images = [];
+
+      this.project.images = images.reverse();
       yield Promise.promisify(this.project.save, this.project)();
       this.body = yield cU.censor(this.project.images, blacklist);
     }
