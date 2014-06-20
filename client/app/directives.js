@@ -119,15 +119,18 @@ app.directive('removeField', function () {
  * @param {boolean} [attributes.imageHighDpi=true] - will double the value of height and width if screen is high-resolution
  * @param {array} attributes.uploadPath - url of upload path
  */
-app.directive('imageFieldset', ['$upload', function ($upload) {
+app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
   return {
     link: function (scope, element, attributes) {
+      scope.delete = function () {
+
+      };
       scope.opts = {
         height: attributes.imageHeight,
         width: attributes.imageWidth,
         highDpi: attributes.imageHighDpi
       };
-      scope.onFileSelect = function ($files) {
+      scope.save = function ($files) {
         if (!attributes.uploadPath) return;
         for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
