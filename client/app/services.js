@@ -6,15 +6,37 @@ var app = angular.module('mjbondra.services', ['ngResource']);
     EXTERNAL LIBRARY SERVICES
 \*------------------------------------*/
 
+/**
+ * Underscore service
+ */
 app.factory('_', function () {
   return require('underscore');
 });
 
 /*------------------------------------*\
-    ROOT SCOPE SERVICES
+    GENERAL UTILITY SERVICES
 \*------------------------------------*/
 
-app.factory('Head', function () {
+/**
+ * Service that checks for the existence of nested keys
+ *
+ * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
+ * usage: exists(object, 'key 1', 'key 2', ... 'key n')
+ *
+ * @param {object} argument[0] - object that will be checked for the presence of nested key-values
+ * @param {string} argument[n] - name of potential nested key-value
+ * @return {boolean} - whether or not a nested key-value exists in the object
+ */
+app.factory('exists', function () {
+  return require('../../server/assets/lib/utilities/exists');
+});
+
+/**
+ * <head> service
+ *
+ * Sets and provides values for <title> and <meta name="description">
+ */
+app.factory('head', function () {
   var description, title;
   return {
     getDescription: function () {
@@ -32,19 +54,22 @@ app.factory('Head', function () {
   };
 });
 
-/*------------------------------------*\
-    GENERAL UTILITY SERVICES
-\*------------------------------------*/
-
 /**
- * Service that checks for the existence of nested keys
+ * Service that detects high-resolution screens
  *
- * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
- * usage: exists(object, 'key 1', 'key 2', ... 'key n')
+ * @return {boolean} - whether or not a screen is high density
  */
-app.factory('exists', function () {
-  return require('../../server/assets/lib/utilities/exists');
-});
+app.factory('highDpi', ['$window', function ($window) {
+  var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.3),\
+    (min--moz-device-pixel-ratio: 1.3),\
+    (-o-min-device-pixel-ratio: 13/10),\
+    (min-resolution: 1.3dppx)";
+  return function () {
+    if ($window.devicePixelRatio > 1.3) return true;
+    if ($window.matchMedia && $window.matchMedia(mediaQuery).matches) return true;
+    return false;
+  };
+}]);
 
 /*------------------------------------*\
     RESOURCE SERVICES

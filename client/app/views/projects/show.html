@@ -3,3 +3,8 @@
 <ul>
   <li data-ng-repeat="tag in project.tags">{{ tag.title }}</li>
 </ul>
+<ul>
+  <li data-ng-repeat="image in project.images | imageSelect: { width: 50 }">
+    <img alt="{{ image.alt }}" data-ng-src="{{ image.src }}">
+  </li>
+</ul>

@@ -109,7 +109,7 @@ module.exports = {
 
       yield Promise.promisify(this.project.save, this.project)();
       this.status = 201;
-      this.body = yield cU.censor(this.project, blacklist);
+      this.body = yield cU.censor(this.project.images, blacklist);
     },
 
     /**
@@ -126,7 +126,7 @@ module.exports = {
       }
       this.project.images = [];
       yield Promise.promisify(this.project.save, this.project)();
-      this.body = yield cU.censor(this.project, blacklist);
+      this.body = yield cU.censor(this.project.images, blacklist);
     }
   }
 };

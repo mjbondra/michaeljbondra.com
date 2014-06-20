@@ -2,11 +2,11 @@
 <form data-novalidate>
   <label>Title<input type="text" data-ng-model="project.title"></label>
   <label>Description<textarea data-ng-model="project.body"></textarea></label>
-  <fieldset data-image-fieldset="/api/projects/{{ project.slug }}/images"></fieldset>
+  <fieldset data-image-fieldset="project.images" data-image-width="50" data-upload-path="/api/projects/{{ project.slug }}/images"></fieldset>
   <fieldset>Tags
     <ul>
       <li data-ng-repeat="tag in project.tags">
-        <label>{{ $index + 1 }}<input type="text" data-ng-model="tag.title"></label>
+        <input type="text" data-ng-model="tag.title">
         <button data-remove-field="project.tags" data-index="{{ $index }}">Remove Tag</button>
       </li>
     </ul>
