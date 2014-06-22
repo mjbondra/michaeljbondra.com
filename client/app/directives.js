@@ -130,18 +130,20 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
       scope.opts = {
         height: attributes.imageHeight,
         width: attributes.imageWidth,
-        highDpi: attributes.imageHighDpi
+        highDpi: attributes.imageHighDpi,
+        multiple: attributes.imageMultiple
       };
-      scope.save = function ($files) {
+      scope.save = scope.update = function ($files, id) {
         if (!attributes.uploadPath) return;
         for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
           scope.upload = $upload.upload({
-            url: attributes.uploadPath,
+            method: id ? 'PUT' : 'POST',
+            url: attributes.uploadPath + ( id ? '/' + id : '' ),
             file: file,
             fileFormDataName: 'image',
-          }).progress(function (evt) {
-            // $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+       // }).progress(function (evt) {
+       //   $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
           }).success(function (images, status, headers, config) {
             scope.imageFieldset = images;
           });

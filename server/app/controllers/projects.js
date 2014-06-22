@@ -21,6 +21,7 @@ var Image = mongoose.model('Image')
  */
 var blacklist = [ '__v' ]
   , imageOptions = {
+      multiple: true,
       sizes: [ // image sizes
         { geometry: { height: 200, width: 200 }},
         { geometry: { height: 100, width: 100 }},
