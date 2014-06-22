@@ -86,32 +86,33 @@ ImageSchema.methods = {
       , filename = this.id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
       , geometry = Promise.defer()
       , path = dir + '/' + filename
-      , readStream = fs.createReadStream(image.path)
       , size = Promise.defer();
 
-    var _image = gm(readStream);
-    if (opts.crop === true) _image.resize(opts.geometry.width, opts.geometry.height, '^')
-      .gravity('Center')
-      .crop(opts.geometry.width, opts.geometry.width);
-    else _image.resize(opts.geometry.width, opts.geometry.height);
-    _image.stream(function (err, stdout, stderr) {
-      if (err) return size.reject(new ImageError(msg.image.unknownError, 400)); // 400 Bad Request
-      var writeStream = fs.createWriteStream(path);
-      stdout.on('error', function (err) {
-        size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
-      });
-      stdout.on('end', function () {
-        size.resolve(this.bytesRead);
-        fs.exists(path, function (exists) {
-          if (exists) gm(fs.createReadStream(path)).size({ buffer: true }, function (err, size) {
-            if (err) return geometry.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
-            geometry.resolve(size);
+    fs.exists(image.path, function (exists) {
+      if (!exists) return size.reject(new ImageError(msg.image.unknownError, 400)); // 400 Bad Request
+      var _image = gm(fs.createReadStream(image.path));
+      if (opts.crop === true) _image.resize(opts.geometry.width, opts.geometry.height, '^')
+        .gravity('Center')
+        .crop(opts.geometry.width, opts.geometry.width);
+      else _image.resize(opts.geometry.width, opts.geometry.height);
+      _image.stream(function (err, stdout, stderr) {
+        if (err) return size.reject(new ImageError(msg.image.unknownError, 400)); // 400 Bad Request
+        var writeStream = fs.createWriteStream(path);
+        stdout.on('error', function (err) {
+          size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+        });
+        stdout.on('end', function () {
+          size.resolve(this.bytesRead);
+          fs.exists(path, function (exists) {
+            if (exists) gm(fs.createReadStream(path)).size({ buffer: true }, function (err, size) {
+              if (err) return geometry.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+              geometry.resolve(size);
+            });
           });
         });
+        stdout.pipe(writeStream);
       });
-      stdout.pipe(writeStream);
     });
-
 
     this.alt = image.alt;
     this.encoding = image.encoding;
