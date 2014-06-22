@@ -7,11 +7,35 @@
  * Module dependencies
  */
 var exists = require('./utilities/exists')
+  , fs = require('fs')
   , msg = require('../../config/messages')
   , slug = require('./utilities/slug')
   , _ = require('underscore');
 
 module.exports = {
+
+  /*------------------------------------*\
+      GENERAL UTILITIES
+  \*------------------------------------*/
+
+  /**
+   * Utility that checks for the existence of nested keys
+   *
+   * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
+   * usage: exists(object, 'key 1', 'key 2', ... 'key n')
+   */
+  exists: exists,
+
+  /**
+   * Unlink utility that first checks for the existence of a file
+   *
+   * @param {string} path - path of file to delete
+   */
+  unlink: function (path) {
+    fs.exists(path, function (exists) {
+      if (exists) fs.unlink(path);
+    });
+  },
 
   /*------------------------------------*\
       FILTERS & MODIFIERS
@@ -42,14 +66,6 @@ module.exports = {
     }
     return _obj;
   },
-
-  /**
-   * Service that checks for the existence of nested keys
-   *
-   * source: http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key#2631198
-   * usage: exists(object, 'key 1', 'key 2', ... 'key n')
-   */
-  exists: exists,
 
   /**
    * Convert string to slug

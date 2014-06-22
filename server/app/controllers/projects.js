@@ -16,10 +16,18 @@ var Image = mongoose.model('Image')
   , Project = mongoose.model('Project');
 
 /**
- * Censor blacklist and Mongo projection paramater; includes or excludes fields
+ * Vars
  */
 var blacklist = [ '__v' ]
-  , projection = { __v: 0, 'images.__v': 0 };
+  , images = {
+    sizes: [ // image sizes
+      { geometry: { height: 200, width: 200 }},
+      { geometry: { height: 100, width: 100 }},
+      { geometry: { height: 50, width: 50 }},
+      { geometry: { height: 25, width: 25 }}
+    ],
+    type: 'projects'
+  }, projection = { __v: 0, 'images.__v': 0 };
 
 module.exports = {
   findOne: function *(next) {
@@ -62,7 +70,7 @@ module.exports = {
    */
   update: function *(next) {
     if (!this.project) return yield next; // 404 Not Found
-    this.project = _.extend(this.project, _.omit(yield coBody(this), 'images'));
+    this.project = _.extend(this.project, yield coBody(this));
     yield Promise.promisify(this.project.save, this.project)();
     this.body = yield cU.updated('project', this.project);
   },
@@ -84,32 +92,17 @@ module.exports = {
      * POST /api/projects/:project/images
      */
     create: function *(next) {
-      if (!this.project) return yield next; // 404 Not Found
-      var image = new Image()
-        , imageLrg = new Image()
-        , imageMed = new Image()
-        , imageSm = new Image()
-        , imageExSm = new Image();
-
-      // stream image from form data
-      yield image.stream(this, { alt: this.project.title, crop: true, type: 'projects' }); // 400px height / 400px width
-      yield [ // resize multiple images asynchronously; yield until all are complete
-        imageLrg.resize(image), // 50% height / 50% width
-        imageMed.resize(image, { geometry: { height: 25, width: 25 }}), // 25% height / 25% width
-        imageSm.resize(image, { geometry: { height: 50, width: 50 }, percentage: false }), // 50px height / 50px width
-        imageExSm.resize(image, { geometry: { height: 25, width: 25 }, percentage: false }) // 25px height / 25px width
-      ];
-
-      // remove old images
-      if (this.project.images.length > 0) {
-        var i = this.project.images.length;
-        while (i--) yield this.project.images[i].destroy();
-      }
-      this.project.images = [ image, imageLrg, imageMed, imageSm, imageExSm ]; // limit project images to a single (current) image
-
+      if (!this.project) return yield next;
+      this.images = images;
+      this.images.alt = this.project.title;
+      yield next;
+      var i = this.project.images.length;
+      while (i--) yield this.project.images[i].destroy(); // remove existing project images
+      this.project.images = this.images;
       yield Promise.promisify(this.project.save, this.project)();
       this.status = 201;
-      this.body = yield cU.censor(this.project.images, blacklist);
+      this.body = yield cU.censor(this.images, blacklist);
+      delete this.images;
     },
 
     /**

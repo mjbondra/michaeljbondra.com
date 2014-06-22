@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bluebird": "2.1.1",
+    "co": "3.0.6",
     "co-body": "0.0.2",
     "co-busboy": "1.0.2",
     "co-fs": "1.2.0",

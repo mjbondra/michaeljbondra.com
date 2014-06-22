@@ -2,9 +2,11 @@
 /**
  * Module dependencies
  */
-var coBusboy = require('co-busboy')
+var co = require('co')
+  , coBusboy = require('co-busboy')
   , coFs = require('co-fs')
   , config = require('../../config/config')[process.env.NODE_ENV || 'development']
+  , cU = require('../../assets/lib/common-utilities')
   , fs = require('fs')
   , gm = require('gm')
   , mime = require('mime')
@@ -16,9 +18,11 @@ var coBusboy = require('co-busboy')
 /**
  * Image validation error
  */
-var ImageError = function (message) {
+var ImageError = function (message, status, path) {
   this.name = 'ImageError';
   this.message = message || '';
+  this.path = path || '';
+  this.status = status || 400; // 400 Bad Request
 };
 ImageError.prototype = Error.prototype;
 
@@ -63,40 +67,51 @@ ImageSchema.methods = {
   /**
    * Yieldable generator function for resizing an existing image and populating a new image object
    *
-   * @param   {object}  image                 -   image object
-   * @param   {object}  opts                  -   image options
-   * @param   {object}  opts.geometry         -   image geometry
-   * @param   {number}  opts.geometry.height  -   image height
-   * @param   {number}  opts.geometry.width   -   image width
-   * @param   {boolean} opts.percentage       -   treat geometry as percentage values
+   * @param   {object}  image                      -  image object
+   * @param   {object}  [opts]                     -  image options
+   * @param   {boolean} [opts.crop=true]           -  create an image that crops to exact dimensions
+   * @param   {object}  [opts.geometry]            -  image geometry
+   * @param   {number}  [opts.geometry.height=50]  -  image height
+   * @param   {number}  [opts.geometry.width=50]   -  image width
    */
   resize: function *(image, opts) {
     opts = opts || {};
+    opts.crop = opts.crop === false ? false : true;
     opts.geometry = opts.geometry || {};
     opts.geometry.height = opts.geometry.height || 50;
     opts.geometry.width = opts.geometry.width || 50;
-    opts.percentage = ( opts.percentage === false ? false : true );
 
     var dir = config.path.upload + ( image.type ? '/' + image.type : '' )
       , extension = mime.extension(image.mimetype)
       , filename = this.id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
+      , geometry = Promise.defer()
       , path = dir + '/' + filename
       , readStream = fs.createReadStream(image.path)
       , size = Promise.defer();
 
-    gm(readStream)
-      .resize(opts.geometry.width, opts.geometry.height, ( opts.percentage === true ? '%' : ''))
-      .stream(function (err, stdout, stderr) {
-        if (err) size.reject(err);
-        var writeStream = fs.createWriteStream(path);
-        stdout.on('error', function (err) {
-          size.reject(err);
-        });
-        stdout.on('end', function () {
-          size.resolve(this.bytesRead);
-        });
-        stdout.pipe(writeStream);
+    var _image = gm(readStream);
+    if (opts.crop === true) _image.resize(opts.geometry.width, opts.geometry.height, '^')
+      .gravity('Center')
+      .crop(opts.geometry.width, opts.geometry.width);
+    else _image.resize(opts.geometry.width, opts.geometry.height);
+    _image.stream(function (err, stdout, stderr) {
+      if (err) return size.reject(new ImageError(msg.image.unknownError, 400)); // 400 Bad Request
+      var writeStream = fs.createWriteStream(path);
+      stdout.on('error', function (err) {
+        size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
       });
+      stdout.on('end', function () {
+        size.resolve(this.bytesRead);
+        fs.exists(path, function (exists) {
+          if (exists) gm(fs.createReadStream(path)).size({ buffer: true }, function (err, size) {
+            if (err) return geometry.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+            geometry.resolve(size);
+          });
+        });
+      });
+      stdout.pipe(writeStream);
+    });
+
 
     this.alt = image.alt;
     this.encoding = image.encoding;
@@ -107,76 +122,55 @@ ImageSchema.methods = {
     this.src = '/assets/img/' + ( image.type ? image.type + '/' : '' ) + filename;
     this.type = image.type;
 
-    if (opts.percentage === true) {
-      this.geometry.height = image.geometry.height * ( opts.geometry.height / 100 );
-      this.geometry.width = image.geometry.width * ( opts.geometry.width / 100 );
-    } else {
-      this.geometry.height = opts.geometry.height;
-      this.geometry.width = opts.geometry.width;
-    }
-
-    // (potentially) promised values
+    // promised values
     this.size = yield size.promise;
+    this.geometry = yield geometry.promise;
+  },
+
+  /**
+   * Promise-wrapper for resize generator
+   *
+   * @param   {object}  image                      -  image object
+   * @param   {object}  [opts]                     -  image options
+   * @param   {boolean} [opts.crop=true]           -  create an image that crops to exact dimensions
+   * @param   {object}  [opts.geometry]            -  image geometry
+   * @param   {number}  [opts.geometry.height=50]  -  image height
+   * @param   {number}  [opts.geometry.width=50]   -  image width
+   */
+  resizePromise: function (image, opts) {
+    var resize = Promise.defer();
+    co(function *() {
+      yield this.resize(image, opts);
+      resize.resolve(this);
+    }).call(this);
+    return resize.promise;
   },
 
   /**
    * Handler for form data containing an image
    * ! LIMITED TO SINGLE IMAGE UPLOADS !
    *
-   * @param   {object}  ctx                   -   koa context object
-   * @param   {object}  opts                  -   image options
-   * @param   {string}  opts.alt              -   image alt text
-   * @param   {boolean} opts.crop             -   create an image that crops to exact dimensions
-   * @param   {object}  opts.geometry         -   image geometry
-   * @param   {number}  opts.geometry.height  -   image height
-   * @param   {number}  opts.geometry.width   -   image width
-   * @param   {string}  opts.type             -   type of image, and name of subdirectory in which to store
-   * @param   {object}  opts.limits           -   busboy limits
-   * @param   {number}  opts.limits.fileSize  -   max file size in bytes
+   * @param   {object}  ctx                             -  koa context object
+   * @param   {object}  [opts]                          -  image options
+   * @param   {string}  [opts.alt=image]                -  image alt text
+   * @param   {string}  [opts.type]                     -  type of image, and name of subdirectory in which to store
+   * @param   {object}  [opts.limits]                   -  busboy limits
+   * @param   {number}  [opts.limits.fileSize=2097152]  -  max file size in bytes
    */
   stream: function *(ctx, opts) {
     opts = opts || {};
     opts.alt = opts.alt || 'image';
-    opts.crop = ( opts.crop === true ? true : false );
-    opts.geometry = opts.geometry || {};
-    opts.geometry.height = opts.geometry.height || 400;
-    opts.geometry.width = opts.geometry.width || 400;
     opts.type = opts.type || '';
     opts.limits = opts.limits || {};
     opts.limits.files = 1;
     opts.limits.fileSize = opts.limits.fileSize || 2097152; // 2 MB
 
-    var parts = coBusboy(ctx, { limits: opts.limits });
-
+    var part, parts = coBusboy(ctx, { limits: opts.limits });
     var dir = config.path.upload + ( opts.type ? '/' + opts.type : '' )
-      , geometry = ( opts.crop === true ? opts.geometry : Promise.defer() )
-      , limitExceeded = false
+      , geometry = Promise.defer()
       , size = Promise.defer()
-      , streamError = false
       , types = [ 'image/png', 'image/jpeg', 'image/gif' ];
-
     var encoding, filename, mimetype, path;
-
-    // reusable callback for graphicsmagick
-    var gmCallback = function (err, stdout, stderr) {
-      var writeStream = fs.createWriteStream(path);
-      stdout.on('error', function (err) {
-        fs.unlink(path);
-        streamError = err;
-        size.reject(err);
-      });
-      stdout.on('end', function () {
-        size.resolve(this.bytesRead);
-        if (opts.crop === false && limitExceeded === false) gm(fs.createReadStream(path)).size({ buffer: true }, function (err, size) {
-          if (err) {
-            fs.unlink(path);
-            streamError = err;
-            geometry.reject(err);
-          } else geometry.resolve(size);
-        });
-      });
-      stdout.pipe(writeStream);
-    };
 
     while (part = yield parts) {
       if (!part.length) {
@@ -192,34 +186,36 @@ ImageSchema.methods = {
 
           // busboy stream events
           part.on('error', function (err) {
-            streamError = err;
+            size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
           });
           part.on('end', function () {
-            if (this.truncated) {
-              limitExceeded = true;
-              fs.unlink(path);
-            }
+            if (this.truncated) size.reject(new ImageError(msg.image.exceedsFileSize(opts.limits.fileSize), 413, path)); // 413 Request Entity Too Large
           });
 
-          if (opts.crop === true) gm(part)
-            .resize(opts.geometry.width, opts.geometry.height, '^')
-            .gravity('Center')
-            .crop(opts.geometry.width, opts.geometry.width)
-            .strip()
-            .stream(gmCallback);
-          else gm(part)
-            .resize(opts.geometry.width, opts.geometry.height)
-            .strip()
-            .stream(gmCallback);
+          gm(part).strip().stream(function (err, stdout, stderr) {
+            if (err) return size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+            var writeStream = fs.createWriteStream(path);
+            stdout.on('error', function (err) {
+              size.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+            });
+            stdout.on('end', function () {
+              size.resolve(this.bytesRead);
+              fs.exists(path, function (exists) {
+                if (exists) gm(fs.createReadStream(path)).size({ buffer: true }, function (err, size) {
+                  if (err) return geometry.reject(new ImageError(msg.image.unknownError, 400, path)); // 400 Bad Request
+                  geometry.resolve(size);
+                });
+              });
+            });
+            stdout.pipe(writeStream);
+          });
+
         } else {
           part.resume();
-          throw new ImageError(msg.image.mimeError(part.mime));
+          throw new ImageError(msg.image.mimeError(part.mime), 415, path); // 415 Unsupported Media Type
         }
       }
     }
-
-    // validation
-    if (limitExceeded === true) throw new ImageError(msg.image.exceedsFileSize(opts.limits.fileSize));
 
     this.alt = opts.alt;
     this.encoding = encoding;
@@ -229,17 +225,9 @@ ImageSchema.methods = {
     this.src = '/assets/img/' + ( opts.type ? opts.type + '/' : '' ) + filename;
     this.type = opts.type;
 
-    // (potentially) promised values
+    // promised values
     this.size = yield size.promise;
-    if (!this.size || this.size === 0 || streamError !== false) {
-      if (path) {
-        var exists = yield coFs.exists(path);
-        if (exists) yield coFs.unlink(path);
-      }
-      throw new ImageError(msg.image.unknownError);
-    }
-
-    this.geometry = ( typeof geometry.promise !== 'undefined' ? yield geometry.promise : geometry );
+    this.geometry = yield geometry.promise;
   }
 };
 
