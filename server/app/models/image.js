@@ -38,6 +38,7 @@ var ImageSchema = new Schema({
     width: Number
   },
   mimetype: String,
+  order: Number,
   related: {
     type: Schema.ObjectId,
     ref: 'Image'
@@ -199,6 +200,8 @@ ImageSchema.methods = {
           part.resume();
           throw new ImageError(msg.image.mimeError(part.mime), 415); // 415 Unsupported Media Type
         }
+      } else {
+        console.log(part);
       }
     }
 

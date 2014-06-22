@@ -2,6 +2,7 @@
   <li data-ng-repeat="image in imageFieldset | imageSelect: opts">
     <img alt="{{ image.alt }}" data-ng-src="{{ image.src }}">
     <label>Replace Image<input type="file" data-ng-file-select="update($files, image.related || image._id)"></label>
+    <label data-ng-if="opts.multiple">Order<input type="number" data-ng-model="image.order"></label>
     <button data-ng-click="delete(image.related || image._id)">Delete Image</button>
   </li>
   <li data-ng-if="imageFieldset.length === 0 || opts.multiple">

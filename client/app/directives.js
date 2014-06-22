@@ -156,3 +156,9 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
     templateUrl: '/app/views/directives/image-fieldset.html'
   };
 }]);
+
+app.directive('imageSortable', [function () {
+  return {
+    link: function (scope, element, attributes) {}
+  };
+}]);

@@ -5,7 +5,7 @@
 var coBody = require('co-body')
   , cU = require('../../assets/lib/common-utilities')
   , mongoose = require('mongoose')
-  , images = require('../middleware/images')
+  , images = require('../../assets/lib/image-utilities')
   , msg = require('../../config/messages')
   , Promise = require('bluebird')
   , _ = require('underscore');
@@ -13,8 +13,7 @@ var coBody = require('co-body')
 /**
  * Models
  */
-var Image = mongoose.model('Image')
-  , Project = mongoose.model('Project');
+var Project = mongoose.model('Project');
 
 /**
  * Vars
