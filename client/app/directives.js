@@ -122,6 +122,7 @@ app.directive('removeField', function () {
 app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
   return {
     link: function (scope, element, attributes) {
+      var count = -1;
       scope.delete = function (id) {
         api(attributes.uploadPath + '/' + id, 'DELETE').success(function (images) {
           scope.imageFieldset = images;
@@ -133,13 +134,23 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
         highDpi: attributes.imageHighDpi,
         multiple: attributes.imageMultiple
       };
-      scope.save = scope.update = function ($files, id) {
+      scope.order = function (index, id) {
+        if (index > count) count = index;
+        var i = scope.imageFieldset.length;
+        while (i--) if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order = index;
+        return index;
+      };
+      scope.save = scope.update = function ($files, opts) {
         if (!attributes.uploadPath) return;
+        opts = opts || {};
         for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
           scope.upload = $upload.upload({
-            method: id ? 'PUT' : 'POST',
-            url: attributes.uploadPath + ( id ? '/' + id : '' ),
+            data: {
+              order: opts.order || count + 1
+            },
+            method: opts.method || 'POST',
+            url: attributes.uploadPath + ( opts.id ? '/' + opts.id : '' ),
             file: file,
             fileFormDataName: 'image',
        // }).progress(function (evt) {

@@ -97,6 +97,7 @@ ImageSchema.methods = {
     this.alt = image.alt;
     this.encoding = image.encoding;
     this.mimetype = image.mimetype;
+    this.order = image.order;
     this.related = image.id;
     this.src = '/assets/img/' + ( type ? type + '/' : '' ) + filename;
 
@@ -201,7 +202,7 @@ ImageSchema.methods = {
           throw new ImageError(msg.image.mimeError(part.mime), 415); // 415 Unsupported Media Type
         }
       } else {
-        console.log(part);
+        if (part[0] === 'order') this.order = part[1];
       }
     }
 
