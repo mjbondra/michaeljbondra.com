@@ -5,6 +5,7 @@
 var coBody = require('co-body')
   , cU = require('../../assets/lib/common-utilities')
   , mongoose = require('mongoose')
+  , images = require('../middleware/images')
   , msg = require('../../config/messages')
   , Promise = require('bluebird')
   , _ = require('underscore');
@@ -19,15 +20,16 @@ var Image = mongoose.model('Image')
  * Vars
  */
 var blacklist = [ '__v' ]
-  , images = {
-    sizes: [ // image sizes
-      { geometry: { height: 200, width: 200 }},
-      { geometry: { height: 100, width: 100 }},
-      { geometry: { height: 50, width: 50 }},
-      { geometry: { height: 25, width: 25 }}
-    ],
-    type: 'projects'
-  }, projection = { __v: 0, 'images.__v': 0 };
+  , imageOptions = {
+      sizes: [ // image sizes
+        { geometry: { height: 200, width: 200 }},
+        { geometry: { height: 100, width: 100 }},
+        { geometry: { height: 50, width: 50 }},
+        { geometry: { height: 25, width: 25 }}
+      ],
+      type: 'projects'
+    }
+  , projection = { __v: 0, 'images.__v': 0 };
 
 module.exports = {
   findOne: function *(next) {
@@ -92,17 +94,11 @@ module.exports = {
      * POST /api/projects/:project/images
      */
     create: function *(next) {
-      if (!this.project) return yield next;
-      this.images = images;
-      this.images.alt = this.project.title;
-      yield next;
-      var i = this.project.images.length;
-      while (i--) yield this.project.images[i].destroy(); // remove existing project images
-      this.project.images = this.images;
+      if (!this.project) return yield next; // 404 Not Found
+      this.project.images = yield images.create(this, this.project.images, imageOptions);
       yield Promise.promisify(this.project.save, this.project)();
       this.status = 201;
-      this.body = yield cU.censor(this.images, blacklist);
-      delete this.images;
+      this.body = yield cU.censor(this.project.images, blacklist);
     },
 
     /**
@@ -111,6 +107,9 @@ module.exports = {
      */
     update: function *(next) {
       if (!this.project) return yield next; // 404 Not Found
+      this.project.images = yield images.update(this, this.project.images, this.params.image, imageOptions);
+      yield Promise.promisify(this.project.save, this.project)();
+      this.body = yield cU.censor(this.project.images, blacklist);
     },
 
     /**
@@ -119,17 +118,7 @@ module.exports = {
      */
     destroy: function *(next) {
       if (!this.project) return yield next; // 404 Not Found
-      var id = this.params.image
-        , images = [];
-
-      // remove images
-      var i = this.project.images.length;
-      while (i--) {
-        if (this.project.images[i].id === id || this.project.images[i].related == id) yield this.project.images[i].destroy();
-        else images.push(this.project.images[i]);
-      }
-
-      this.project.images = images.reverse();
+      this.project.images = yield images.destroy(this.project.images, this.params.image);
       yield Promise.promisify(this.project.save, this.project)();
       this.body = yield cU.censor(this.project.images, blacklist);
     }

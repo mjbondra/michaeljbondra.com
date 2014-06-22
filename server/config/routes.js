@@ -7,8 +7,7 @@ var send = require('koa-send');
 /**
  * Controllers
  */
-var images = require('../app/controllers/images')
-  , projects = require('../app/controllers/projects');
+var projects = require('../app/controllers/projects');
 
 module.exports = function (app, config) {
 
@@ -18,8 +17,8 @@ module.exports = function (app, config) {
   app.get('/api/projects/:project', projects.findOne, projects.show);
   app.put('/api/projects/:project', projects.findOne, projects.update);
   app.delete('/api/projects/:project', projects.findOne, projects.destroy);
-  app.post('/api/projects/:project/images', projects.findOne, projects.images.create, images.create);
-  app.put('/api/projects/:project/images/:image', projects.findOne, projects.images.update, images.update);
+  app.post('/api/projects/:project/images', projects.findOne, projects.images.create);
+  app.put('/api/projects/:project/images/:image', projects.findOne, projects.images.update);
   app.delete('/api/projects/:project/images/:image', projects.findOne, projects.images.destroy);
 
   // redirect all remaining GET method routes to angular router
