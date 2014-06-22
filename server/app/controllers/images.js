@@ -31,7 +31,7 @@ module.exports = {
       , sizes = this.images.sizes || []
       , i = sizes.length;
     yield raw.stream(this, { alt: this.images.alt, type: this.images.type });
-    while (i--) images.push(new Image().resizePromise(raw, sizes[i]));
+    while (i--) images.push(new Image().resize(raw, sizes[i]));
     this.images = [].concat(raw, yield images);
   },
   update: function *(next) {
