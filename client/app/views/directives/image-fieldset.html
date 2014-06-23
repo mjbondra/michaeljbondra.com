@@ -1,12 +1,13 @@
 <ul>
-  <li data-ng-repeat="image in imageFieldset | imageSelect: opts | orderBy: 'order'">
+  <li data-alt="{{ alt(image.alt, image.related || image._id) }}" data-ng-repeat="image in imageFieldset | imageSelect: opts | orderBy: 'order'" data-order="{{ order($index, image.related || image._id) }}">
     <img alt="{{ image.alt }}" data-ng-src="{{ image.src }}">
-    <label>Replace Image<input type="file" data-ng-file-select="update($files, { id: image.related || image._id, method: 'PUT', order: $index })"></label>
-    <label data-ng-if="opts.multiple">Order<input type="number" data-ng-change="order(image.order, image.related || image._id)" data-ng-model="image.order" data-ng-init="image.order=order($index, image.related || image._id)"></label>
+    <label>Replace Image<input type="file" data-ng-file-select="update($files, { alt: image.alt, id: image.related || image._id, method: 'PUT', order: $index })"></label>
+    <label>Image Title<input type="text" data-ng-model="image.alt"></label>
+    <button data-ng-click="moveUp($index, image.related || image._id)" data-ng-if="!$first">Move Up</button>
+    <button data-ng-click="moveDown($index, image.related || image._id)" data-ng-if="!$last">Move Down</button>
     <button data-ng-click="delete(image.related || image._id)">Delete Image</button>
   </li>
   <li data-ng-if="imageFieldset.length === 0 || opts.multiple">
     <label>Add Image<input type="file" data-ng-file-select="save($files)"></label>
   </li>
 </ul>
-{{ imageFieldset }}

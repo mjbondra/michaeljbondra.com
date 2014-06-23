@@ -2,17 +2,16 @@
 /**
  * Module dependencies
  */
-var co = require('co')
-  , coBusboy = require('co-busboy')
+var coBusboy = require('co-busboy')
   , coFs = require('co-fs')
   , config = require('../../config/config')[process.env.NODE_ENV || 'development']
-  , cU = require('../../assets/lib/common-utilities')
   , fs = require('fs')
   , gm = require('gm')
   , mime = require('mime')
   , mongoose = require('mongoose')
   , msg = require('../../config/messages')
   , Promise = require('bluebird')
+  , sanitize = require('../../assets/lib/sanitizer-extended')
   , Schema = mongoose.Schema;
 
 /**
@@ -202,7 +201,14 @@ ImageSchema.methods = {
           throw new ImageError(msg.image.mimeError(part.mime), 415); // 415 Unsupported Media Type
         }
       } else {
-        if (part[0] === 'order') this.order = part[1];
+        switch (part[0]) {
+          case 'alt':
+            this.alt = sanitize.escape(part[1]);
+            break;
+          case 'order':
+            this.order = sanitize.toInt(part[1]);
+            break;
+        }
       }
     }
 

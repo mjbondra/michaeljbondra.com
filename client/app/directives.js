@@ -110,6 +110,10 @@ app.directive('removeField', function () {
   };
 });
 
+/*------------------------------------*\
+    IMAGE DIRECTIVES
+\*------------------------------------*/
+
 /**
  * Image fieldset
  *
@@ -123,16 +127,33 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
   return {
     link: function (scope, element, attributes) {
       var count = -1;
+      scope.opts = {
+        height: attributes.imageHeight,
+        highDpi: attributes.imageHighDpi,
+        multiple: attributes.imageMultiple,
+        width: attributes.imageWidth
+      };
+      scope.alt = function (alt, id) {
+        var i = scope.imageFieldset.length;
+        while (i--) if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].alt = alt;
+        return alt;
+      };
       scope.delete = function (id) {
         api(attributes.uploadPath + '/' + id, 'DELETE').success(function (images) {
           scope.imageFieldset = images;
         });
       };
-      scope.opts = {
-        height: attributes.imageHeight,
-        width: attributes.imageWidth,
-        highDpi: attributes.imageHighDpi,
-        multiple: attributes.imageMultiple
+      scope.moveDown = function (index, id) {
+        var i = scope.imageFieldset.length;
+        while (i--) {
+          if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order += 1.5;
+        }
+      };
+      scope.moveUp = function (index, id) {
+        var i = scope.imageFieldset.length;
+        while (i--) {
+          if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order -= 1.5;
+        }
       };
       scope.order = function (index, id) {
         if (index > count) count = index;
@@ -147,6 +168,7 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
           var file = $files[i];
           scope.upload = $upload.upload({
             data: {
+              alt: opts.alt || attributes.imageAlt || 'image',
               order: opts.order || count + 1
             },
             method: opts.method || 'POST',
@@ -165,11 +187,5 @@ app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
       imageFieldset: '='
     },
     templateUrl: '/app/views/directives/image-fieldset.html'
-  };
-}]);
-
-app.directive('imageSortable', [function () {
-  return {
-    link: function (scope, element, attributes) {}
   };
 }]);
