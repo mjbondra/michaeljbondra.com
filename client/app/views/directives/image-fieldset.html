@@ -1,13 +1,34 @@
 <ul>
-  <li data-alt="{{ alt(image.alt, image.related || image._id) }}" data-ng-repeat="image in imageFieldset | imageSelect: opts | orderBy: 'order'" data-order="{{ order($index, image.related || image._id) }}">
-    <img alt="{{ image.alt }}" data-ng-src="{{ image.src }}">
-    <label>Replace Image<input type="file" data-ng-file-select="update($files, { alt: image.alt, id: image.related || image._id, method: 'PUT', order: $index })"></label>
+  <li data-ng-repeat="image in imageFieldset | orderBy: 'order'" data-order="{{ order($index, image._id) }}">
+    <img alt="{{ image.alt }}" data-ng-src="{{ image | imageFilter: opts }}">
+    <label
+      data-image-alt="image.alt"
+      data-image-array="imageFieldset"
+      data-image-order="image.order"
+      data-image-upload="{{ parentRoot }}/{{ parentSlug }}/images/{{ image._id }}"
+      data-method="PUT"
+      data-text="Replace Image"></label>
     <label>Image Title<input type="text" data-ng-model="image.alt"></label>
-    <button data-ng-click="moveUp($index, image.related || image._id)" data-ng-if="!$first">Move Up</button>
-    <button data-ng-click="moveDown($index, image.related || image._id)" data-ng-if="!$last">Move Down</button>
-    <button data-ng-click="delete(image.related || image._id)">Delete Image</button>
+    <button
+      data-ng-if="!$first"
+      data-field-move="-"
+      data-field-order="image.order"
+      data-text="Move Up"></button>
+    <button
+      data-ng-if="!$last"
+      data-field-move="+"
+      data-field-order="image.order"
+      data-text="Move Down"></button>
+    <button
+      data-image-array="imageFieldset"
+      data-image-delete="{{ parentRoot }}/{{ parentSlug }}/images/{{ image._id }}"
+      data-text="Delete Image"></button>
   </li>
-  <li data-ng-if="imageFieldset.length === 0 || opts.multiple">
-    <label>Add Image<input type="file" data-ng-file-select="save($files)"></label>
+  <li data-ng-if="imageFieldset.length === 0 || imageMultiple">
+    <label
+      data-image-alt="imageAlt"
+      data-image-array="imageFieldset"
+      data-image-upload="{{ parentRoot }}/{{ parentSlug }}/images"
+      data-text="Add Image"></label>
   </li>
 </ul>

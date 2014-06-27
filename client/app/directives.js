@@ -62,15 +62,15 @@ app.directive('title', ['head', function (head) {
 /**
  * Add field
  *
- * @param {array} attributes.addField - array in parent scope upon which additional objects may be added
+ * @param {array} attributes.fieldAdd - array in parent scope upon which additional objects may be added
  */
-app.directive('addField', function () {
+app.directive('fieldAdd', function () {
   return {
     link: function (scope, element, attributes) {
       element.ready(function () {
-        if (!scope.addField) scope.addField = [];
+        if (!scope.fieldAdd) scope.fieldAdd = [];
         element.on('click', function () {
-          scope.addField.push({});
+          scope.fieldAdd.push({});
           scope.$apply();
         });
         scope.$on('$destroy', function () {
@@ -79,8 +79,38 @@ app.directive('addField', function () {
       });
     },
     scope: {
-      addField: '='
+      fieldAdd: '='
     }
+  };
+});
+
+/**
+ * Move field
+ *
+ * @param {number} attributes.fieldOrder - value in scope by which object in array is ordered
+ * @param {string} attributes.fieldMove - '+' or '-' for positive or negative math upon order value
+ */
+app.directive('fieldMove', function () {
+  return {
+    link: function (scope, element, attributes) {
+      if (!attributes.fieldMove) return;
+      var move = attributes.fieldMove === '-' ? -1.5 : 1.5;
+      element.ready(function () {
+        element.on('click', function () {
+          if (typeof scope.fieldOrder === 'undefined') return;
+          scope.fieldOrder += move;
+          scope.$apply();
+        });
+        scope.$on('$destroy', function () {
+          element.off('click');
+        });
+      });
+    },
+    scope: {
+      fieldOrder: '=',
+      text: '@'
+    },
+    template: '{{ text }}'
   };
 });
 
@@ -88,15 +118,15 @@ app.directive('addField', function () {
  * Remove field
  *
  * @param {number} attributes.index - index of value to remove in parent scope array
- * @param {array} attributes.removeField - array in parent scope upon which objects may be removed
+ * @param {array} attributes.fieldRemove - array in parent scope upon which objects may be removed
  */
-app.directive('removeField', function () {
+app.directive('fieldRemove', function () {
   return {
     link: function (scope, element, attributes) {
       element.ready(function () {
         if (!attributes.index) return;
         element.on('click', function () {
-          scope.removeField.splice(attributes.index, 1);
+          scope.fieldRemove.splice(attributes.index, 1);
           scope.$apply();
         });
         scope.$on('$destroy', function () {
@@ -105,7 +135,7 @@ app.directive('removeField', function () {
       });
     },
     scope: {
-      removeField: '='
+      fieldRemove: '='
     }
   };
 });
@@ -114,6 +144,72 @@ app.directive('removeField', function () {
     IMAGE DIRECTIVES
 \*------------------------------------*/
 
+app.directive('imageDelete', ['api', 'exists', function (api, exists) {
+  return {
+    link: function (scope, element, attributes) {
+      element.ready(function () {
+        element.on('click', function () {
+          if (!attributes.imageDelete) return;
+          api(attributes.imageDelete, 'DELETE').success(function (data) {
+            if (!exists(data, 'messages', 0, 'value')) return;
+            var index = -1
+              , image = data.messages[0].value
+              , i = scope.imageArray.length;
+            while (i--) if (scope.imageArray[i]._id === image._id) index = i;
+            if (index > -1) scope.imageArray.splice(index, 1);
+          });
+        });
+        scope.$on('$destroy', function () {
+          element.off('click');
+        });
+      });
+    },
+    scope: {
+      imageArray: '=',
+      text: '@'
+    },
+    template: '{{ text }}'
+  };
+}]);
+
+app.directive('imageUpload', ['$upload', 'exists', function ($upload, exists) {
+  return {
+    link: function (scope, element, attributes) {
+      if (!attributes.imageUpload) return;
+      scope.save = scope.update = function ($files, opts) {
+        for (var i = 0; i < $files.length; i++) {
+          var file = $files[i];
+          scope.upload = $upload.upload({
+            data: {
+              alt: scope.imageAlt || 'image',
+              order: typeof scope.imageOrder !== 'undefined' ? scope.imageOrder : scope.imageArray.length
+            },
+            method: attributes.method || 'POST',
+            url: attributes.imageUpload,
+            file: file,
+            fileFormDataName: 'image'
+          }).success(function (data, status, headers, config) {
+            if (!exists(data, 'messages', 0, 'value')) return;
+            var index = -1
+              , image = data.messages[0].value
+              , i = scope.imageArray.length;
+            while (i--) if (scope.imageArray[i]._id === image._id) index = i;
+            if (!attributes.method || attributes.method === 'POST' || index === -1) return scope.imageArray.push(image);
+            scope.imageArray.splice(index, 1, image);
+          });
+        }
+      };
+    },
+    scope: {
+      imageAlt: '=',
+      imageArray: '=',
+      imageOrder: '=',
+      text: '@'
+    },
+    template: '{{ text }}<input type="file" data-ng-file-select="save($files)">'
+  };
+}]);
+
 /**
  * Image fieldset
  *
@@ -121,71 +217,29 @@ app.directive('removeField', function () {
  * @param {number} attributes.imageHeight - height of images that should be returned
  * @param {number} attributes.imageWidth - width of images that should be returned
  * @param {boolean} [attributes.imageHighDpi=true] - will double the value of height and width if screen is high-resolution
- * @param {array} attributes.uploadPath - url of upload path
+ * @param {array} attributes.path - api path of image
  */
-app.directive('imageFieldset', ['$upload', 'api', function ($upload, api) {
+app.directive('imageFieldset', function () {
   return {
     link: function (scope, element, attributes) {
-      var count = -1;
-      scope.opts = {
+      scope.opts = { // move static attributes to scope
         height: attributes.imageHeight,
         highDpi: attributes.imageHighDpi,
-        multiple: attributes.imageMultiple,
         width: attributes.imageWidth
       };
-      scope.alt = function (alt, id) {
-        var i = scope.imageFieldset.length;
-        while (i--) if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].alt = alt;
-        return alt;
-      };
-      scope.delete = function (id) {
-        api(attributes.uploadPath + '/' + id, 'DELETE').success(function (images) {
-          scope.imageFieldset = images;
-        });
-      };
-      scope.moveDown = function (index, id) {
-        var i = scope.imageFieldset.length;
-        while (i--) {
-          if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order += 1.5;
-        }
-      };
-      scope.moveUp = function (index, id) {
-        var i = scope.imageFieldset.length;
-        while (i--) {
-          if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order -= 1.5;
-        }
-      };
       scope.order = function (index, id) {
-        if (index > count) count = index;
         var i = scope.imageFieldset.length;
-        while (i--) if (scope.imageFieldset[i]._id === id || scope.imageFieldset[i].related === id) scope.imageFieldset[i].order = index;
+        while (i--) if (scope.imageFieldset[i]._id === id) scope.imageFieldset[i].order = index;
         return index;
-      };
-      scope.save = scope.update = function ($files, opts) {
-        if (!attributes.uploadPath) return;
-        opts = opts || {};
-        for (var i = 0; i < $files.length; i++) {
-          var file = $files[i];
-          scope.upload = $upload.upload({
-            data: {
-              alt: opts.alt || attributes.imageAlt || 'image',
-              order: opts.order || count + 1
-            },
-            method: opts.method || 'POST',
-            url: attributes.uploadPath + ( opts.id ? '/' + opts.id : '' ),
-            file: file,
-            fileFormDataName: 'image',
-       // }).progress(function (evt) {
-       //   $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-          }).success(function (images, status, headers, config) {
-            scope.imageFieldset = images;
-          });
-        }
       };
     },
     scope: {
-      imageFieldset: '='
+      imageAlt: '=',
+      imageFieldset: '=',
+      imageMultiple: '@',
+      parentRoot: '@',
+      parentSlug: '='
     },
     templateUrl: '/app/views/directives/image-fieldset.html'
   };
-}]);
+});

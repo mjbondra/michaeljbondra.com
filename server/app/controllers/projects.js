@@ -20,7 +20,7 @@ var Project = mongoose.model('Project');
  */
 var blacklist = [ '__v' ]
   , imageOptions = {
-      multiple: true,
+      blacklist: blacklist,
       sizes: [ // image sizes
         { geometry: { height: 200, width: 200 }},
         { geometry: { height: 100, width: 100 }},
@@ -97,8 +97,6 @@ module.exports = {
       if (!this.project) return yield next; // 404 Not Found
       this.project.images = yield images.create(this, this.project.images, imageOptions);
       yield Promise.promisify(this.project.save, this.project)();
-      this.status = 201;
-      this.body = yield cU.censor(this.project.images, blacklist);
     },
 
     /**
@@ -106,10 +104,9 @@ module.exports = {
      * PUT /api/projects/:project/images/:image
      */
     update: function *(next) {
-      if (!this.project) return yield next; // 404 Not Found
+      if (!this.project || images.indexOf(this.project.images, this.params.image) === -1) return yield next; // 404 Not Found
       this.project.images = yield images.update(this, this.project.images, this.params.image, imageOptions);
       yield Promise.promisify(this.project.save, this.project)();
-      this.body = yield cU.censor(this.project.images, blacklist);
     },
 
     /**
@@ -117,10 +114,9 @@ module.exports = {
      * DELETE /api/projects/:project/images/:image
      */
     destroy: function *(next) {
-      if (!this.project) return yield next; // 404 Not Found
-      this.project.images = yield images.destroy(this.project.images, this.params.image);
+      if (!this.project || images.indexOf(this.project.images, this.params.image) === -1) return yield next; // 404 Not Found
+      this.project.images = yield images.destroy(this, this.project.images, this.params.image, imageOptions);
       yield Promise.promisify(this.project.save, this.project)();
-      this.body = yield cU.censor(this.project.images, blacklist);
     }
   }
 };

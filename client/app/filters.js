@@ -11,20 +11,21 @@ var app = angular.module('mjbondra.filters', []);
  * @param {boolean} [opts.highDpi=true] - will double the value of height and width if screen is high-resolution
  * @return {array} - an array of images that match the given set of options
  */
-app.filter('imageSelect', ['highDpi', function (highDpi) {
-  return function (input, opts) {
-    input = input || [];
-    opts = opts || {};
-    var _opts = {};
+app.filter('imageFilter', ['highDpi', function (highDpi) {
+  return function (input, opts, attribute) {
+    if (!input || !input.files) return;
+    opts = opts || [];
+    attribute = attribute || 'src';
+    var _opts = {}
+      , files = input.files
+      , i = files.length;
     _opts.highDpi = opts.highDpi === false ? false : highDpi();
     _opts.height = opts.height ? _opts.highDpi ? opts.height * 2 : parseInt(opts.height) : false;
     _opts.width = opts.width ? _opts.highDpi ? opts.width * 2 : parseInt(opts.width) : false;
-    var images = []
-      , i = input.length;
-    while (i--) if ((_opts.width && !_opts.height && input[i].geometry.width === _opts.width) ||
-      (_opts.width && _opts.height && input[i].geometry.width === _opts.width && input[i].geometry.height === _opts.height) ||
-      (_opts.height && !_opts.width && input[i].geometry.height === _opts.height)) images.push(input[i]);
-    return images.reverse();
+    while (i--) if ((_opts.width && !_opts.height && files[i].geometry.width === _opts.width) ||
+      (_opts.width && _opts.height && files[i].geometry.width === _opts.width && files[i].geometry.height === _opts.height) ||
+      (_opts.height && !_opts.width && files[i].geometry.height === _opts.height)) return files[i][attribute];
+    return '';
   };
 }]);
 

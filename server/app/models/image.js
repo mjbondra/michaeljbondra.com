@@ -31,19 +31,17 @@ ImageError.prototype = Error.prototype;
 var ImageSchema = new Schema({
   alt: String,
   encoding: String,
-  filename: String,
-  geometry: {
-    height: Number,
-    width: Number
-  },
+  files: [{
+    filename: String,
+    geometry: {
+      height: Number,
+      width: Number
+    },
+    size: Number,
+    src: String,
+  }],
   mimetype: String,
   order: Number,
-  related: {
-    type: Schema.ObjectId,
-    ref: 'Image'
-  },
-  size: Number,
-  src: String,
   type: String
 });
 
@@ -53,29 +51,15 @@ var ImageSchema = new Schema({
 ImageSchema.methods = {
 
   /**
-   * Deletes an image from the filesystem
+   * Yieldable generator function for resizing an existing image file
    *
-   * @return {boolean} - whether or not image was deleted from the file system
-   */
-  destroy: function *() {
-    if (!this.filename) return false;
-    var dir = config.path.upload + ( this.type ? '/' + this.type : '' )
-      , path = dir + '/' + this.filename;
-    if (!(yield coFs.exists(path))) return false;
-    yield coFs.unlink(path);
-    return true;
-  },
-
-  /**
-   * Yieldable generator function for resizing an existing image and populating a new image object
-   *
-   * @param   {object}  image                      -  image object
+   * @param   {object}  image                      -  file object that contains reference to image that will be resized
    * @param   {object}  [opts]                     -  image options
    * @param   {boolean} [opts.crop=true]           -  create an image that crops to exact dimensions
    * @param   {object}  [opts.geometry]            -  image geometry
    * @param   {number}  [opts.geometry.height=50]  -  image height
    * @param   {number}  [opts.geometry.width=50]   -  image width
-   * @return  {object}                             -  image object
+   * @return  {object}                             -  file object within image.files array
    */
   resize: function *(image, opts) {
     opts = opts || {};
@@ -84,21 +68,17 @@ ImageSchema.methods = {
     opts.geometry.height = opts.geometry.height || 50;
     opts.geometry.width = opts.geometry.width || 50;
 
-    var dir = config.path.upload + ( image.type ? '/' + image.type : '' )
-      , extension = mime.extension(image.mimetype)
-      , filename = this.filename = this.id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
+    var dir = config.path.upload + ( this.type ? '/' + this.type : '' )
+      , extension = mime.extension(this.mimetype)
+      , file = { _id: mongoose.Types.ObjectId() }
+      , filename = file.filename = file._id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
       , geometry = Promise.defer()
       , path = dir + '/' + filename
       , size = Promise.defer()
       , source = dir + '/' + image.filename // path of image referenced by 'image' parameter
-      , type = this.type = image.type;
+      , type = this.type;
 
-    this.alt = image.alt;
-    this.encoding = image.encoding;
-    this.mimetype = image.mimetype;
-    this.order = image.order;
-    this.related = image.id;
-    this.src = '/assets/img/' + ( type ? type + '/' : '' ) + filename;
+    file.src = '/assets/img/' + ( type ? type + '/' : '' ) + filename;
 
     fs.exists(source, function (exists) {
       if (!exists) return size.reject(new ImageError(msg.image.unknownError, 400)); // 400 Bad Request
@@ -127,9 +107,10 @@ ImageSchema.methods = {
     });
 
     // promised values
-    this.size = yield size.promise;
-    this.geometry = yield geometry.promise;
-    return this;
+    file.size = yield size.promise;
+    file.geometry = yield geometry.promise;
+    this.files.push(file);
+    return file;
   },
 
   /**
@@ -142,7 +123,7 @@ ImageSchema.methods = {
    * @param   {string}  [opts.type]                     -  type of image, and name of subdirectory in which to store
    * @param   {object}  [opts.limits]                   -  busboy limits
    * @param   {number}  [opts.limits.fileSize=2097152]  -  max file size in bytes
-   * @return  {object}                                  -  image object
+   * @return  {object}                                  -  file object within image.files array
    */
   stream: function *(ctx, opts) {
     opts = opts || {};
@@ -151,8 +132,10 @@ ImageSchema.methods = {
     opts.limits = opts.limits || {};
     opts.limits.files = 1;
     opts.limits.fileSize = opts.limits.fileSize || 2097152; // 2 MB
+    this.files = [];
 
     var dir = config.path.upload + ( opts.type ? '/' + opts.type : '' )
+      , file = { _id: mongoose.Types.ObjectId() }
       , geometry = Promise.defer()
       , part, parts = coBusboy(ctx, { limits: opts.limits })
       , size = Promise.defer()
@@ -164,11 +147,11 @@ ImageSchema.methods = {
 
         if (types.indexOf(part.mime) >= 0) {
           var extension = mime.extension(part.mime)
-            , filename = this.filename = this.id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
+            , filename = file.filename = file._id + '.' + ( extension === 'jpeg' ? 'jpg' : extension )
             , path = dir + '/' + filename;
           this.encoding = part.encoding;
           this.mimetype = part.mime;
-          this.src = '/assets/img/' + ( opts.type ? opts.type + '/' : '' ) + filename;
+          file.src = '/assets/img/' + ( opts.type ? opts.type + '/' : '' ) + filename;
 
           // busboy stream events
           part.on('error', function (err) {
@@ -213,8 +196,24 @@ ImageSchema.methods = {
     }
 
     // promised values
-    this.size = yield size.promise;
-    this.geometry = yield geometry.promise;
+    file.size = yield size.promise;
+    file.geometry = yield geometry.promise;
+    this.files.push(file);
+    return file;
+  },
+
+  /**
+   * Deletes image files, and removes file metadata
+   *
+   * @return {object} - an image object that has been stripped of files and file metadata;
+   */
+  unlink: function *() {
+    var dir = config.path.upload + ( this.type ? '/' + this.type : '' )
+      , i = this.files.length;
+    while (i--) if (this.files[i].filename && (yield coFs.exists(dir + '/' + this.files[i].filename))) yield coFs.unlink(dir + '/' + this.files[i].filename);
+    this.files = [];
+    if (this.mimetype) this.mimetype = undefined;
+    if (this.encoding) this.encoding = undefined;
     return this;
   }
 };
