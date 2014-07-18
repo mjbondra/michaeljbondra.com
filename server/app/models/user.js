@@ -12,6 +12,11 @@ var crypto = require('crypto')
   , validate = require('../../assets/lib/validator-extended');
 
 /**
+ * Schema dependencies; subdocuments
+ */
+var ImageSchema = mongoose.model('Image').schema;
+
+/**
  * User schema
  */
 var UserSchema = new Schema({
@@ -23,6 +28,7 @@ var UserSchema = new Schema({
     ]
   },
   hash: String,
+  images: [ ImageSchema ],
   salt: String,
   slug: {
     type: String,

@@ -48,6 +48,11 @@ ProjectSchema.pre('validate', function (next) {
   this.github = sanitize.escape(this.github);
   this.title = sanitize.escape(this.title);
   this.url = sanitize.escape(this.url);
+  var i = this.tags.length;
+  while (i--) {
+    if (!this.tags[i].title) this.tags.splice(i, 1);
+    else this.tags[i].title = sanitize.escape(this.tags[i].title);
+  }
   next();
 });
 
@@ -56,6 +61,8 @@ ProjectSchema.pre('validate', function (next) {
  */
 ProjectSchema.pre('save', function (next) {
   this.slug = cU.slug(this.title);
+  var i = this.tags.length;
+  while (i--) this.tags[i].slug = cU.slug(this.tags[i].title);
   next();
 });
 

@@ -46,6 +46,17 @@ var ImageSchema = new Schema({
 });
 
 /**
+ * Pre-validation hook; Sanitizers
+ */
+ImageSchema.pre('validate', function (next) {
+  this.alt = sanitize.escape(this.alt);
+  this.encoding = sanitize.escape(this.encoding);
+  this.mimetype = sanitize.escape(this.mimetype);
+  this.type = sanitize.escape(this.type);
+  next();
+});
+
+/**
  * Image methods
  */
 ImageSchema.methods = {
@@ -186,10 +197,10 @@ ImageSchema.methods = {
       } else {
         switch (part[0]) {
           case 'alt':
-            this.alt = sanitize.escape(part[1]);
+            this.alt = part[1];
             break;
           case 'order':
-            this.order = sanitize.toInt(part[1]);
+            this.order = part[1];
             break;
         }
       }

@@ -60,7 +60,7 @@ module.exports = {
    * POST /api/projects
    */
   create: function *(next) {
-    this.project = new Project(yield coBody(this));
+    this.project = new Project(_.omit(yield coBody(this), 'images'));
     yield Promise.promisify(this.project.save, this.project)();
     this.status = 201; // 201 Created
     this.body = yield cU.created('project', this.project);
@@ -72,7 +72,7 @@ module.exports = {
    */
   update: function *(next) {
     if (!this.project) return yield next; // 404 Not Found
-    this.project = _.extend(this.project, yield coBody(this));
+    this.project = _.extend(this.project, yield cU.censor(yield coBody(this), ['encoding', 'files', 'mimetype', 'type']));
     yield Promise.promisify(this.project.save, this.project)();
     this.body = yield cU.updated('project', this.project);
   },
