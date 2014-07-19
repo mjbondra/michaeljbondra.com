@@ -76,6 +76,22 @@ module.exports = {
    */
   slug: slug,
 
+  /**
+   * Add slug key and value to each object in an array of ojbects,
+   * slug value is generated from the value of a specified key present in each object
+   *
+   * @param {array} arr - array of objects
+   * @param {string} key - object value used to generate slug
+   * @returns {array} - array of slugified objects
+   */
+  slugArray: function (arr, key) {
+    arr = !arr instanceof Array ? typeof arr !== 'undefined' ? [ arr ] : [] : arr;
+    key = key || 'title';
+    var i = arr.length;
+    while (i--) if (arr[i][key]) arr[i].slug = slug(arr[i][key]);
+    return arr;
+  },
+
   /*------------------------------------*\
       JSON MESSAGE FUNCTIONS
   \*------------------------------------*/

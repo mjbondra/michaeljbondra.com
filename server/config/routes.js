@@ -7,9 +7,17 @@ var send = require('koa-send');
 /**
  * Controllers
  */
-var projects = require('../app/controllers/projects');
+var projects = require('../app/controllers/projects')
+  , descriptions = require('../app/controllers/descriptions');
 
 module.exports = function (app, config) {
+
+  // descriptions
+  app.get('/api/descriptions', descriptions.index);
+  app.post('/api/descriptions', descriptions.create);
+  app.get('/api/descriptions/:description', descriptions.findOne, descriptions.show);
+  app.put('/api/descriptions/:description', descriptions.findOne, descriptions.update);
+  app.delete('/api/descriptions/:description', descriptions.findOne, descriptions.destroy);
 
   // projects
   app.get('/api/projects', projects.index);

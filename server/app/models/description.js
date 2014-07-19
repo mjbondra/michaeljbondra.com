@@ -9,56 +9,40 @@ var cU = require('../../assets/lib/common-utilities')
   , Schema = mongoose.Schema
   , validate = require('../../assets/lib/validator-extended');
 
-/**
- * Schema dependencies; subdocuments
- */
-var ImageSchema = mongoose.model('Image').schema;
-
-var ProjectSchema = new Schema({
+var DescriptionSchema = new Schema({
   body: {
     type: String,
     validate: [
       { validator: validate.notNull, msg: msg.body.isNull }
     ]
   },
-  github: String,
-  images: [ ImageSchema ],
   slug: {
     type: String,
     index: { unique: true }
   },
-  tags: [{
-    slug: String,
-    title: String
-  }],
   title: {
     type: String,
     validate: [
       { validator: validate.notNull, msg: msg.title.isNull }
     ]
-  },
-  url: String
+  }
 });
 
 /**
  * Pre-validation hook; Sanitizers
  */
-ProjectSchema.pre('validate', function (next) {
-  this.body = sanitize.escape(this.body);
-  this.github = sanitize.escape(this.github);
-  this.tags = sanitize.array(this.tags, { escape: 'title' }, { splice: true });
+DescriptionSchema.pre('validate', function (next) {
+  this.body = sanitize.sanitize(this.body);
   this.title = sanitize.escape(this.title);
-  this.url = sanitize.escape(this.url);
   next();
 });
 
 /**
  * Pre-save hook
  */
-ProjectSchema.pre('save', function (next) {
+DescriptionSchema.pre('save', function (next) {
   this.slug = cU.slug(this.title);
-  this.tags = cU.slugArray(this.tags);
   next();
 });
 
-mongoose.model('Project', ProjectSchema);
+mongoose.model('Description', DescriptionSchema);

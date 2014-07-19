@@ -5,6 +5,7 @@
 var models = [
   'image',
   'user',
+  'description',
   'project'
 ];
 

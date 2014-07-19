@@ -19,6 +19,12 @@ module.exports = {
   /**
    * Model messages (CRUD, etc)
    */
+  description: {
+    created: function (title) { return 'Description \'' + title + '\' was created'; },
+    deleted: function (title) { return 'Description \'' + title + '\' was deleted'; },
+    updated: function (title) { return 'Description \'' + title + '\' was updated'; }
+  },
+
   project: {
     created: function (title) { return 'Post \'' + title + '\' was created'; },
     deleted: function (title) { return 'Post \'' + title + '\' was deleted'; },
