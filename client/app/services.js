@@ -90,12 +90,24 @@ app.factory('highDpi', ['$window', function ($window) {
 \*------------------------------------*/
 
 /**
+ * Description service
+ */
+app.factory('Description', ['$resource', function ($resource) {
+  return $resource('/api/descriptions/:description', {}, {
+    save: { method: 'POST' },
+    update: { method: 'PUT' },
+    destroy: { method: 'DELETE' }
+  });
+}]);
+
+/**
  * Project service
  */
 app.factory('Project', ['$resource', function ($resource) {
   return $resource('/api/projects/:project', {}, {
     save: { method: 'POST' },
-    update: { method: 'PUT' }
+    update: { method: 'PUT' },
+    destroy: { method: 'DELETE' }
   });
 }]);
 
