@@ -90,10 +90,10 @@ app.factory('highDpi', ['$window', function ($window) {
 \*------------------------------------*/
 
 /**
- * Description service
+ * Snippet service
  */
-app.factory('Description', ['$resource', function ($resource) {
-  return $resource('/api/descriptions/:description', {}, {
+app.factory('Snippet', ['$resource', function ($resource) {
+  return $resource('/api/snippets/:snippet', {}, {
     save: { method: 'POST' },
     update: { method: 'PUT' },
     destroy: { method: 'DELETE' }

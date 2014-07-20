@@ -5,8 +5,8 @@
 var models = [
   'image',
   'user',
-  'description',
-  'project'
+  'project',
+  'snippet'
 ];
 
 module.exports = function (modelsPath) {

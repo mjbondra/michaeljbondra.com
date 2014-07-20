@@ -9,7 +9,7 @@ var cU = require('../../assets/lib/common-utilities')
   , Schema = mongoose.Schema
   , validate = require('../../assets/lib/validator-extended');
 
-var DescriptionSchema = new Schema({
+var SnippetSchema = new Schema({
   body: {
     type: String,
     validate: [
@@ -31,7 +31,7 @@ var DescriptionSchema = new Schema({
 /**
  * Pre-validation hook; Sanitizers
  */
-DescriptionSchema.pre('validate', function (next) {
+SnippetSchema.pre('validate', function (next) {
   this.body = sanitize.sanitize(this.body);
   this.title = sanitize.escape(this.title);
   next();
@@ -40,9 +40,9 @@ DescriptionSchema.pre('validate', function (next) {
 /**
  * Pre-save hook
  */
-DescriptionSchema.pre('save', function (next) {
+SnippetSchema.pre('save', function (next) {
   this.slug = cU.slug(this.title);
   next();
 });
 
-mongoose.model('Description', DescriptionSchema);
+mongoose.model('Snippet', SnippetSchema);

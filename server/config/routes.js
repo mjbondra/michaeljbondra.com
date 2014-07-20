@@ -8,16 +8,9 @@ var send = require('koa-send');
  * Controllers
  */
 var projects = require('../app/controllers/projects')
-  , descriptions = require('../app/controllers/descriptions');
+  , snippets = require('../app/controllers/snippets');
 
 module.exports = function (app, config) {
-
-  // descriptions
-  app.get('/api/descriptions', descriptions.index);
-  app.post('/api/descriptions', descriptions.create);
-  app.get('/api/descriptions/:description', descriptions.findOne, descriptions.show);
-  app.put('/api/descriptions/:description', descriptions.findOne, descriptions.update);
-  app.delete('/api/descriptions/:description', descriptions.findOne, descriptions.destroy);
 
   // projects
   app.get('/api/projects', projects.index);
@@ -28,6 +21,13 @@ module.exports = function (app, config) {
   app.post('/api/projects/:project/images', projects.findOne, projects.images.create);
   app.put('/api/projects/:project/images/:image', projects.findOne, projects.images.update);
   app.delete('/api/projects/:project/images/:image', projects.findOne, projects.images.destroy);
+
+  // snippets
+  app.get('/api/snippets', snippets.index);
+  app.post('/api/snippets', snippets.create);
+  app.get('/api/snippets/:snippet', snippets.findOne, snippets.show);
+  app.put('/api/snippets/:snippet', snippets.findOne, snippets.update);
+  app.delete('/api/snippets/:snippet', snippets.findOne, snippets.destroy);
 
   // redirect all remaining GET method routes to angular router
   app.get(/.*/, function *() {

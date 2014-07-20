@@ -28,52 +28,6 @@ app.controller('contact', function () {});
 app.controller('home', function () {});
 
 /*------------------------------------*\
-    DESCRIPTION CONTROLLERS
-\*------------------------------------*/
-
-/**
- * Description index
- * ROUTE /#!/descriptions
- * TEMPLATE /app/views/descriptions/index.html
- */
-app.controller('descriptions.index', ['$scope', 'Description', function ($scope, Description) {
-  $scope.descriptions = Description.query();
-}]);
-
-/**
- * Description show
- * ROUTE /#!/descriptions/:description
- * TEMPLATE /app/views/descriptions/show.html
- */
-app.controller('descriptions.show', ['$location', '$routeParams', '$scope', 'Description', function ($location, $routeParams, $scope, Description) {
-  var description = $scope.description = Description.get({ description: $routeParams.description });
-  description.$promise.catch(function (err) {
-    $location.path('/descriptions');
-  });
-}]);
-
-/**
- * Description new
- * ROUTE /#!/descriptions/new
- * TEMPLATE /app/views/descriptions/new.html
- */
-app.controller('descriptions.new', ['$scope', 'Description', function ($scope, Description) {
-  $scope.description = new Description();
-}]);
-
-/**
- * Description edit
- * ROUTE /#!/descriptions/:project/edit
- * TEMPLATE /app/views/descriptions/edit.html
- */
-app.controller('descriptions.edit', ['$location', '$routeParams', '$scope', 'Description', function ($location, $routeParams, $scope, Description) {
-  var description = $scope.description = Description.get({ description: $routeParams.description });
-  description.$promise.catch(function (err) {
-    $location.path('/descriptions');
-  });
-}]);
-
-/*------------------------------------*\
     PROJECT CONTROLLERS
 \*------------------------------------*/
 
@@ -116,6 +70,52 @@ app.controller('projects.edit', ['$location', '$routeParams', '$scope', 'Project
   var project = $scope.project = Project.get({ project: $routeParams.project });
   project.$promise.catch(function (err) {
     $location.path('/projects');
+  });
+}]);
+
+/*------------------------------------*\
+    SNIPPET CONTROLLERS
+\*------------------------------------*/
+
+/**
+ * Snippet index
+ * ROUTE /#!/snippets
+ * TEMPLATE /app/views/snippets/index.html
+ */
+app.controller('snippets.index', ['$scope', 'Snippet', function ($scope, Snippet) {
+  $scope.snippets = Snippet.query();
+}]);
+
+/**
+ * Snippet show
+ * ROUTE /#!/snippets/:snippet
+ * TEMPLATE /app/views/snippets/show.html
+ */
+app.controller('snippets.show', ['$location', '$routeParams', '$scope', 'Snippet', function ($location, $routeParams, $scope, Snippet) {
+  var snippet = $scope.snippet = Snippet.get({ snippet: $routeParams.snippet });
+  snippet.$promise.catch(function (err) {
+    $location.path('/snippets');
+  });
+}]);
+
+/**
+ * Snippet new
+ * ROUTE /#!/snippets/new
+ * TEMPLATE /app/views/snippets/new.html
+ */
+app.controller('snippets.new', ['$scope', 'Snippet', function ($scope, Snippet) {
+  $scope.snippet = new Snippet();
+}]);
+
+/**
+ * Snippet edit
+ * ROUTE /#!/snippets/:snippet/edit
+ * TEMPLATE /app/views/snippets/edit.html
+ */
+app.controller('snippets.edit', ['$location', '$routeParams', '$scope', 'Snippet', function ($location, $routeParams, $scope, Snippet) {
+  var snippet = $scope.snippet = Snippet.get({ snippet: $routeParams.snippet });
+  snippet.$promise.catch(function (err) {
+    $location.path('/snippets');
   });
 }]);
 

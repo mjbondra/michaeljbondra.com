@@ -23,24 +23,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     controller: 'contact'
   });
 
-  // description routes
-  $routeProvider.when('/descriptions', {
-    templateUrl: '/app/views/descriptions/index.html',
-    controller: 'descriptions.index'
-  });
-  $routeProvider.when('/descriptions/new', {
-    templateUrl: '/app/views/descriptions/new.html',
-    controller: 'descriptions.new'
-  });
-  $routeProvider.when('/descriptions/:description', {
-    templateUrl: '/app/views/descriptions/show.html',
-    controller: 'descriptions.show'
-  });
-  $routeProvider.when('/descriptions/:description/edit', {
-    templateUrl: '/app/views/descriptions/edit.html',
-    controller: 'descriptions.edit'
-  });
-
   // project routes
   $routeProvider.when('/projects', {
     templateUrl: '/app/views/projects/index.html',
@@ -57,6 +39,24 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $routeProvider.when('/projects/:project/edit', {
     templateUrl: '/app/views/projects/edit.html',
     controller: 'projects.edit'
+  });
+
+  // snippet routes
+  $routeProvider.when('/snippets', {
+    templateUrl: '/app/views/snippets/index.html',
+    controller: 'snippets.index'
+  });
+  $routeProvider.when('/snippets/new', {
+    templateUrl: '/app/views/snippets/new.html',
+    controller: 'snippets.new'
+  });
+  $routeProvider.when('/snippets/:snippet', {
+    templateUrl: '/app/views/snippets/show.html',
+    controller: 'snippets.show'
+  });
+  $routeProvider.when('/snippets/:snippet/edit', {
+    templateUrl: '/app/views/snippets/edit.html',
+    controller: 'snippets.edit'
   });
 
   // user routes
