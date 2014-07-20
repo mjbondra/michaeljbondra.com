@@ -6,7 +6,7 @@ var compress = require('koa-compress')
   , logger = require('koa-logger')
   , mongooseStore = require('koa-session-mongoose')
   , router = require('koa-router')
-  , session = require('koa-sess')
+  , session = require('koa-generic-session')
   , static = require('koa-static');
 
 /**

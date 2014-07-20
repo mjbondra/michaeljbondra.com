@@ -30,7 +30,7 @@ module.exports = function (app, config) {
   app.delete('/api/projects/:project/images/:image', projects.findOne, projects.images.destroy);
 
   // redirect all remaining GET method routes to angular router
-  app.get('*', function *() {
+  app.get(/.*/, function *() {
     yield send(this, config.path.static + '/index.html');
   });
 };
