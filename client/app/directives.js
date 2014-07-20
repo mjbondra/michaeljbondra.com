@@ -84,6 +84,18 @@ app.directive('fieldAdd', function () {
   };
 });
 
+app.directive('fieldEditable', function () {
+  return {
+    link: function (scope, element, attributes) {
+      var clear = scope.clear = function () {};
+      var save = scope.save = function () {};
+    },
+    scope: {
+      fieldEditable: '='
+    }
+  };
+});
+
 /**
  * Move field
  *
