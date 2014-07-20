@@ -85,6 +85,17 @@ app.factory('highDpi', ['$window', function ($window) {
   };
 }]);
 
+/**
+ * Service that converts string to slug
+ *
+ * @param {string} str - string to convert
+ * @param {boolean} strip - removes non-word characters; do not replace with '-'
+ * @returns {string} - slug
+ */
+app.factory('slug', function () {
+  return require('../../server/assets/lib/utilities/slug');
+});
+
 /*------------------------------------*\
     RESOURCE SERVICES
 \*------------------------------------*/

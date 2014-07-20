@@ -59,6 +59,18 @@ app.directive('title', ['head', function (head) {
     FORM FIELD DIRECTIVES
 \*------------------------------------*/
 
+app.directive('elementEditable', function () {
+  return {
+    link: function (scope, element, attributes) {
+      var clear = scope.clear = function () {};
+      var save = scope.save = function () {};
+    },
+    scope: {
+      elementEditable: '='
+    }
+  };
+});
+
 /**
  * Add field
  *
@@ -80,18 +92,6 @@ app.directive('fieldAdd', function () {
     },
     scope: {
       fieldAdd: '='
-    }
-  };
-});
-
-app.directive('fieldEditable', function () {
-  return {
-    link: function (scope, element, attributes) {
-      var clear = scope.clear = function () {};
-      var save = scope.save = function () {};
-    },
-    scope: {
-      fieldEditable: '='
     }
   };
 });
@@ -255,3 +255,22 @@ app.directive('imageFieldset', function () {
     templateUrl: '/app/views/directives/image-fieldset.html'
   };
 });
+
+/*------------------------------------*\
+    SNIPPET DIRECTIVES
+\*------------------------------------*/
+
+app.directive('snippet', ['head', 'slug', 'Snippet', function (head, slug, Snippet) {
+  return {
+    link: function (scope, element, attributes) {
+      var snippet = scope.snippet = Snippet.get({ snippet: slug(attributes.snippet) });
+      snippet.$promise.then(function () {
+        if (typeof attributes.snippetSetDescription !== 'undefined') head.setDescription(snippet.body);
+      }).catch(function (err) {
+        scope.snippet = { body: 'Snippet not found.' };
+      });
+    },
+    scope: true,
+    template: '{{ snippet.body }}'
+  };
+}]);
