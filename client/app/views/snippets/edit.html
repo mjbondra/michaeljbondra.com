@@ -1,1 +1,6 @@
 <h2 data-description data-ng-if="snippet.title" data-title>Edit {{ snippet.title }}</h2>
+<form data-novalidate>
+  <label>Title<input type="text" data-ng-model="snippet.title"></label>
+  <label>Body<textarea data-ng-model="snippet.body"></textarea></label>
+  <button data-ng-click="snippet.$update({ snippet: snippet.slug })">Update Snippet</button>
+</form>

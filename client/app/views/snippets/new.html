@@ -1,1 +1,7 @@
 <h2 data-title>New Snippet</h2>
+<p data-description>Create a new content snippet.</p>
+<form data-novalidate>
+  <label>Title<input type="text" data-ng-model="snippet.title"></label>
+  <label>Body<textarea data-ng-model="snippet.body"></textarea></label>
+  <button data-ng-click="snippet.$save()">Save Snippet</button>
+</form>

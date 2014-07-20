@@ -1,1 +1,6 @@
 <h2 data-title>Snippets</h2>
+<ul>
+  <li data-ng-repeat="snippet in snippets">
+    <a data-ng-href="/snippets/{{ snippet.slug }}">{{ snippet.title }}</a>
+  </li>
+</ul>
