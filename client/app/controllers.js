@@ -28,6 +28,52 @@ app.controller('contact', function () {});
 app.controller('home', function () {});
 
 /*------------------------------------*\
+    DESCRIPTION CONTROLLERS
+\*------------------------------------*/
+
+/**
+ * Description index
+ * ROUTE /#!/descriptions
+ * TEMPLATE /app/views/descriptions/index.html
+ */
+app.controller('descriptions.index', ['$scope', 'Description', function ($scope, Description) {
+  $scope.descriptions = Description.query();
+}]);
+
+/**
+ * Description show
+ * ROUTE /#!/descriptions/:description
+ * TEMPLATE /app/views/descriptions/show.html
+ */
+app.controller('descriptions.show', ['$location', '$routeParams', '$scope', 'Description', function ($location, $routeParams, $scope, Description) {
+  var description = $scope.description = Description.get({ description: $routeParams.description });
+  description.$promise.catch(function (err) {
+    $location.path('/descriptions');
+  });
+}]);
+
+/**
+ * Description new
+ * ROUTE /#!/descriptions/new
+ * TEMPLATE /app/views/descriptions/new.html
+ */
+app.controller('descriptions.new', ['$scope', 'Description', function ($scope, Description) {
+  $scope.description = new Description();
+}]);
+
+/**
+ * Description edit
+ * ROUTE /#!/descriptions/:project/edit
+ * TEMPLATE /app/views/descriptions/edit.html
+ */
+app.controller('descriptions.edit', ['$location', '$routeParams', '$scope', 'Description', function ($location, $routeParams, $scope, Description) {
+  var description = $scope.description = Description.get({ description: $routeParams.description });
+  description.$promise.catch(function (err) {
+    $location.path('/descriptions');
+  });
+}]);
+
+/*------------------------------------*\
     PROJECT CONTROLLERS
 \*------------------------------------*/
 
