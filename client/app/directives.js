@@ -263,12 +263,20 @@ app.directive('imageFieldset', function () {
 app.directive('snippet', ['head', 'slug', 'Snippet', function (head, slug, Snippet) {
   return {
     link: function (scope, element, attributes) {
-      var snippet = scope.snippet = Snippet.get({ snippet: slug(attributes.snippet) });
-      snippet.$promise.then(function () {
-        if (typeof attributes.snippetSetDescription !== 'undefined') head.setDescription(snippet.body);
-      }).catch(function (err) {
-        scope.snippet = { body: 'Snippet not found.' };
+      element.attr('contenteditable', '');
+      element.on('blur', function () {
+        loadSnippet();
       });
+      element.on('focus', function () {});
+      var loadSnippet = function () {
+        var snippet = scope.snippet = Snippet.get({ snippet: slug(attributes.snippet) });
+        snippet.$promise.then(function () {
+          if (typeof attributes.snippetSetDescription !== 'undefined') head.setDescription(snippet.body);
+        }).catch(function (err) {
+          scope.snippet = { body: 'Snippet not found.' };
+        });
+      };
+      loadSnippet();
     },
     scope: true,
     template: '{{ snippet.body }}'
