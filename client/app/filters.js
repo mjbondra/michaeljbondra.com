@@ -5,14 +5,14 @@ var app = angular.module('mjbondra.filters', []);
 /**
  * Decode html entities filter
  */
-app.filter('htmlDecode', function () {
+app.filter('htmlDecode', ['$window', function ($window) {
   return function (input) {
     input = input || '';
-    var txt = document.createElement("textarea");
+    var txt = $window.document.createElement("textarea");
     txt.innerHTML = input;
     return txt.value;
   };
-});
+}]);
 
 /**
  * Trust-as-html filter
