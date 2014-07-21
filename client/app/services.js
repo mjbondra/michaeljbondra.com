@@ -169,7 +169,7 @@ app.config(['$provide', '$httpProvider', function ($provide, $httpProvider) {
     };
     return {
       response: function (res) {
-        if (res.config && String(res.config.url).indexOf('/api') === 0 && _.indexOf(redirect.methods, res.config.method) > -1) redirect.path(res);
+        // if (res.config && String(res.config.url).indexOf('/api') === 0 && _.indexOf(redirect.methods, res.config.method) > -1) redirect.path(res);
         return res || $q.when(res);
       },
       responseError: function (res) {

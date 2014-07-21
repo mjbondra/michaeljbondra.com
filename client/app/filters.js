@@ -3,6 +3,28 @@
 var app = angular.module('mjbondra.filters', []);
 
 /**
+ * Decode html entities filter
+ */
+app.filter('htmlDecode', function () {
+  return function (input) {
+    input = input || '';
+    var txt = document.createElement("textarea");
+    txt.innerHTML = input;
+    return txt.value;
+  };
+});
+
+/**
+ * Trust-as-html filter
+ */
+app.filter('htmlRender', ['$sce', function ($sce) {
+  return function (input) {
+    input = input || '';
+    return $sce.trustAsHtml(input);
+  };
+}]);
+
+/**
  * Image selection filter
  *
  * @param {array} input - array that contains image objects

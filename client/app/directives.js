@@ -260,25 +260,51 @@ app.directive('imageFieldset', function () {
     SNIPPET DIRECTIVES
 \*------------------------------------*/
 
-app.directive('snippet', ['head', 'slug', 'Snippet', function (head, slug, Snippet) {
+app.directive('snippet', ['$compile', '$window', 'htmlDecodeFilter', 'head', 'slug', 'Snippet', function ($compile, $window, htmlDecodeFilter, head, slug, Snippet) {
   return {
     link: function (scope, element, attributes) {
+      var id;
+      element.addClass('snippet-content');
       element.attr('contenteditable', '');
-      element.on('blur', function () {
-        loadSnippet();
+      element.on('blur', function (event) {
+        var actions = angular.element($window.document.getElementById(id + '-inline-actions'));
+        actions.addClass('blur').append('<i class="fa fa-spin fa-spinner"></i>');
+        $window.setTimeout(function () {
+          actions.remove();
+          loadSnippet();
+        }, 1000);
       });
-      element.on('focus', function () {});
+      element.on('focus', function () {
+        element.text(element.html());
+        var container = angular.element($window.document.createElement('div'));
+        container.attr({
+          class: 'snippet-inline-actions',
+          id: id + '-inline-actions',
+          'data-ng-include': '\'/app/views/directives/snippet-actions.html\''
+        });
+        element.after($compile(container)(scope));
+        scope.$apply();
+      });
       var loadSnippet = function () {
         var snippet = scope.snippet = Snippet.get({ snippet: slug(attributes.snippet) });
-        snippet.$promise.then(function () {
+        snippet.$promise.then(function (snippet) {
           if (typeof attributes.snippetSetDescription !== 'undefined') head.setDescription(snippet.body);
+          element.html(htmlDecodeFilter(snippet.body));
+          id = 'snippet-' + snippet.slug;
         }).catch(function (err) {
           scope.snippet = { body: 'Snippet not found.' };
         });
       };
       loadSnippet();
+      scope.clear = function ($event) {
+        loadSnippet();
+      };
+      scope.save = function ($event) {
+        var snippet = scope.snippet;
+        snippet.body = element.html();
+        snippet.$update({ snippet: snippet.slug });
+      };
     },
-    scope: true,
-    template: '{{ snippet.body }}'
+    scope: true
   };
 }]);
