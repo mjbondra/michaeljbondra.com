@@ -142,6 +142,17 @@ app.factory('Session', ['$resource', function ($resource) {
 }]);
 
 /*------------------------------------*\
+    AUTHENTICATION UTILITIES
+\*------------------------------------*/
+
+app.factory('authorize', ['$cookies', function ($cookies) {
+  return function (opts) {
+    opts = opts || {};
+    return false;
+  };
+}]);
+
+/*------------------------------------*\
     RESPONSE SERVICES
 \*------------------------------------*/
 
