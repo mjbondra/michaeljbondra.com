@@ -32,7 +32,9 @@ module.exports = {
   },
 
   user: {
-    updated: function (username) { return 'User \'' + username + '\' was updated'; }
+    created: function (title) { return 'User \'' + title + '\' was created'; },
+    deleted: function (title) { return 'User \'' + title + '\' was deleted'; },
+    updated: function (title) { return 'User \'' + title + '\' was updated'; }
   },
 
   image: {
