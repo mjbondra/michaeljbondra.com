@@ -29,6 +29,7 @@ var UserSchema = new Schema({
   },
   hash: String,
   images: [ ImageSchema ],
+  role: String,
   salt: String,
   slug: {
     type: String,
