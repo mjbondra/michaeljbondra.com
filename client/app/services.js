@@ -127,7 +127,9 @@ app.factory('Project', ['$resource', function ($resource) {
  */
 app.factory('User', ['$resource', function ($resource) {
   return $resource('/api/users/:username', {}, {
-    update: { method: 'PUT' }
+    save: { method: 'POST' },
+    update: { method: 'PUT' },
+    destroy: { method: 'DELETE' }
   });
 }]);
 
@@ -136,7 +138,7 @@ app.factory('User', ['$resource', function ($resource) {
  */
 app.factory('Session', ['$resource', function ($resource) {
   return $resource('/api/sessions/:session', {}, {
-    create: { method: 'POST' },
+    save: { method: 'POST' },
     destroy: { method: 'DELETE' }
   });
 }]);

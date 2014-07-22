@@ -1,7 +1,7 @@
 <h2 data-title>New Session</h2>
 <p data-description>Sign-in to a new session.</p>
 <form novalidate>
-  <label>Username or Email<input type="text" data-ng-model="user.username"></label>
-  <label>Password<input type="password" data-ng-model="user.password"></label>
-  <button>Sign in</button>
+  <label>Username or Email<input type="text" data-ng-model="session.username"></label>
+  <label>Password<input type="password" data-ng-model="session.password"></label>
+  <button data-ng-click="session.$save()">Sign in</button>
 </form>

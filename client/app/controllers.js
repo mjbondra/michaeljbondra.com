@@ -123,6 +123,18 @@ app.controller('snippets.edit', ['$location', '$routeParams', '$scope', 'Snippet
     USER/SESSION CONTROLLERS
 \*------------------------------------*/
 
+app.controller('users.index', ['$scope', function ($scope) {}]);
+app.controller('users.show', ['$scope', function ($scope) {}]);
+
+/**
+ * User new
+ * ROUTE /#!/users/:username/edit
+ * TEMPLATE /app/views/users/new.html
+ */
+app.controller('users.new', ['$scope', 'User', function ($scope, User) {
+  $scope.user = new User();
+}]);
+
 /**
  * User edit
  * ROUTE /#!/users/:username/edit
@@ -133,6 +145,8 @@ app.controller('users.edit', ['$scope', function ($scope) {}]);
 /**
  * User session new
  * ROUTE /#!/users
- * TEMPLATE /app/views/users/sessions/new.html
+ * TEMPLATE /app/views/sessions/new.html
  */
-app.controller('sessions.new', ['$scope', function ($scope) {}]);
+app.controller('sessions.new', ['$scope', 'Session', function ($scope, Session) {
+  $scope.session = new Session();
+}]);

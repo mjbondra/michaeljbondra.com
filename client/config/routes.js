@@ -60,7 +60,19 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   });
 
   // user routes
-  $routeProvider.when('/users/:username', {
+  $routeProvider.when('/users', {
+    templateUrl: '/app/views/users/index.html',
+    controller: 'users.index'
+  });
+  $routeProvider.when('/users/new', {
+    templateUrl: '/app/views/users/new.html',
+    controller: 'users.new'
+  });
+  $routeProvider.when('/users/:user', {
+    templateUrl: '/app/views/users/show.html',
+    controller: 'users.show'
+  });
+  $routeProvider.when('/users/:user/edit', {
     templateUrl: '/app/views/users/edit.html',
     controller: 'users.edit'
   });
