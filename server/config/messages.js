@@ -13,7 +13,8 @@ module.exports = {
     requires: {
       authentication: function (path) { return 'You must be authenticated to access ' + path; }
     },
-    success: function (username) { return 'Authenticated as \'' + username + '\''; }
+    success: function (username) { return 'Authenticated as \'' + username + '\''; },
+    terminated: 'Session was terminated'
   },
 
   /**

@@ -88,17 +88,72 @@ module.exports = {
     }
   },
   sessions: {
-    show: function *(next) {
-      yield next;
+
+    /**
+     * Deserialize/serialize user object in session
+     * Make available to app as this.session.user
+     */
+    show: function () {
+      return function *(next) {
+
+        // if session ip is not set, set it
+        if (!this.session.ip) this.session.ip = this.ip;
+
+        // deserialize user object in session
+        if (typeof this.session.user === 'string') {
+          this.session.user = yield Promise.promisify(User.findById, User)(this.session.user).catch(function (err) {
+            console.error(err.stack);
+          });
+        }
+        yield next;
+
+        // serialize user object in session
+        if (this.session && this.session.user && this.session.user.username) {
+          this.cookies.set('username', this.session.user.username, { httpOnly: false, overwrite: true, signed: true });
+          this.session.user = this.session.user.id;
+        } else {
+          this.cookies.set('username', null, { httpOnly: false, overwrite: true, signed: true });
+        }
+      };
     },
+
+    /**
+     * Create
+     * POST /api/sessions
+     */
     create: function *(next) {
-      yield next;
+      var body = yield coBody(this);
+      var msgJSONArray = [];
+      if (typeof body.username === 'undefined') msgJSONArray.push(cU.msg(msg.username.isNull, 'validation', 'username'));
+      if (typeof body.password === 'undefined') msgJSONArray.push(cU.msg(msg.password.isNull, 'validation', 'password'));
+      if (msgJSONArray.length > 0) {
+        this.status = 422; // 422 Unprocessable Entity
+        this.body = yield cU.body(msgJSONArray);
+        return;
+      }
+      var user = yield Promise.promisify(User.findOne, User)({ $or: [ { username: body.username }, { email: body.username } ] });
+      if (!user) {
+        this.status = 401; // 401 Unauthorized
+        this.body = yield cU.body(cU.msg(msg.authentication.incorrect.user(body.username), 'authentication', 'user'));
+        return;
+      }
+      if (!user.authenticate(body.password, user.salt)) {
+        this.status = 401; // 401 Unauthorized
+        this.body = yield cU.body(cU.msg(msg.authentication.incorrect.password, 'authentication', 'user'));
+        return;
+      }
+      this.session.user = user;
+      this.status = 201; // 201 Created
+      this.body = yield cU.body(cU.msg(msg.authentication.success(user.username), 'success', 'user', cU.censor(user, ['_id', '__v', 'hash', 'salt']))); // 201 Created
     },
-    update: function *(next) {
-      yield next;
-    },
+
+    /**
+     * Destroy
+     * DELETE /api/sessions
+     */
     destroy: function *(next) {
-      yield next;
+      this.session = null;
+      this.body = yield cU.body(cU.msg(cU.msg(msg.authentication.terminated)));
     }
   }
 };

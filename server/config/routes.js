@@ -37,6 +37,10 @@ module.exports = function (app, config) {
   app.put('/api/users/:user', users.findOne, users.update);
   app.delete('/api/users/:user', users.findOne, users.destroy);
 
+  // user sessions
+  app.post('/api/sessions', users.sessions.create);
+  app.delete('/api/sessions', users.sessions.destroy);
+
   // redirect all remaining GET method routes to angular router
   app.get(/.*/, function *() {
     yield send(this, config.path.static + '/index.html');

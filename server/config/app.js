@@ -13,7 +13,8 @@ var compress = require('koa-compress')
  * Middleware
  */
 var error = require('../app/middleware/error')
-  , notFound = require('../app/middleware/404');
+  , notFound = require('../app/middleware/404')
+  , user = require('../app/controllers/users').sessions.show;
 
 module.exports = function (app, config) {
 
@@ -38,7 +39,7 @@ module.exports = function (app, config) {
     },
     store: mongooseStore.create()
   }));
-  // app.use(user());
+  app.use(user());
 
   // api routes
   app.use(router(app));
