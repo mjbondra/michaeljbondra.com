@@ -123,12 +123,25 @@ app.controller('snippets.edit', ['$location', '$routeParams', '$scope', 'Snippet
     USER/SESSION CONTROLLERS
 \*------------------------------------*/
 
-app.controller('users.index', ['$scope', function ($scope) {}]);
-app.controller('users.show', ['$scope', function ($scope) {}]);
+/**
+ * User index
+ * ROUTE /#!/users
+ * TEMPLATE /app/views/users/index.html
+ */
+app.controller('users.index', ['$scope', 'User', function ($scope, User) {
+  $scope.users = User.query();
+}]);
+
+app.controller('users.show', ['$location', '$routeParams', '$scope', 'User', function ($location, $routeParams, $scope, User) {
+  var user = $scope.user = User.get({ user: $routeParams.user });
+  user.$promise.catch(function (err) {
+    $location.path('/users');
+  });
+}]);
 
 /**
  * User new
- * ROUTE /#!/users/:username/edit
+ * ROUTE /#!/users/new
  * TEMPLATE /app/views/users/new.html
  */
 app.controller('users.new', ['$scope', 'User', function ($scope, User) {

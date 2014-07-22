@@ -126,7 +126,7 @@ app.factory('Project', ['$resource', function ($resource) {
  * User service
  */
 app.factory('User', ['$resource', function ($resource) {
-  return $resource('/api/users/:username', {}, {
+  return $resource('/api/users/:user', {}, {
     save: { method: 'POST' },
     update: { method: 'PUT' },
     destroy: { method: 'DELETE' }
