@@ -176,6 +176,11 @@
   .project-title {
     font-size: 60px;
     @include font-details($size: 6rem);
+
+    margin: {
+      top: 160px;
+      top: 16rem;
+    }
   }
   .project-paragraph {
     width: 700px;
