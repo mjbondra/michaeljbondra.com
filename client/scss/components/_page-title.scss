@@ -1,0 +1,13 @@
+@include breakpoint($breakpoint-tablet) {
+  .page-title {
+    font-size: 48px;
+    @include font-details($size: 4.8rem);
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .page-title {
+    font-size: 60px;
+    @include font-details($size: 6rem);
+  }
+}

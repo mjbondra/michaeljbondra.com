@@ -1,0 +1,9 @@
+a {
+  @include transition(color 100ms ease-out);
+
+  color: $blue;
+  text-decoration: none;
+  &:hover {
+    color: $red;
+  }
+}

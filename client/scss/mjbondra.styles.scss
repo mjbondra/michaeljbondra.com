@@ -1,0 +1,68 @@
+/**
+ *                     88 88                                           88
+ *                     "" 88                                           88
+ *                        88                                           88
+ *  88,dPYba,,adPYba,  88 88,dPPYba,   ,adPPYba,  8b,dPPYba,   ,adPPYb,88 8b,dPPYba, ,adPPYYba,
+ *  88P'   "88"    "8a 88 88P'    "8a a8"     "8a 88P'   `"8a a8"    `Y88 88P'   "Y8 ""     `Y8
+ *  88      88      88 88 88       d8 8b       d8 88       88 8b       88 88         ,adPPPPP88
+ *  88      88      88 88 88b,   ,a8" "8a,   ,a8" 88       88 "8a,   ,d88 88         88,    ,88
+ *  88      88      88 88 8Y"Ybbd8"'   `"YbbdP"'  88       88  `"8bbdP"Y8 88         `"8bbdP"Y8
+ *                    ,88
+ *                  888P"
+ */
+
+/*------------------------------------*\
+    TABLE OF CONTENTS
+\*------------------------------------*/
+
+/*---------------------------------------------------------------------*\
+
+  1. DEPENDENCIES...............Stylesheet Dependencies
+  2. UNIVERSAL STYLES...........Styles Applied to All Elements
+  3. BASE STYLES................Basic and Elemental Styles
+  4. COMPONENTS.................Reusable Utilities and Content
+
+\*---------------------------------------------------------------------*/
+
+/*------------------------------------*\
+    DEPENDENCIES
+\*------------------------------------*/
+
+/*--Third Party Dependencies--*/
+@import "compass"; // requires compass -- 'gem install compass' or 'bundle install'
+@import "breakpoint"; // requires breakpoint -- 'gem install breakpoint' or 'bundle install'
+@import "susy"; // requires susy -- 'gem install susy' or 'bundle install'
+
+/*--App Dependencies--*/
+@import "variables/**/*";
+@import "abstractions/**/*";
+
+/*------------------------------------*\
+    UNIVERSAL STYLES
+\*------------------------------------*/
+
+*, *:before, *:after {
+  @include box-sizing(border-box);
+}
+
+/*------------------------------------*\
+    BASE STYLES
+\*------------------------------------*/
+
+html {
+  font-size: 62.5%;
+}
+
+@import "base/**/*";
+
+/*------------------------------------*\
+    LAYOUTS
+\*------------------------------------*/
+
+@import "layouts/**/*";
+
+/*------------------------------------*\
+    COMPONENTS
+\*------------------------------------*/
+
+@import "components/**/*";

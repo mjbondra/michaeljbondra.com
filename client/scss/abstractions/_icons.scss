@@ -1,0 +1,42 @@
+@mixin icon-replace ($family: 'FontAwesome') {
+  overflow: hidden;
+  &:before {
+    @if $family == 'FontAwesome' {
+      font-family: 'FontAwesome';
+    } @else if $family == 'mjbondra' {
+      font-family: 'mjbondra';
+    }
+
+    display: block;
+    height: 150%;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+%icon-email, %icon-github, %icon-linkedin, %icon-twitter {
+  @include icon-replace();
+}
+
+%icon-email {
+  &:before {
+    content: "\f0e0";
+  }
+}
+%icon-github {
+  &:before {
+    content: "\f09b";
+  }
+}
+%icon-linkedin {
+  &:before {
+    content: "\f08c";
+  }
+}
+%icon-twitter {
+  &:before {
+    content: "\f099";
+  }
+}

@@ -1,0 +1,12 @@
+h1 {
+  font-size: 30px;
+  @include font-details($size: 3rem, $height: 1.2);
+}
+h2 {
+  font-size: 16px;
+  @include font-details($size: 1.6rem, $weight: 300);
+}
+h3 {
+  font-size: 24px;
+  @include font-details($size: 2.4rem, $height: 1.2);
+}

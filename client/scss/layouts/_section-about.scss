@@ -1,0 +1,22 @@
+.section-about {
+  padding: 0 40px;
+  padding: 0 4rem;
+}
+.about-paragraph {
+  font-size: 18px;
+  @include font-details($size: 1.8rem);
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .about-paragraph {
+    font-size: 22px;
+    @include font-details($size: 2.2rem);
+  }
+}
+
+// @include breakpoint($breakpoint-desktop) {
+//   .about-paragraph {
+//     font-size: 24px;
+//     @include font-details($size: 2.4rem);
+//   }
+// }

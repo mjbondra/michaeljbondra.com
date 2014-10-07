@@ -1,0 +1,16 @@
+<h2 class="section-projects-title">Featured Projects</h2>
+<article class="project project-{{ project.slug }}" data-ng-repeat="project in projects">
+  <div class="project-content project-{{ project.slug }}-content">
+    <ul class="project-tags-list project-{{ project.slug }}-tags-list">
+      <li class="project-tags-list-item project-{{ project.slug }}-tags-list-item" data-ng-repeat="tag in project.tags">{{ tag }}</li>
+    </ul>
+    <h3 class="project-title project-{{ project.slug }}-title">
+      <a class="project-title-link project-{{ project.slug }}-title-link" href="{{ project.url }}" target="_blank" data-ng-if="project.url">{{ project.title }}</a>
+      <span class="project-title-span project-{{ project.slug }}-title-span" data-ng-if="!project.url">{{ project.title }}</span>
+    </h3>
+    <p class="project-paragraph project-{{ project.slug }}-paragraph">{{ project.body }}</p>
+    <span class="project-github project-{{ project.slug }}-github" data-ng-if="project.github">
+      <a class="project-github-link project-{{ project.slug }}-github-link link-github" href="{{ project.github }}" target="_blank">GitHub</a>
+    </span>
+  </div>
+</article>

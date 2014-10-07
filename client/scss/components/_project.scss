@@ -1,0 +1,194 @@
+.project {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  height: map_get($project, height-px);
+  height: map_get($project, height);
+  color: white;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    display: block;
+    height: map_get($project, height-px);
+    height: map_get($project, height);
+    width: 100%;
+    background-attachment: fixed;
+    background-size: auto 100%;
+    background-size: cover;
+  }
+  &:after {
+    // -webkit-filter: blur(1rem);
+    // filter: blur(1rem);
+  }
+}
+.project-s2014-epromo {
+  &:before, &:after {
+    background-size: auto;
+  }
+}
+.project-content {
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    height: map_get($project, height-px);
+    height: map_get($project, height);
+    width: 100%;
+    background-color: $mask-black;
+  }
+}
+.project-the-ark-content {
+  &:before {
+    background-color: $mask-the-ark;
+  }
+}
+.project-qltd-content {
+  &:before {
+    background-color: $mask-qltd;
+  }
+}
+.project-s2014-epromo-content {
+  &:before {
+    background-color: $mask-s2014-epromo;
+  }
+}
+.project-s2015-content {
+  &:before {
+    background-color: $mask-s2015;
+  }
+}
+.project-koa-session-mongoose-content {
+  &:before {
+    background-color: $mask-koa-session-mongoose;
+  }
+}
+.project-title, .project-paragraph, .project-tags-list {
+  padding: 0 20px;
+  padding: 0 2rem;
+  color: white;
+  text-align: center;
+}
+.project-title {
+  margin: 40px 0 16px;
+  margin: 4rem 0 1.6rem;
+}
+.project-title-link {
+  color: white;
+}
+.project-tags-list {
+  margin: 0;
+  padding: 10px;
+  padding: 1rem;
+  background-color: $mask-white;
+  list-style: none;
+}
+.project-tags-list-item {
+  @include font-details($weight: 300);
+
+  display: inline-block;
+  margin: 0 10px;
+  margin: 0 1rem;
+  line-height: 1.75;
+}
+.project-github {
+  display: block;
+  text-align: center;
+}
+.project-github-link {
+  display: block;
+  margin: 0 auto;
+  height: 36px;
+  height: 3.6rem;
+  width: 36px;
+  width: 3.6rem;
+  color: white;
+  &:before {
+    font-size: 36px;
+    @include font-details($size: 3.6rem);
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .project {
+    height: map_get($project, height-tablet-px);
+    height: map_get($project, height-tablet);
+    &:before, &:after {
+      height: map_get($project, height-tablet-px);
+      height: map_get($project, height-tablet);
+    }
+  }
+  .project-content {
+    &:before {
+      height: map_get($project, height-tablet-px);
+      height: map_get($project, height-tablet);
+    }
+  }
+  .project-title {
+    font-size: 48px;
+    @include font-details($size: 4.8rem);
+
+    margin: {
+      top: 80px;
+      top: 8rem;
+    }
+  }
+  .project-paragraph {
+    font-size: 28px;
+    @include font-details($size: 2.2rem);
+
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    width: 500px;
+    width: 50rem;
+  }
+  .project-github-link {
+    height: 48px;
+    height: 4.8rem;
+    width: 48px;
+    width: 4.8rem;
+    &:before {
+      font-size: 48px;
+      @include font-details($size: 4.8rem);
+    }
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .project {
+    height: map_get($project, height-desktop-px);
+    height: map_get($project, height-desktop);
+    &:before, &:after {
+      height: map_get($project, height-desktop-px);
+      height: map_get($project, height-desktop);
+    }
+  }
+  .project-content {
+    &:before {
+      height: map_get($project, height-desktop-px);
+      height: map_get($project, height-desktop);
+    }
+  }
+  .project-title {
+    font-size: 60px;
+    @include font-details($size: 6rem);
+  }
+  .project-paragraph {
+    width: 700px;
+    width: 70rem;
+  }
+  .project-github-link {
+    height: 60px;
+    height: 6rem;
+    width: 60px;
+    width: 6rem;
+    &:before {
+      font-size: 60px;
+      @include font-details($size: 6rem);
+    }
+  }
+}
