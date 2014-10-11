@@ -1,10 +1,10 @@
 {
   "esnext": true,
+  "globalstrict": true,
   "laxcomma": true,
   "loopfunc": true,
   "multistr": true,
   "newcap": false,
-  "strict": false,
   "globals": {
     "angular": false,
     "document": false,

@@ -17,7 +17,7 @@ app.constant('breakpoints', {
 app.factory('projectStyles', ['breakpoints', function (breakpoints) {
   var selectorWrap = function (selector, rules) {
     return selector + ' { ' + rules.join('; ') + '; }';
-  }
+  };
   return function (projects) {
     projects = projects || [];
     if (projects.length === 0) return '';
