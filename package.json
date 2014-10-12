@@ -1,6 +1,6 @@
 {
   "name": "mjbondra",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Michael J. Bondra's personal website.",
   "private": true,
   "author": {
@@ -24,13 +24,15 @@
   },
   "dependencies": {
     "bluebird": "^2.3.4",
+    "co-body": "^1.0.0",
     "consolator": "^0.1.0",
     "koa": "^0.12.2",
     "koa-compress": "^1.0.8",
     "koa-logger": "^1.2.2",
     "koa-router": "^3.4.0",
     "koa-static": "1.4.7",
-    "mongoose": "^3.8.17"
+    "mongoose": "^3.8.17",
+    "validator": "^3.19.1"
   },
   "engines": {
     "node": ">=0.11.9"

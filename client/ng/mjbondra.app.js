@@ -18,8 +18,10 @@ require('./directives/google-analytics');
 require('./directives/projects');
 require('./services/api');
 require('./services/consolator');
+require('./services/console-styles');
 require('./services/google-analytics');
 require('./services/project-styles');
+require('./services/send');
 
 // AngularJS/App modules
 var app = angular.module('mjbondra', [
@@ -28,6 +30,8 @@ var app = angular.module('mjbondra', [
   'mjbondra.directives.projects',
   'mjbondra.services.api',
   'mjbondra.services.consolator',
+  'mjbondra.services.console-styles',
   'mjbondra.services.google-analytics',
-  'mjbondra.services.project-styles'
+  'mjbondra.services.project-styles',
+  'mjbondra.services.send'
 ]);

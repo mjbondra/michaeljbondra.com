@@ -10,8 +10,12 @@ var app = angular.module('mjbondra.services.api', []);
  * @return {promise} - a promise for the data returned by a given url
  */
 app.factory('api', ['$http', function ($http) {
-  return function (url, method) {
-    method = method || 'GET';
-    return $http({ method: method, url: url, params: { t: new Date().getTime() }});
+  return function (url, method, data) {
+    var opts = {};
+    opts.url = url || '/';
+    opts.method = method || 'GET';
+    opts.params = { _t: new Date().getTime() };
+    if (data) opts.data = data;
+    return $http(opts);
   };
 }]);

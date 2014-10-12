@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-  , Promise = require('bluebird');
+  , Bluebird = require('bluebird');
 
 var Schema = mongoose.Schema
   , ErrorSchema = new Schema({
@@ -25,7 +25,7 @@ module.exports = function () {
           status: err.status || 500,
           url: this.url
         });
-        yield Promise.promisify(_error.save, _error)();
+        yield Bluebird.promisify(_error.save, _error)();
       } catch (_err) {
         console.error(_err.stack || _err); // print error logging error to console, but do not overwrite original error
       }
@@ -35,5 +35,5 @@ module.exports = function () {
         status: this.status
       };
     }
-  }
-}
+  };
+};

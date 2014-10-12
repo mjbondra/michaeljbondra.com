@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
-  , Promise = require('bluebird');
+  , Bluebird = require('bluebird');
 
 var Project = mongoose.model('Project');
 
 exports.index = function *(next) {
-  this.body = yield Promise.promisify(Project.find, Project)({});
-}
+  this.body = yield Bluebird.promisify(Project.find, Project)();
+};

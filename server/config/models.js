@@ -1,7 +1,8 @@
 
 // models, in load order
 var models = [
-  'project'
+  'project',
+  'message'
 ];
 
 module.exports = function (config) {
