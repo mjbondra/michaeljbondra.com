@@ -17,6 +17,7 @@
 require('./directives/google-analytics');
 require('./directives/projects');
 require('./services/api');
+require('./services/consolator');
 require('./services/google-analytics');
 require('./services/project-styles');
 
@@ -26,6 +27,7 @@ var app = angular.module('mjbondra', [
   'mjbondra.directives.google-analytics',
   'mjbondra.directives.projects',
   'mjbondra.services.api',
+  'mjbondra.services.consolator',
   'mjbondra.services.google-analytics',
   'mjbondra.services.project-styles'
 ]);

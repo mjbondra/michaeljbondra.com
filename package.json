@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "bluebird": "^2.3.4",
+    "consolator": "^0.1.0",
     "koa": "^0.12.2",
     "koa-compress": "^1.0.8",
     "koa-logger": "^1.2.2",
