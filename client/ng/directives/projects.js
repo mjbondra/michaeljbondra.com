@@ -19,8 +19,8 @@ app.directive('projects', ['$document', '$location', '$window', 'api', 'Consolat
 
         c.log(c.css(consoleStyles.h2, 'A D D I T I O N A L   P R O J E C T S'));
         c.log(
-          c.css(consoleStyles.h3, 'Consolator') +
-          c.css(consoleStyles.tags, 'Node.js    Gulp.js')
+          c.css(consoleStyles.h3, '  Consolator  ') +
+          c.css(consoleStyles.tags, '  Node.js    Gulp.js  ')
         );
         c.log(
           c.css(consoleStyles.description, 'A JavaScript library for printing styled messages to the console.  ') +
@@ -28,8 +28,8 @@ app.directive('projects', ['$document', '$location', '$window', 'api', 'Consolat
         );
 
         c.log(
-          c.css(consoleStyles.h3, 'mjbondra.com') +
-          c.css(consoleStyles.tags, 'Node.js    Koa    AngularJS    MongoDB    Mongoose    Gulp.js')
+          c.css(consoleStyles.h3, '  mjbondra.com  ') +
+          c.css(consoleStyles.tags, '  Node.js    Koa    AngularJS    MongoDB    Mongoose    Gulp.js  ')
         );
         c.log(
           c.css(consoleStyles.description, 'You are here.  ') +
@@ -40,7 +40,7 @@ app.directive('projects', ['$document', '$location', '$window', 'api', 'Consolat
           c.image($location.protocol() + '://' + $location.host() + ($location.port() === '80' ? '' : ':' + $location.port()) + '/img/bg/mjbondra.png', {
             height: 125,
             width: 150,
-            fallback: c.css(consoleStyles.imageFallback, 'Use Chrome to see console images. '),
+            fallback: c.css(consoleStyles.imageFallback, 'Use Chrome to see console images.  '),
             post: false
           }) + c.css(consoleStyles.farewell, 'Thanks for visiting! Are you working on an interesting project? Contact me, and let\'s collaborate.')
         );
