@@ -1,0 +1,63 @@
+.header-title {
+  margin: 0;
+  &:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 150px;
+    width: 15rem;
+    height: 125px;
+    height: 12.5rem;
+    background-image: url("../img/bg/mjbondra.small.png");
+    background-repeat: no-repeat;
+    background-size: 150px 125px;
+    background-size: 15rem 12.5rem;
+  }
+}
+
+@include breakpoint($breakpoint-hi-res) {
+  .header-title {
+    &:before {
+      background-image: url("../img/bg/mjbondra.png");
+    }
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .header-title {
+    font-size: 48px;
+    @include font-details($size: 4.8rem);
+
+    &:before {
+      width: 300px;
+      width: 30rem;
+      height: 250px;
+      height: 25rem;
+      background-image: url("../img/bg/mjbondra.png");
+      background-repeat: no-repeat;
+      background-size: 300px 250px;
+      background-size: 30rem 25rem;
+    }
+  }
+}
+
+@include breakpoint($breakpoint-tablet $breakpoint-hi-res) {
+  .header-title {
+    &:before {
+      background-image: url("../img/bg/mjbondra.large.png");
+    }
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .header-title {
+    font-size: 60px;
+    @include font-details($size: 6rem);
+
+    &:before {
+      background-attachment: fixed;
+      background-position: 0 10px;
+      background-position: 0 1rem;
+    }
+  }
+}

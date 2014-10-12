@@ -1,5 +1,6 @@
 .project {
   position: relative;
+  clear: both;
   overflow: hidden;
   z-index: 1;
   height: map_get($project, height-px);
@@ -81,7 +82,8 @@
   list-style: none;
 }
 .project-tags-list-item {
-  @include font-details($weight: 300);
+  font-size: 14px;
+  @include font-details($size: 1.4rem, $weight: 300);
 
   display: inline-block;
   margin: 0 10px;
@@ -149,6 +151,10 @@
     }
     width: 500px;
     width: 50rem;
+  }
+  .project-tags-list-item {
+    font-size: 16px;
+    @include font-details($size: 1.6rem);
   }
   .project-github-link {
     height: 48px;
