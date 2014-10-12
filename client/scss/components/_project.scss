@@ -5,7 +5,7 @@
   height: map_get($project, height-px);
   height: map_get($project, height);
   color: white;
-  &:before, &:after {
+  &:before {
     content: '';
     position: absolute;
     z-index: -2;
@@ -14,17 +14,12 @@
     height: map_get($project, height-px);
     height: map_get($project, height);
     width: 100%;
-    background-attachment: fixed;
     background-size: auto 100%;
     background-size: cover;
   }
-  &:after {
-    // -webkit-filter: blur(1rem);
-    // filter: blur(1rem);
-  }
 }
 .project-s2014-epromo {
-  &:before, &:after {
+  &:before {
     background-size: auto;
   }
 }
@@ -111,11 +106,20 @@
   }
 }
 
+@include breakpoint($breakpoint-mobile-wide) {
+  .project-title {
+    margin: {
+      top: 60px;
+      top: 6rem;
+    }
+  }
+}
+
 @include breakpoint($breakpoint-tablet) {
   .project {
     height: map_get($project, height-tablet-px);
     height: map_get($project, height-tablet);
-    &:before, &:after {
+    &:before {
       height: map_get($project, height-tablet-px);
       height: map_get($project, height-tablet);
     }
@@ -162,9 +166,10 @@
   .project {
     height: map_get($project, height-desktop-px);
     height: map_get($project, height-desktop);
-    &:before, &:after {
+    &:before {
       height: map_get($project, height-desktop-px);
       height: map_get($project, height-desktop);
+      background-attachment: fixed;
     }
   }
   .project-content {
