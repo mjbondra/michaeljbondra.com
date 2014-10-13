@@ -14,6 +14,7 @@
  */
 
 // App Dependencies
+require('./directives/console');
 require('./directives/google-analytics');
 require('./directives/projects');
 require('./services/api');
@@ -26,6 +27,7 @@ require('./services/send');
 // AngularJS/App modules
 var app = angular.module('mjbondra', [
   'ngTouch',
+  'mjbondra.directives.console',
   'mjbondra.directives.google-analytics',
   'mjbondra.directives.projects',
   'mjbondra.services.api',

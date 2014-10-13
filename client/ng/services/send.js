@@ -11,7 +11,7 @@ var app = angular.module('mjbondra.services.send', []);
  */
 app.factory('send', ['$window', 'api', 'Consolator', 'consoleStyles', function ($window, api, Consolator, consoleStyles) {
   var c = new Consolator();
-  var send = $window.send = function (body, email) {
+  return function (body, email) {
     if (!body) return;
     email = email || '';
     api('/api/messages', 'POST', { body: body, email: email }).success(function () {
@@ -21,5 +21,4 @@ app.factory('send', ['$window', 'api', 'Consolator', 'consoleStyles', function (
     });
     return 'Sending message...';
   };
-  return send;
 }]);
