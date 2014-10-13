@@ -21,4 +21,5 @@ app.factory('send', ['$window', 'api', 'Consolator', 'consoleStyles', function (
     });
     return 'Sending message...';
   };
+  return send;
 }]);

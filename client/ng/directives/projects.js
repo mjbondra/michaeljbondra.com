@@ -9,7 +9,6 @@ app.directive('projects', ['$document', '$location', '$window', 'api', 'Consolat
         , head = $document.find('head')
         , style = angular.element('<style type="text/css"></style>');
 
-      c.log(send);
       api('/api/projects').success(function (projects) {
         scope.projects = projects;
         style.text(projectStyles(projects));
