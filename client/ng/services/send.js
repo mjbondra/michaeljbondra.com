@@ -15,7 +15,7 @@ app.factory('send', ['$window', 'api', 'Consolator', 'consoleStyles', function (
     if (!body) return;
     email = email || '';
     api('/api/messages', 'POST', { body: body, email: email }).success(function () {
-      c.log(c.css(consoleStyles.message, 'Thanks! You\'re message was sent.'));
+      c.log(c.css(consoleStyles.message, 'Thanks! Your message was sent.'));
     }).error(function () {
       c.log(c.css(consoleStyles.messageError, 'Sorry, there was an error when we tried to send your message.'));
     });
