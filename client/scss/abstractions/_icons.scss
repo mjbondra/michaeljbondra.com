@@ -1,16 +1,12 @@
 @mixin icon-replace ($family: 'FontAwesome') {
   overflow: hidden;
   &:before {
-    @if $family == 'FontAwesome' {
-      font-family: 'FontAwesome';
-    } @else if $family == 'mjbondra' {
-      font-family: 'mjbondra';
-    }
-
+    font-family: $family;
     display: block;
     height: 150%;
     font-style: normal;
     font-weight: normal;
+    line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
