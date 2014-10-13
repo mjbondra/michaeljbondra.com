@@ -3,6 +3,7 @@ var gulp = require('gulp')
   , browserify = require('gulp-browserify')
   , compass = require('gulp-compass')
   , csso = require('gulp-csso')
+  , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
   , rename = require('gulp-rename')
   , uglify = require('gulp-uglify');
@@ -12,17 +13,18 @@ gulp.task('bower', function () {
     .pipe(gulp.dest('./client/lib/'));
 });
 
-gulp.task('browserify', ['bower'], function () {
+gulp.task('browserify', function () {
   gulp.src('./client/ng/*.js')
     .pipe(plumber())
     .pipe(browserify())
     .pipe(gulp.dest('./client/js/'))
     .pipe(rename(function (path) { path.basename += '.min'; }))
     .pipe(uglify({ outSourceMap: true }))
-    .pipe(gulp.dest('./client/js/'));
+    .pipe(gulp.dest('./client/js/'))
+    .pipe(notify('JS was successfully compiled.'));
 });
 
-gulp.task('compass', ['bower'], function () {
+gulp.task('compass', function () {
   gulp.src('./client/scss/*.scss')
     .pipe(plumber())
     .pipe(compass({
@@ -35,7 +37,8 @@ gulp.task('compass', ['bower'], function () {
     .pipe(gulp.dest('./client/css/'))
     .pipe(rename(function (path) { path.basename += '.min'; }))
     .pipe(csso())
-    .pipe(gulp.dest('./client/css/'));
+    .pipe(gulp.dest('./client/css/'))
+    .pipe(notify('CSS was successfully compiled.'));
 });
 
 gulp.task('watch', function () {
@@ -43,4 +46,4 @@ gulp.task('watch', function () {
   gulp.watch(['./client/scss/*.scss', './client/scss/**/*.scss'], ['compass']);
 });
 
-gulp.task('default', ['bower', 'browserify', 'compass']);
+gulp.task('default', ['browserify', 'compass']);
