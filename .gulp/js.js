@@ -11,12 +11,12 @@ var gulp = require('gulp')
 var bundle = function(bundler, name) {
   return bundler
     .bundle()
+    .pipe(plumber())
     .pipe(source(name))
     .pipe(buffer())
     .pipe(gulp.dest('./client/js/'))
     .pipe(rename(function (path) { path.basename += '.min'; }))
     .pipe(sourcemaps.init({ loadMaps: true }))
-      // Add transformation tasks to the pipeline here.
       .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./client/js/'))
