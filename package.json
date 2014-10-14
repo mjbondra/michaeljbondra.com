@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development nodemon --harmony server",
-    "install": "gulp install"
+    "install": "bundle install && gulp install"
   },
   "devDependencies": {
     "bower": "^1.3.12",
