@@ -11,7 +11,7 @@ app.directive('console', ['$location', '$window', 'Consolator', 'consoleStyles',
         c.log(c.css(consoleStyles.h2, 'A D D I T I O N A L   P R O J E C T S'));
         c.log(
           c.css(consoleStyles.h3, '  Consolator  ') +
-          c.css(consoleStyles.tags, '  Node.js    Gulp.js  ')
+          c.css(consoleStyles.tags, '  Node.js    gulp.js  ')
         );
         c.log(
           c.css(consoleStyles.description, 'A JavaScript library for printing styled messages to the console.  ') +
@@ -20,7 +20,7 @@ app.directive('console', ['$location', '$window', 'Consolator', 'consoleStyles',
 
         c.log(
           c.css(consoleStyles.h3, '  mjbondra.com  ') +
-          c.css(consoleStyles.tags, '  Node.js    Koa    AngularJS    MongoDB    Mongoose    Gulp.js  ')
+          c.css(consoleStyles.tags, '  Node.js    Koa    AngularJS    MongoDB    Mongoose    gulp.js  ')
         );
         c.log(
           c.css(consoleStyles.description, 'You are here.  ') +
