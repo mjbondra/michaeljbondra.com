@@ -1,0 +1,24 @@
+%icon-email, %icon-github, %icon-linkedin, %icon-twitter {
+  @include icon-replace();
+}
+
+%icon-email {
+  &:before {
+    content: "\f0e0";
+  }
+}
+%icon-github {
+  &:before {
+    content: "\f09b";
+  }
+}
+%icon-linkedin {
+  &:before {
+    content: "\f08c";
+  }
+}
+%icon-twitter {
+  &:before {
+    content: "\f099";
+  }
+}
