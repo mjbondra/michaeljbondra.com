@@ -1,10 +1,4 @@
-var gulp = require('gulp')
-  , compass = require('gulp-compass')
-  , csso = require('gulp-csso')
-  , notify = require('gulp-notify')
-  , plumber = require('gulp-plumber')
-  , rename = require('gulp-rename')
-  , sass = require('gulp-ruby-sass');
+var gulp = require('gulp');
 
 require('./.gulp/bower'); //  task(s):  bower
 require('./.gulp/css');   //  task(s):  css, css-install
