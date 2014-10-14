@@ -8,7 +8,7 @@ var gulp = require('gulp')
   , sourcemaps = require('gulp-sourcemaps')
   , uglify = require('gulp-uglify');
 
-var bundle = function(bundler, name) {
+function bundle (bundler, name) {
   return bundler
     .bundle()
     .pipe(plumber())
@@ -21,22 +21,28 @@ var bundle = function(bundler, name) {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./client/js/'))
     .pipe(notify('JS was successfully compiled.'));
-};
+}
 
-gulp.task('js-app', function() {
+function jsApp () {
   var bundler = browserify({
     entries: ['./client/ng/mjbondra.app.js'],
     debug: true
   });
   return bundle(bundler, 'mjbondra.app.js');
-});
-
-gulp.task('js-libraries', function() {
+}
+function jsLibraries () {
   var bundler = browserify({
     entries: ['./client/ng/mjbondra.libraries.js'],
     debug: true
   });
   return bundle(bundler, 'mjbondra.libraries.js');
-});
+}
+function jsAll () {
+  jsApp();
+  jsLibraries();
+}
 
-gulp.task('js', ['js-app', 'js-libraries']);
+gulp.task('js', jsAll);
+gulp.task('js-app', jsApp);
+gulp.task('js-libraries', jsLibraries);
+gulp.task('js-install', ['bower'], jsAll);

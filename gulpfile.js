@@ -6,7 +6,7 @@ var gulp = require('gulp')
   , rename = require('gulp-rename');
 
 require('./.gulp/bower'); // task(s): bower
-require('./.gulp/js'); // task(s): js, js-app, js-libraries
+require('./.gulp/js'); // task(s): js, js-app, js-libraries, js-install
 
 gulp.task('compass', function () {
   gulp.src('./client/scss/*.scss')
