@@ -1,27 +1,17 @@
 var gulp = require('gulp')
   , bower = require('gulp-bower')
-  , browserify = require('gulp-browserify')
   , compass = require('gulp-compass')
   , csso = require('gulp-csso')
   , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
-  , rename = require('gulp-rename')
-  , uglify = require('gulp-uglify');
+  , rename = require('gulp-rename');
+
+require('./.gulp/js'); // tasks: js, js-app, js-libraries
+
 
 gulp.task('bower', function () {
   return bower()
     .pipe(gulp.dest('./client/lib/'));
-});
-
-gulp.task('browserify', function () {
-  gulp.src('./client/ng/*.js')
-    .pipe(plumber())
-    .pipe(browserify())
-    .pipe(gulp.dest('./client/js/'))
-    .pipe(rename(function (path) { path.basename += '.min'; }))
-    .pipe(uglify({ outSourceMap: true }))
-    .pipe(gulp.dest('./client/js/'))
-    .pipe(notify('JS was successfully compiled.'));
 });
 
 gulp.task('compass', function () {
@@ -42,8 +32,8 @@ gulp.task('compass', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./client/ng/*.js', './client/ng/**/*.js'], ['browserify']);
+  gulp.watch(['./client/ng/*.js', './client/ng/**/*.js'], ['js-app']);
   gulp.watch(['./client/scss/*.scss', './client/scss/**/*.scss'], ['compass']);
 });
 
-gulp.task('default', ['browserify', 'compass']);
+gulp.task('default', ['js', 'compass']);
