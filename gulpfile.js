@@ -1,18 +1,12 @@
 var gulp = require('gulp')
-  , bower = require('gulp-bower')
   , compass = require('gulp-compass')
   , csso = require('gulp-csso')
   , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
   , rename = require('gulp-rename');
 
-require('./.gulp/js'); // tasks: js, js-app, js-libraries
-
-
-gulp.task('bower', function () {
-  return bower()
-    .pipe(gulp.dest('./client/lib/'));
-});
+require('./.gulp/bower'); // task(s): bower
+require('./.gulp/js'); // task(s): js, js-app, js-libraries
 
 gulp.task('compass', function () {
   gulp.src('./client/scss/*.scss')
