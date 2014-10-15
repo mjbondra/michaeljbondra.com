@@ -2,58 +2,65 @@
 
 var app = angular.module('mjbondra.services.console-styles', []);
 
+var fontFamily = 'Fira Sans, Helvetica Neue, Helvetica, Arial, sans-serif';
+
+var black = '#333333'
+  , blue = '#3399CC'
+  , gray = '#777777'
+  , red = '#EB5C62';
+
 app.constant('consoleStyles', {
   h2: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '16px',
     'line-height': '40px',
     'font-weight': '300',
-    'color': '#333333'
+    'color': black
   },
   h3: {
     'padding': '8px 20px',
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '24px',
     'line-height': '60px',
     'font-weight': '700',
     'color': 'white',
-    'background-color': '#333333'
+    'background-color': black
   },
   description: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '16px',
     'line-height': '40px',
-    'color': '#333333'
+    'color': black
   },
   imageFallback: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '12px',
     'line-height': '36px',
-    'color': '#EB5C62',
+    'color': red
   },
   message: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '12px',
     'font-weight': '300',
-    'color': '#333333'
+    'color': black
   },
   messageError: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '12px',
-    'color': '#EB5C62'
+    'color': red
   },
   link: {
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '16px',
-    'color': '#3399CC'
+    'color': blue
   },
   tags: {
     'padding': '10px 20px',
-    'font-family': 'Fira Sans, sans-serif',
+    'font-family': fontFamily,
     'font-size': '16px',
     'line-height': '60px',
     'font-weight': '300',
     'color': 'white',
-    'background-color': '#777777',
+    'background-color': gray
   }
 });
