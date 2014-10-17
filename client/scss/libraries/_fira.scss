@@ -1,56 +1,66 @@
 // A slim, Sass variant of fira.css
 
+$fira-eot-directory: '/eot' !default;
+$fira-woff2-directory: '/woff2' !default;
+$fira-woff-directory: '/woff' !default;
+$fira-ttf-directory: '/ttf' !default;
+
 @font-face{
   font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}/eot/FiraSans-Light.eot');
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Light.eot');
   src: local('Fira Sans Light'),
-       url('#{$fira-font-path}/eot/FiraSans-Light.eot') format('embedded-opentype'),
-       url('#{$fira-font-path}/woff/FiraSans-Light.woff') format('woff'),
-       url('#{$fira-font-path}/ttf/FiraSans-Light.ttf') format('truetype');
+       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Light.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Light.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Light.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face{
   font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}/eot/FiraSans-LightItalic.eot');
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-LightItalic.eot');
   src: local('Fira Sans Light Italic'),
-       url('#{$fira-font-path}/eot/FiraSans-LightItalic.eot') format('embedded-opentype'),
-       url('#{$fira-font-path}/woff/FiraSans-LightItalic.woff') format('woff'),
-       url('#{$fira-font-path}/ttf/FiraSans-LightItalic.ttf') format('truetype');
+       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-LightItalic.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-LightItalic.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face{
   font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}/eot/FiraSans-Regular.eot');
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Regular.eot');
   src: local('Fira Sans Regular'),
-       url('#{$fira-font-path}/eot/FiraSans-Regular.eot') format('embedded-opentype'),
-       url('#{$fira-font-path}/woff/FiraSans-Regular.woff') format('woff'),
-       url('#{$fira-font-path}/ttf/FiraSans-Regular.ttf') format('truetype');
+       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Regular.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Regular.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face{
   font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}/eot/FiraSans-Italic.eot');
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Italic.eot');
   src: local('Fira Sans Regular Italic'),
-       url('#{$fira-font-path}/eot/FiraSans-Italic.eot') format('embedded-opentype'),
-       url('#{$fira-font-path}/woff/FiraSans-Italic.woff') format('woff'),
-       url('#{$fira-font-path}/ttf/FiraSans-Italic.ttf') format('truetype');
+       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Italic.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Italic.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Italic.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face{
   font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}/eot/FiraSans-Bold.eot');
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Bold.eot');
   src: local('Fira Sans Bold'),
-       url('#{$fira-font-path}/eot/FiraSans-Bold.eot') format('embedded-opentype'),
-       url('#{$fira-font-path}/woff/FiraSans-Bold.woff') format('woff'),
-       url('#{$fira-font-path}/ttf/FiraSans-Bold.ttf') format('truetype');
+       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Bold.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Bold.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
