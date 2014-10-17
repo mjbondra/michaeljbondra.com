@@ -1,6 +1,6 @@
 body {
-  font-size: 16px;
-  @include FiraSans($size: 1.6rem, $color: $black);
+  @include FiraSans($size: 16px, $color: $black);
+  font-size: 1.6rem;
 
   min-width: 320px;
   min-width: 32rem;

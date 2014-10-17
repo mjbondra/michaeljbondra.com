@@ -16,7 +16,3 @@
 /*--App Dependencies--*/
 @import "variables/**/*";
 @import "abstractions/**/*";
-
-body {
-  @include FiraSans();
-}
