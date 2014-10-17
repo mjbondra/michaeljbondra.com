@@ -23,19 +23,18 @@ function bundle (bundler, name) {
     .pipe(notify('JS was successfully compiled.'));
 }
 
-function jsApp () {
+function js (name) {
   var bundler = browserify({
-    entries: ['./client/ng/mjbondra.app.js'],
+    entries: ['./client/ng/' + name],
     debug: true
   });
-  return bundle(bundler, 'mjbondra.app.js');
+  return bundle(bundler, name);
+}
+function jsApp () {
+  return js('mjbondra.app.js');
 }
 function jsLibraries () {
-  var bundler = browserify({
-    entries: ['./client/ng/mjbondra.libraries.js'],
-    debug: true
-  });
-  return bundle(bundler, 'mjbondra.libraries.js');
+  return js('mjbondra.libraries.js');
 }
 function jsAll () {
   jsApp();
