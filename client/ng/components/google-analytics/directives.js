@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.directives.google-analytics', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.google-analytics.directives', []);
 
 app.directive('googleAnalytics', ['$location', 'ga', function ($location, ga) {
   return {

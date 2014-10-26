@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.services.google-analytics', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.google-analytics.services', []);
 
 app.factory('ga', ['$location', '$window', function ($location, $window) {
   $window.GoogleAnalyticsObject = 'ga';

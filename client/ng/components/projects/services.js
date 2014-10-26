@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.services.project-styles', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.projects.services', []);
 
 app.constant('breakpoints', {
   mobileWide: 30, // em; 480px

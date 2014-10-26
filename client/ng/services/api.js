@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.services.api', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.services.api', []);
 
 /**
  * API Service

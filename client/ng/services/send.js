@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.services.send', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.services.send', []);
 
 /**
  * Send Service

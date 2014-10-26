@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.directives.console', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.console.directives', []);
 
 app.directive('console', ['$location', '$window', 'Consolator', 'consoleStyles', 'send', function ($location, $window, Consolator, consoleStyles, send) {
   return {

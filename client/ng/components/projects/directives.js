@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.directives.projects', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.projects.directives', []);
 
 app.directive('projects', ['$document', 'api', 'projectStyles', function ($document, api, projectStyles) {
   return {
@@ -18,6 +19,6 @@ app.directive('projects', ['$document', 'api', 'projectStyles', function ($docum
       });
     },
     scope: true,
-    templateUrl: '/ng/views/projects/index.html'
+    templateUrl: '/ng/components/projects/index.html'
   };
 }]);

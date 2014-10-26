@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('mjbondra.services.console-styles', []);
+var angular = require('angular')
+  , app = angular.module('mjbondra.components.console.services', []);
 
 var fontFamily = 'Fira Sans, Helvetica Neue, Helvetica, Arial, sans-serif';
 

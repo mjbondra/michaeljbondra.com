@@ -13,27 +13,16 @@
  *                  888P"
  */
 
+var angular = require('angular');
+require('angular-touch');
+
 // App Dependencies
-require('./directives/console');
-require('./directives/google-analytics');
-require('./directives/projects');
-require('./services/api');
-require('./services/consolator');
-require('./services/console-styles');
-require('./services/google-analytics');
-require('./services/project-styles');
-require('./services/send');
+require('./components');
+require('./services');
 
 // AngularJS/App modules
-var app = angular.module('mjbondra', [
+angular.module('mjbondra', [
   'ngTouch',
-  'mjbondra.directives.console',
-  'mjbondra.directives.google-analytics',
-  'mjbondra.directives.projects',
-  'mjbondra.services.api',
-  'mjbondra.services.consolator',
-  'mjbondra.services.console-styles',
-  'mjbondra.services.google-analytics',
-  'mjbondra.services.project-styles',
-  'mjbondra.services.send'
+  'mjbondra.components',
+  'mjbondra.services'
 ]);

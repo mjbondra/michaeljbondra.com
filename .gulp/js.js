@@ -33,15 +33,6 @@ function js (name) {
 function jsApp () {
   return js('mjbondra.app.js');
 }
-function jsLibraries () {
-  return js('mjbondra.libraries.js');
-}
-function jsAll () {
-  jsApp();
-  jsLibraries();
-}
 
-gulp.task('js', jsAll);
-gulp.task('js-app', jsApp);
-gulp.task('js-libraries', jsLibraries);
-gulp.task('js-install', ['bower'], jsAll);
+gulp.task('js', jsApp);
+gulp.task('js-install', ['bower'], jsApp);
