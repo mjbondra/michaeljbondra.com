@@ -4,8 +4,8 @@ var compress = require('koa-compress')
   , router = require('koa-router')
   , static = require('koa-static');
 
-var error = require('../app/middleware/error')
-  , notFound = require('../app/middleware/404');
+var error = require('../middleware/error')
+  , notFound = require('../middleware/404');
 
 module.exports = function (app, config) {
   if (config.env !== 'test') app.use(logger());

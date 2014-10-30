@@ -24,7 +24,7 @@ var env = process.env.NODE_ENV || 'development'
 require('./config/mongoose')(config);
 require('./config/models')(config);
 require('./config/koa')(app, config);
-require('./config/routes')(app, config);
+require('./config/routes')(app);
 
 app.listen(config.port, function () {
   console.log('Listening for Connections', { port: config.port });
