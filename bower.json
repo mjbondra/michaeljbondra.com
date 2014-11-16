@@ -1,6 +1,6 @@
 {
   "name": "mjbondra",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "dependencies": {
     "bourbon ": "4.0.2",
     "compass-breakpoint": "2.5.0",
