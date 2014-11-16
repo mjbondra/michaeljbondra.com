@@ -29,10 +29,18 @@
     DEPENDENCIES
 \*------------------------------------*/
 
-/*--Third Party Dependencies--*/
+/*--Third Party Variables--*/
+$fira-font-path: '../fonts/fira';
+$fa-font-path: "../lib/font-awesome/fonts";
+
+/*--Third Party Libraries--*/
 @import "../lib/bourbon/dist/bourbon";
 @import "../lib/compass-breakpoint/stylesheets/breakpoint";
 @import "../lib/susy/sass/susy";
+@import "libraries/normalize"; // symlinked css as scss from ../libraries/normalize-css/normalize.css
+@import "libraries/html5-boilerplate"; // symlinked css as scss from ../libraries/html5-boilerplate/css/main.css
+@import "libraries/fira";
+@import "../lib/font-awesome/scss/font-awesome";
 
 /*--App Dependencies--*/
 @import "variables/**/*";

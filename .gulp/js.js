@@ -3,7 +3,6 @@ var gulp = require('gulp')
   , buffer = require('vinyl-buffer')
   , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
-  , rename = require('gulp-rename')
   , source = require('vinyl-source-stream')
   , sourcemaps = require('gulp-sourcemaps')
   , uglify = require('gulp-uglify');
@@ -14,8 +13,6 @@ function bundle (bundler, name) {
     .pipe(plumber())
     .pipe(source(name))
     .pipe(buffer())
-    .pipe(gulp.dest('./client/js/'))
-    .pipe(rename(function (path) { path.basename += '.min'; }))
     .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(uglify())
     .pipe(sourcemaps.write('./'))
@@ -31,7 +28,7 @@ function js (name) {
   return bundle(bundler, name);
 }
 function jsApp () {
-  return js('mjbondra.app.js');
+  return js('app.js');
 }
 
 gulp.task('js', jsApp);
