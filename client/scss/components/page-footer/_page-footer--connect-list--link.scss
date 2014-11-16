@@ -1,0 +1,12 @@
+.page-footer--connect-list--link {
+  float: left;
+  display: block;
+  height: 38px;
+  height: 3.8rem;
+  width: 25%;
+  text-align: center;
+  &:before {
+    font-size: 38px;
+    @include font-details($size: 3.8rem);
+  }
+}

@@ -1,0 +1,55 @@
+.page-header {
+  height: 180px;
+  height: 18rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: 1;
+    opacity: 0.8;
+    background: {
+      color: $mask-black;
+      image: url('../img/bg/screen.png');
+    }
+    width: 100%;
+    height: 180px;
+    height: 18rem;
+  }
+}
+
+@include breakpoint ($breakpoint-mobile-wide) {
+  .page-header {
+    &, &:before {
+      height: 270px;
+      height: 27rem;
+    }
+  }
+}
+
+@include breakpoint ($breakpoint-tablet) {
+  .page-header {
+    &, &:before {
+      height: 432px;
+      height: 43.2rem;
+    }
+  }
+}
+
+@include breakpoint ($breakpoint-desktop) {
+  .page-header {
+    &, &:before {
+      height: 577px;
+      height: 57.7rem;
+    }
+  }
+}
+
+@include breakpoint ($breakpoint-desktop-wide) {
+  .page-header {
+    &, &:before {
+      height: 754px;
+      height: 75.4rem;
+    }
+  }
+}

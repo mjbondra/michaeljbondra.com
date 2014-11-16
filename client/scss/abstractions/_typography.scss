@@ -71,8 +71,8 @@
   }
 }
 
-@mixin FiraSans($size: null, $color: null, $weight: null, $height: null, $style: null) {
-  $family: 'Fira Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@mixin FiraMono($size: null, $color: null, $weight: null, $height: null, $style: null) {
+  $family: 'Fira Mono', 'Courier New', Courier, monospace;
   @include font-details($size, $color, $weight, $height, $style, $family);
 }
 

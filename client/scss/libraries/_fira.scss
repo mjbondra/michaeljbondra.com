@@ -6,61 +6,37 @@ $fira-woff-directory: '/woff' !default;
 $fira-ttf-directory: '/ttf' !default;
 
 @font-face{
-  font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Light.eot');
-  src: local('Fira Sans Light'),
-       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Light.eot?#iefix') format('embedded-opentype'),
-       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Light.woff2') format('woff2'),
-       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Light.woff') format('woff'),
-       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face{
-  font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-LightItalic.eot');
-  src: local('Fira Sans Light Italic'),
-       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-LightItalic.eot?#iefix') format('embedded-opentype'),
-       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-LightItalic.woff2') format('woff2'),
-       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-LightItalic.woff') format('woff'),
-       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face{
-  font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Regular.eot');
-  src: local('Fira Sans Regular'),
-       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
-       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Regular.woff2') format('woff2'),
-       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Regular.woff') format('woff'),
-       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Regular.ttf') format('truetype');
+  font-family: 'Fira Mono';
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/firamono-regular-webfont.eot');
+  src: local('Fira Mono'),
+       url('#{$fira-font-path}#{$fira-eot-directory}/firamono-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/firamono-regular-webfont.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/firamono-regular-webfont.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/firamono-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face{
-  font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Italic.eot');
-  src: local('Fira Sans Regular Italic'),
-       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Italic.eot?#iefix') format('embedded-opentype'),
-       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Italic.woff2') format('woff2'),
-       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Italic.woff') format('woff'),
-       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
+  font-family: 'Fira Mono';
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/firamono-medium-webfont.eot');
+  src: local('Fira Mono Medium'),
+       url('#{$fira-font-path}#{$fira-eot-directory}/firamono-medium-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/firamono-medium-webfont.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/firamono-medium-webfont.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/firamono-medium-webfont.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face{
-  font-family: 'Fira Sans';
-  src: url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Bold.eot');
-  src: local('Fira Sans Bold'),
-       url('#{$fira-font-path}#{$fira-eot-directory}/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
-       url('#{$fira-font-path}#{$fira-woff2-directory}/FiraSans-Bold.woff2') format('woff2'),
-       url('#{$fira-font-path}#{$fira-woff-directory}/FiraSans-Bold.woff') format('woff'),
-       url('#{$fira-font-path}#{$fira-ttf-directory}/FiraSans-Bold.ttf') format('truetype');
+  font-family: 'Fira Mono';
+  src: url('#{$fira-font-path}#{$fira-eot-directory}/firamono-bold-webfont.eot');
+  src: local('Fira Mono Bold'),
+       url('#{$fira-font-path}#{$fira-eot-directory}/firamono-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$fira-font-path}#{$fira-woff2-directory}/firamono-bold-webfont.woff2') format('woff2'),
+       url('#{$fira-font-path}#{$fira-woff-directory}/firamono-bold-webfont.woff') format('woff'),
+       url('#{$fira-font-path}#{$fira-ttf-directory}/firamono-bold-webfont.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }

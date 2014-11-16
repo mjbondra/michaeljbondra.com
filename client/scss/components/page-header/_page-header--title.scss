@@ -1,0 +1,7 @@
+.page-header--title {
+  @include font-details($color: white);
+
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
