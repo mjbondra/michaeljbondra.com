@@ -4,4 +4,45 @@
   position: relative;
   z-index: 1;
   margin: 0;
+  padding: {
+    top: 10px;
+    top: 1rem;
+    right: 50%;
+    left: 10px;
+    left: 1rem;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 100px;
+    left: 10rem;
+    top: 40px;
+    top: 4rem;
+    display: block;
+    border: {
+      radius: 50%;
+    }
+    height: 100px;
+    height: 10rem;
+    width: 100px;
+    width: 10rem;
+    background: {
+      color: $gray;
+      color: $mask-gray;
+      image: url('/img/mjbondra-square-small.png');
+    }
+  }
+}
+
+@include breakpoint($breakpoint-hi-res) {
+  .page-header--title {
+    &:after {
+      background: {
+        image: url('/img/mjbondra-square-medium.png');
+        size: 100px 100px;
+        size: 10rem 10rem;
+      }
+    }
+  }
 }

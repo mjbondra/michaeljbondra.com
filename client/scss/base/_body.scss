@@ -1,5 +1,5 @@
 body {
-  @include FiraMono($size: 16px, $color: $black);
+  @include FiraMono($size: 16px, $color: $black, $weight: 400);
   font-size: 1.6rem;
 
   min-width: 320px;

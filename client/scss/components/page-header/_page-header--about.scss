@@ -1,7 +1,16 @@
 .page-header--about {
-  @include font-details($color: white);
+  @include font-details($size: 14px, $color: white);
+  font-size: 1.4rem;
 
   position: relative;
+  top: 60px;
+  top: 6rem;
   z-index: 1;
   margin: 0;
+  padding: 0 10px;
+  padding: 0 1rem;
+  text: {
+    align: right;
+    indent: 50%;
+  }
 }
