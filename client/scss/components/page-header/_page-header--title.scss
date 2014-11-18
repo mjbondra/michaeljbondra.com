@@ -12,13 +12,13 @@
     left: 1rem;
   }
 
-  &:after {
+  &:before {
     content: '';
     position: absolute;
-    left: 100px;
-    left: 10rem;
     top: 40px;
     top: 4rem;
+    left: 100px;
+    left: 10rem;
     display: block;
     border: {
       radius: 50%;
@@ -29,7 +29,6 @@
     width: 10rem;
     background: {
       color: $gray;
-      color: $mask-gray;
       image: url('/img/mjbondra-square-small.png');
     }
   }
@@ -37,11 +36,39 @@
 
 @include breakpoint($breakpoint-hi-res) {
   .page-header--title {
-    &:after {
+    &:before {
       background: {
         image: url('/img/mjbondra-square-medium.png');
         size: 100px 100px;
         size: 10rem 10rem;
+      }
+    }
+  }
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .page-header--title {
+    margin: {
+      right: auto;
+      left: auto;
+    }
+    padding: {
+      top: 100px;
+      top: 10rem;
+      right: 0;
+      left: 0;
+    }
+    max-width: 370px;
+    max-width: 37rem;
+    &:before {
+      position: relative;
+      float: left;
+      top: -40px;
+      top: -4rem;
+      left: auto;
+      margin: {
+        right: 20px;
+        right: 2rem;
       }
     }
   }

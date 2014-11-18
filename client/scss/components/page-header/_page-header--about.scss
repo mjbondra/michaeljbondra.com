@@ -11,6 +11,24 @@
   padding: 0 1rem;
   text: {
     align: right;
-    indent: 50%;
+    indent: 45%;
+  }
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .page-header--about {
+    clear: left;
+    top: -30px;
+    top: -3rem;
+    margin: {
+      right: auto;
+      left: auto;
+    }
+    max-width: 480px;
+    max-width: 48rem;
+    text: {
+      align: center;
+      indent: 0;
+    }
   }
 }
