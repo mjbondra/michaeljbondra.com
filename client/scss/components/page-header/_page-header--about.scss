@@ -17,17 +17,19 @@
 
 @include breakpoint($breakpoint-mobile-wide) {
   .page-header--about {
-    clear: left;
-    top: -30px;
-    top: -3rem;
+    top: auto;
     margin: {
       right: auto;
       left: auto;
     }
-    max-width: 480px;
-    max-width: 48rem;
+    padding: {
+      top: 10px;
+      top: 1rem;
+    }
+    max-width: 320px;
+    max-width: 32rem;
     text: {
-      align: center;
+      align: left;
       indent: 0;
     }
   }
@@ -38,14 +40,11 @@
     @include font-details($size: 21px);
     font-size: 2.1rem;
 
-    clear: none;
-    top: auto;
     padding: {
       top: 20px;
       top: 2rem;
     }
-    text: {
-      align: left;
-    }
+    max-width: 500px;
+    max-width: 50rem;
   }
 }
