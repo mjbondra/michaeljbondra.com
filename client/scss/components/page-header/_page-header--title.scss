@@ -30,6 +30,8 @@
     background: {
       color: $gray;
       image: url('/img/mjbondra-square-small.png');
+      size: 100px 100px;
+      size: 10rem 10rem;
     }
   }
 }
@@ -39,8 +41,6 @@
     &:before {
       background: {
         image: url('/img/mjbondra-square-medium.png');
-        size: 100px 100px;
-        size: 10rem 10rem;
       }
     }
   }
@@ -69,6 +69,41 @@
       margin: {
         right: 20px;
         right: 2rem;
+      }
+    }
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .page-header--title {
+    @include font-details($size: 36px);
+    font-size: 3.6rem;
+
+    padding: {
+      top: 140px;
+      top: 14rem;
+    }
+    max-width: 600px;
+    max-width: 60rem;
+    &:before {
+      height: 200px;
+      height: 20rem;
+      width: 200px;
+      width: 20rem;
+      background: {
+        image: url('/img/mjbondra-square-medium.png');
+        size: 200px 200px;
+        size: 20rem 20rem;
+      }
+    }
+  }
+}
+
+@include breakpoint($breakpoint-tablet $breakpoint-hi-res) {
+  .page-header--title {
+    &:before {
+      background: {
+        image: url('/img/mjbondra-square-large.png');
       }
     }
   }
