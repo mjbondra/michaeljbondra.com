@@ -6,19 +6,19 @@
   z-index: 1;
   margin: 0 auto;
   padding: {
-    top: 50px;
-    top: 5rem;
+    top: 55px;
+    top: 5.5rem;
   }
   max-width: 280px;
   max-width: 28rem;
 
   &:before {
     content: '';
+    display: block;
     position: relative;
     float: left;
     top: -5px;
     top: -0.5rem;
-    display: block;
     margin: {
       right: 12px;
       right: 1.2rem;
@@ -85,8 +85,8 @@
     font-size: 3.6rem;
 
     padding: {
-      top: 140px;
-      top: 14rem;
+      top: 150px;
+      top: 15rem;
     }
     max-width: 620px;
     max-width: 62rem;
@@ -123,8 +123,8 @@
 @include breakpoint($breakpoint-desktop) {
   .page-header--title {
     padding: {
-      top: 200px;
-      top: 20rem;
+      top: 220px;
+      top: 22rem;
     }
   }
 }
@@ -132,8 +132,8 @@
 @include breakpoint($breakpoint-desktop-wide) {
   .page-header--title {
     padding: {
-      top: 280px;
-      top: 28rem;
+      top: 300px;
+      top: 30rem;
     }
   }
 }
