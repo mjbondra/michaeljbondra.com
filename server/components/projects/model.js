@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , slug = require('../../../util/slug');
+  , slug = require('../../../shared/slug');
 
 var ProjectSchema = new Schema({
   body: String,

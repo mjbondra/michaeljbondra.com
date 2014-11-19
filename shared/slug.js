@@ -6,7 +6,9 @@
  * @returns {string} - slug
  */
 module.exports = function (str, strip) {
-  if (!str) return;
-  if (strip === true) return str.toLowerCase().replace(/[_]/g, '').replace(/[^\w]+/g,'');
-  return str.toLowerCase().replace(/[ |_]/g, '-').replace(/[^\w-]+/g,'');
+  if (typeof str !== 'string') return '';
+  str = str.toLowerCase();
+  if (strip) str = str.replace(/[_]/g, '');
+  else str = str.replace(/[ |_]/g, '-');
+  return str.replace(/[^\w]+/g,'');
 };
