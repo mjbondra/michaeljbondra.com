@@ -1,37 +1,40 @@
 .page-header--title {
-  @include font-details($color: white);
+  @include font-details($size: 18px, $color: white, $height: 1.25);
+  font-size: 1.8rem;
 
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: 0 auto;
   padding: {
-    top: 10px;
-    top: 1rem;
-    right: 50%;
-    left: 10px;
-    left: 1rem;
+    top: 50px;
+    top: 5rem;
   }
+  max-width: 280px;
+  max-width: 28rem;
 
   &:before {
     content: '';
-    position: absolute;
-    top: 40px;
-    top: 4rem;
-    left: 100px;
-    left: 10rem;
+    position: relative;
+    float: left;
+    top: -5px;
+    top: -0.5rem;
     display: block;
+    margin: {
+      right: 12px;
+      right: 1.2rem;
+    }
     border: {
       radius: 50%;
     }
-    height: 100px;
-    height: 10rem;
-    width: 100px;
-    width: 10rem;
+    height: 75px;
+    height: 7.5rem;
+    width: 75px;
+    width: 7.5rem;
     background: {
       color: $gray;
       image: url('/img/mjbondra-square-small.png');
-      size: 100px 100px;
-      size: 10rem 10rem;
+      size: 75px 75px;
+      size: 7.5rem 7.5rem;
     }
   }
 }
@@ -48,27 +51,29 @@
 
 @include breakpoint($breakpoint-mobile-wide) {
   .page-header--title {
-    margin: {
-      right: auto;
-      left: auto;
-    }
+    @include font-details($size: 24px);
+    font-size: 2.4rem;
+
     padding: {
       top: 90px;
       top: 9rem;
-      right: 0;
-      left: 0;
     }
     max-width: 360px;
     max-width: 36rem;
     &:before {
-      position: relative;
-      float: left;
       top: -10px;
       top: -1rem;
-      left: auto;
       margin: {
         right: 15px;
         right: 1.5rem;
+      }
+      height: 100px;
+      height: 10rem;
+      width: 100px;
+      width: 10rem;
+      background: {
+        size: 100px 100px;
+        size: 10rem 10rem;
       }
     }
   }
