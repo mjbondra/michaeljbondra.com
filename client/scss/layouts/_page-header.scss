@@ -1,21 +1,12 @@
 .page-header {
   height: 180px;
   height: 18rem;
+  background: {
+    image: url('../img/bg/mjbondra-mobile.jpg');
+    size: 100% auto;
+  }
 
-  &:before {
-    background: {
-      image: url('../img/bg/mjbondra-mobile.jpg');
-      size: 100% auto;
-    }
-  }
   &:after {
-    opacity: 0.8;
-    background: {
-      color: $mask-black;
-      image: url('../img/bg/screen.png');
-    }
-  }
-  &:before, &:after {
     content: '';
     position: absolute;
     display: block;
@@ -24,17 +15,20 @@
     width: 100%;
     height: 180px;
     height: 18rem;
+    opacity: 0.8;
+    background: {
+      color: $mask-black;
+      image: url('../img/bg/screen.png');
+    }
   }
 }
 
 @include breakpoint ($breakpoint-mobile-wide) {
   .page-header {
-    &:before {
-      background: {
-        image: url('../img/bg/mjbondra-mobile-wide.jpg');
-      }
+    background: {
+      image: url('../img/bg/mjbondra-mobile-wide.jpg');
     }
-    &, &:before, &:after {
+    &, &:after {
       height: 270px;
       height: 27rem;
     }
@@ -43,12 +37,10 @@
 
 @include breakpoint ($breakpoint-tablet) {
   .page-header {
-    &:before {
-      background: {
-        image: url('../img/bg/mjbondra-tablet.jpg');
-      }
+    background: {
+      image: url('../img/bg/mjbondra-tablet.jpg');
     }
-    &, &:before, &:after {
+    &, &:after {
       height: 432px;
       height: 43.2rem;
     }
@@ -57,7 +49,7 @@
 
 @include breakpoint ($breakpoint-desktop) {
   .page-header {
-    &, &:before, &:after {
+    &, &:after {
       height: 577px;
       height: 57.7rem;
     }
@@ -66,7 +58,7 @@
 
 @include breakpoint ($breakpoint-desktop-wide) {
   .page-header {
-    &, &:before, &:after {
+    &, &:after {
       height: 754px;
       height: 75.4rem;
     }
