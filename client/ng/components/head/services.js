@@ -3,7 +3,19 @@
 var angular = require('angular')
 , app = angular.module('mjbondra.components.head.services', []);
 
-app.factory('title', function () {
+app.factory('description', [function () {
+  var description;
+  return {
+    get: function () {
+      return description;
+    },
+    set: function (_description) {
+      description = _description;
+    }
+  };
+}]);
+
+app.factory('title', [function () {
   var title;
   return {
     get: function () {
@@ -13,4 +25,4 @@ app.factory('title', function () {
       title = _title;
     }
   };
-});
+}]);
