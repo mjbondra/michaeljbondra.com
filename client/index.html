@@ -29,7 +29,7 @@
     <link href="/css/styles.css" rel="stylesheet">
     <script type="text/javascript" src="//www.google-analytics.com/analytics.js" async data-google-analytics="UA-55631366-1"></script>
     <script type="text/javascript" src="/js/app.js"></script>
-    <title>Michael J. Bondra</title>
+    <title data-ng-bind="title()" data-get-title>Michael J. Bondra</title>
   </head>
   <body data-console>
     <header class="page-header">
@@ -40,9 +40,8 @@
       <h1 class="page-header--title">Michael J. Bondra</h1>
       <p class="page-header--about">I craft elite websites, libraries, and services.</p>
     </header>
-    <main class="page-main" data-ng-view>
-      <!-- <section class="section-projects" data-projects></section> -->
-    </main>
+    <main class="page-main" data-ng-view></main>
+    <aside class="page-aside"></aside>
     <footer class="page-footer">
       <ul class="page-footer--connect-list">
         <li class="page-footer--connect-list--item">
