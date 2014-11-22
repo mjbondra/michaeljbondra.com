@@ -1,0 +1,29 @@
+.page-main--article {
+  margin: 0 auto;
+  max-width: 480px;
+  max-width: 48rem;
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .page-main--article {
+    @include font-details($size: 18px);
+    font-size: 1.8rem;
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .page-main--article {
+    @include font-details($size: 20px);
+    font-size: 2rem;
+
+    max-width: 640px;
+    max-width: 64rem;
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .page-main--article {
+    max-width: 700px;
+    max-width: 70rem;
+  }
+}
