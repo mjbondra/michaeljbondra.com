@@ -1,9 +1,16 @@
 .page-header--video {
   position: fixed;
+  display: none;
   top: 0;
   left: 0;
   width: 100%;
   min-width: 320px;
   min-width: 32rem;
   height: auto;
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .page-header--video {
+    display: block;
+  }
 }
