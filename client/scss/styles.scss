@@ -34,7 +34,6 @@ $fira-font-path: '../fonts/fira';
 $fa-font-path: "../lib/font-awesome/fonts";
 
 /*--Third Party Libraries--*/
-@import "../lib/bourbon/dist/bourbon";
 @import "../lib/compass-breakpoint/stylesheets/breakpoint";
 @import "../lib/susy/sass/susy";
 @import "libraries/normalize"; // symlinked css as scss from ../libraries/normalize-css/normalize.css
@@ -51,7 +50,7 @@ $fa-font-path: "../lib/font-awesome/fonts";
 \*------------------------------------*/
 
 *, *:before, *:after {
-  @include box-sizing(border-box);
+  box-sizing: border-box;
 }
 
 /*------------------------------------*\

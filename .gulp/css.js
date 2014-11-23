@@ -1,17 +1,24 @@
-var gulp = require('gulp')
+var autoprefixer = require('autoprefixer-core')
+  , gulp = require('gulp')
   , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
+  , postcss = require('gulp-postcss')
   , sass = require('gulp-ruby-sass')
   , sourcemaps = require('gulp-sourcemaps');
 
 function css () {
+  var processors = [
+    autoprefixer({
+      browsers: ['> 1%']
+    })
+  ];
   return sass('./client/scss/styles.scss', {
       loadPath: './client/scss',
       require: 'sass-globbing',
-      sourcemap: true,
-      style: 'compressed'
+      sourcemap: true
     })
     .pipe(plumber())
+    .pipe(postcss(processors))
     .pipe(sourcemaps.write({
       includeContent: false,
       sourceRoot: '/scss'
