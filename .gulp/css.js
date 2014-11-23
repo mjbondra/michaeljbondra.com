@@ -40,9 +40,11 @@ function cssMinify () {
     .pipe(sourcemaps.write('./', {
       sourceRoot: '../'
     }))
-    .pipe(gulp.dest('./client'));
+    .pipe(gulp.dest('./client'))
+    .pipe(notify('CSS was successfully minified.'));
 }
 
 gulp.task('css', css);
 gulp.task('css-minify', ['css'], cssMinify);
 gulp.task('css-install', ['bower'], css);
+gulp.task('css-install-minify', ['css-install'], cssMinify);
