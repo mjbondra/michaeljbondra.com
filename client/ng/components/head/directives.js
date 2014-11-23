@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-, app = angular.module('mjbondra.components.head.directives', []);
+  , app = angular.module('mjbondra.components.head.directives', []);
 
 app.directive('getDescription', ['description', function (description) {
   return {
