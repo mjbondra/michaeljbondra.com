@@ -19,7 +19,7 @@ function css () {
     })
     .pipe(plumber())
     .pipe(postcss(processors))
-    .pipe(sourcemaps.write({
+    .pipe(sourcemaps.write('./', {
       includeContent: false,
       sourceRoot: '/scss'
     }))
