@@ -19,12 +19,10 @@ require('angular-touch');
 // App Dependencies
 require('./components');
 require('./config');
-require('./services');
 
 // AngularJS/App modules
 angular.module('mjbondra', [
   'ngTouch',
   'mjbondra.components',
-  'mjbondra.config',
-  'mjbondra.services'
+  'mjbondra.config'
 ]);
