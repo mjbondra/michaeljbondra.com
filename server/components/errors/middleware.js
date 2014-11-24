@@ -1,17 +1,9 @@
 var mongoose = require('mongoose')
-  , Bluebird = require('bluebird');
+, Bluebird = require('bluebird');
 
-var Schema = mongoose.Schema
-  , ErrorSchema = new Schema({
-    ip: String,
-    method: String,
-    referer: String,
-    stack: String,
-    status: Number,
-    url: String
-  }), _Error = mongoose.model('Error', ErrorSchema);
+var _Error = mongoose.model('Error');
 
-module.exports = function () {
+exports.error = function () {
   return function *(next) {
     try {
       yield next;
@@ -27,13 +19,24 @@ module.exports = function () {
         });
         yield Bluebird.promisify(_error.save, _error)();
       } catch (_err) {
-        console.error(_err.stack || _err); // print error logging error to console, but do not overwrite original error
+        console.error(err.stack || err); // original error
+        console.error(_err.stack || _err); // error-logging error
       }
       this.status = err.status || 500;
       this.body = {
-        msg: 'There was an error',
+        msg: 'Internal server error',
         status: this.status
       };
     }
+  };
+};
+
+exports.notFound = function () {
+  return function *() {
+    this.status = 404;
+    this.body = {
+      msg: 'Not found',
+      status: this.status
+    };
   };
 };
