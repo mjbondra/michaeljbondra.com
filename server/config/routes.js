@@ -1,4 +1,4 @@
-var email = require('../middleware/email')
+var email = require('../components/messages/middleware').email
   , messages = require('../components/messages/controllers')
   , projects = require('../components/projects/controllers');
 
