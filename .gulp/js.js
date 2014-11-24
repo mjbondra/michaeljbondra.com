@@ -8,11 +8,14 @@ var gulp = require('gulp')
   , sourcemaps = require('gulp-sourcemaps')
   , uglify = require('gulp-uglify');
 
-function bundle (bundler, name) {
-  return bundler
+function js () {
+  return browserify({
+      entries: ['./client/ng/app.js'],
+      debug: true
+    })
     .bundle()
     .pipe(plumber())
-    .pipe(source(name))
+    .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(gulp.dest('./client/js/'))
     .pipe(rename(function (path) { path.basename += '.min'; }))
@@ -23,16 +26,5 @@ function bundle (bundler, name) {
     .pipe(notify('JS was successfully compiled.'));
 }
 
-function js (name) {
-  var bundler = browserify({
-    entries: ['./client/ng/' + name],
-    debug: true
-  });
-  return bundle(bundler, name);
-}
-function jsApp () {
-  return js('app.js');
-}
-
-gulp.task('js', jsApp);
-gulp.task('js-install', ['bower'], jsApp);
+gulp.task('js', js);
+gulp.task('js-install', ['bower'], js);
