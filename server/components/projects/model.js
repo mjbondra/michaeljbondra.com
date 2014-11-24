@@ -5,17 +5,13 @@ var mongoose = require('mongoose')
 var ProjectSchema = new Schema({
   body: String,
   github: String,
-  background: {
-    color: String,
-    image: {
-      global: String,
+  image: {
+    thumbnail: String, // 150 x 150
+    background: {
       desktop: String, // 1340 x 700
+      mobile: String, // 480 x 340
       mobileWide: String, // 767 x 340
       tablet: String // 1024 x 500
-    },
-    video: {
-      mp4: String,
-      webm: String
     }
   },
   slug: {
