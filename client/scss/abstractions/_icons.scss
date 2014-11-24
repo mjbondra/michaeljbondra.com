@@ -1,38 +1,14 @@
 @mixin icon-replace ($family: 'FontAwesome') {
   overflow: hidden;
   &:before {
-    font-family: $family;
     display: block;
     height: 150%;
+    font-family: $family;
     font-style: normal;
     font-weight: normal;
     line-height: 1;
+    text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-%icon-email, %icon-github, %icon-linkedin, %icon-twitter {
-  @include icon-replace();
-}
-
-%icon-email {
-  &:before {
-    content: "\f0e0";
-  }
-}
-%icon-github {
-  &:before {
-    content: "\f09b";
-  }
-}
-%icon-linkedin {
-  &:before {
-    content: "\f08c";
-  }
-}
-%icon-twitter {
-  &:before {
-    content: "\f099";
   }
 }
