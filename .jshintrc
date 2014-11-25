@@ -21,7 +21,10 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
+    "after": false,
+    "describe": false,
     "document": false,
+    "it": false,
     "require": false,
     "window": false
   }

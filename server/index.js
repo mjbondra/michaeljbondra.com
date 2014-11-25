@@ -29,3 +29,5 @@ require('./config/routes')(app);
 app.listen(config.port, function () {
   console.log('Listening for Connections', { port: config.port });
 });
+
+module.exports = app;
