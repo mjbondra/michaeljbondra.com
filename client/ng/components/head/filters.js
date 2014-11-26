@@ -11,10 +11,13 @@ app.filter('formatDescription', [function () {
   };
 }]);
 
-app.filter('formatTitle', [function () {
+app.filter('formatTitle', ['$location', function ($location) {
   return function (title) {
+    var base = 'Michael J. Bondra';
     return title ?
-      title + ' | Michael J. Bondra' :
-      'Michael J. Bondra';
+      $location.path() === '/' ?
+        base + ' | ' + title :
+        title + ' | ' + base:
+      base;
   };
 }]);
