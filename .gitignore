@@ -1,6 +1,6 @@
 # Configuration #
 #################
-config.js
+server/config/config.js
 sftp-config.json
 
 # NPM Packages #
