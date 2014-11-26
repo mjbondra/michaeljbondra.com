@@ -7,7 +7,7 @@
     attachment: fixed;
     color: $black;
     color: $mask-black;
-    image: url('../img/bg/mjbondra-mobile.jpg');
+    image: url('../img/bg/mjbondra.jpg');
     size: 100% auto;
   }
 
@@ -35,7 +35,7 @@
       top: 9rem;
     }
     background: {
-      image: url('../img/bg/mjbondra-mobile-wide.jpg');
+      image: url('../img/bg/mjbondra--mobile-wide.jpg');
     }
     &, &:after {
       height: 270px;
@@ -51,7 +51,7 @@
       top: 15rem;
     }
     background: {
-      image: url('../img/bg/mjbondra-tablet.jpg');
+      image: url('../img/bg/mjbondra--tablet.jpg');
     }
 
     &, &:after {
