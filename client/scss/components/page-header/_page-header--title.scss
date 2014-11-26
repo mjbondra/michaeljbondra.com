@@ -28,7 +28,7 @@
     width: 7.5rem;
     background: {
       color: $gray;
-      image: url('/img/mjbondra-square-small.png');
+      image: url('/img/thumb/mjbondra-square-small.png');
       size: 75px 75px;
       size: 7.5rem 7.5rem;
     }
@@ -39,7 +39,7 @@
   .page-header--title {
     &:before {
       background: {
-        image: url('/img/mjbondra-square-medium.png');
+        image: url('/img/thumb/mjbondra-square-medium.png');
       }
     }
   }
@@ -90,7 +90,7 @@
       width: 200px;
       width: 20rem;
       background: {
-        image: url('/img/mjbondra-square-medium.png');
+        image: url('/img/thumb/mjbondra-square-medium.png');
         size: 200px 200px;
         size: 20rem 20rem;
       }
@@ -102,7 +102,7 @@
   .page-header--title {
     &:before {
       background: {
-        image: url('/img/mjbondra-square-large.png');
+        image: url('/img/thumb/mjbondra-square-large.png');
       }
     }
   }
