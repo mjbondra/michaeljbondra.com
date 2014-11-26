@@ -16,7 +16,8 @@ module.exports = function (config) {
     console.error(err);
   });
   mongoose.connection.once('open', function callback () {
-    console.log('Connected to MongoDB', config.mongo);
+    if (config.env !== 'test')
+      console.log('Connected to MongoDB', config.mongo);
   });
 
 };

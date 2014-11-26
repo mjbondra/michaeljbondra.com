@@ -17,7 +17,7 @@
 var koa = require('koa')
   , app = koa();
 
-// use environment-specific configuration; default to 'development' if unspecified
+// use environment-specific configuration; 'development' is default
 var env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env];
 
@@ -27,7 +27,8 @@ require('./config/koa')(app, config);
 require('./config/routes')(app);
 
 app.listen(config.port, function () {
-  console.log('Listening for Connections', { port: config.port });
+  if (env !== 'test')
+    console.log('Listening for Connections', { port: config.port });
 });
 
 module.exports = app;
