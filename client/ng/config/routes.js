@@ -12,6 +12,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     controller: 'details.index'
   });
 
+  $routeProvider.when('/projects/:project', {
+    templateUrl: '/ng/components/projects/show.html',
+    controller: 'projects.show'
+  });
+
   // default route
   $routeProvider.otherwise({
     redirectTo: '/'
