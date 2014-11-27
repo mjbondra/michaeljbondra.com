@@ -1,48 +1,12 @@
 .page-header--title {
-  @include font-details($size: 18px, $color: white, $height: 1.25);
+  @include font-details($size: 18px, $height: 1.25);
   font-size: 1.8rem;
 
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0 auto;
   max-width: 280px;
   max-width: 28rem;
-
-  &:before {
-    content: '';
-    display: block;
-    position: relative;
-    float: left;
-    top: -5px;
-    top: -0.5rem;
-    margin: {
-      right: 12px;
-      right: 1.2rem;
-    }
-    border: {
-      radius: 50%;
-    }
-    height: 75px;
-    height: 7.5rem;
-    width: 75px;
-    width: 7.5rem;
-    background: {
-      color: $gray;
-      image: url('/img/thumb/mjbondra-square--small.png');
-      size: 75px 75px;
-      size: 7.5rem 7.5rem;
-    }
-  }
-}
-
-@include breakpoint($breakpoint-hi-res) {
-  .page-header--title {
-    &:before {
-      background: {
-        image: url('/img/thumb/mjbondra-square--medium.png');
-      }
-    }
-  }
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
@@ -52,22 +16,6 @@
 
     max-width: 360px;
     max-width: 36rem;
-    &:before {
-      top: -10px;
-      top: -1rem;
-      margin: {
-        right: 15px;
-        right: 1.5rem;
-      }
-      height: 100px;
-      height: 10rem;
-      width: 100px;
-      width: 10rem;
-      background: {
-        size: 100px 100px;
-        size: 10rem 10rem;
-      }
-    }
   }
 }
 
@@ -78,32 +26,5 @@
 
     max-width: 620px;
     max-width: 62rem;
-    &:before {
-      top: -40px;
-      top: -4rem;
-      margin: {
-        right: 30px;
-        right: 3rem;
-      }
-      height: 200px;
-      height: 20rem;
-      width: 200px;
-      width: 20rem;
-      background: {
-        image: url('/img/thumb/mjbondra-square--medium.png');
-        size: 200px 200px;
-        size: 20rem 20rem;
-      }
-    }
-  }
-}
-
-@include breakpoint($breakpoint-tablet $breakpoint-hi-res) {
-  .page-header--title {
-    &:before {
-      background: {
-        image: url('/img/thumb/mjbondra-square--large.png');
-      }
-    }
   }
 }
