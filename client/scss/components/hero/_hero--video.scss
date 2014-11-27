@@ -1,4 +1,4 @@
-.page-header--video {
+.hero--video {
   position: fixed;
   display: none;
   top: 0;
@@ -10,7 +10,7 @@
 }
 
 @include breakpoint($breakpoint-desktop) {
-  .page-header--video {
+  .hero--video {
     display: block;
   }
 }

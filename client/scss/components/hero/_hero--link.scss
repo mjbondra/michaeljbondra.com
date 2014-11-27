@@ -1,4 +1,4 @@
-.page-header--title--link {
+.hero--link {
   display: block;
 
   &, &:hover {
@@ -32,7 +32,7 @@
 }
 
 @include breakpoint($breakpoint-hi-res) {
-  .page-header--title--link {
+  .hero--link {
     &:before {
       background: {
         image: url('/img/thumb/mjbondra-square--medium.png');
@@ -42,7 +42,7 @@
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
-  .page-header--title--link {
+  .hero--link {
     &:before {
       top: -10px;
       top: -1rem;
@@ -63,7 +63,7 @@
 }
 
 @include breakpoint($breakpoint-tablet) {
-  .page-header--title--link {
+  .hero--link {
     &:before {
       top: -40px;
       top: -4rem;
@@ -85,7 +85,7 @@
 }
 
 @include breakpoint($breakpoint-tablet $breakpoint-hi-res) {
-  .page-header--title--link {
+  .hero--link {
     &:before {
       background: {
         image: url('/img/thumb/mjbondra-square--large.png');
