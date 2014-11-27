@@ -7,11 +7,13 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
 
+  // details
   $routeProvider.when('/', {
     templateUrl: '/ng/components/details/index.html',
     controller: 'details.index'
   });
 
+  // projects
   $routeProvider.when('/projects/:project', {
     templateUrl: '/ng/components/projects/show.html',
     controller: 'projects.show'
