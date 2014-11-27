@@ -15,6 +15,7 @@
 
 var angular = require('angular');
 require('angular-resource');
+require('angular-route');
 require('angular-touch');
 
 // App Dependencies
@@ -23,7 +24,6 @@ require('./config');
 
 // AngularJS/App modules
 angular.module('mjbondra', [
-  'ngResource',
   'ngTouch',
   'mjbondra.components',
   'mjbondra.config'
