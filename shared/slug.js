@@ -8,7 +8,6 @@
 module.exports = function (str, strip) {
   if (typeof str !== 'string') return '';
   str = str.toLowerCase();
-  if (strip) str = str.replace(/[_]/g, '');
-  else str = str.replace(/[ |_]/g, '-');
-  return str.replace(/[^\w]+/g,'');
+  if (strip) return str.replace(/[_]/g, '').replace(/[^\w]+/g,'');
+  return str.replace(/[ |_]/g, '-').replace(/[^\w-]+/g,'');
 };
