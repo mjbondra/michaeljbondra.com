@@ -14,15 +14,15 @@
   }
 }
 
-.link-email {
+.link--email {
   @extend .fa-envelope;
 }
-.link-github {
+.link--github {
   @extend .fa-github;
 }
-.link-linkedin {
+.link--linkedin {
   @extend .fa-linkedin-square;
 }
-.link-twitter {
+.link--twitter {
   @extend .fa-twitter;
 }
