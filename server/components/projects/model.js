@@ -8,15 +8,15 @@ var ProjectSchema = new Schema({
   github: String,
   image: {
     background: {
-      repeat: Boolean,
-      default: String, // 480 x 340
       desktop: String, // 1340 x 700
+      mobile: String, // 480 x 340
       mobileWide: String, // 767 x 340
+      repeat: Boolean,
       tablet: String // 1024 x 500
     },
     thumbnail: {
-      default: String, // 150 x 150
-      hiRes: String // 300 x 300
+      lowResolution: String, // 150 x 150
+      highResolution: String // 300 x 300
     }
   },
   slug: {

@@ -10,3 +10,22 @@ app.directive('projects', [function () {
     templateUrl: '/ng/components/projects/index.html'
   };
 }]);
+
+app.directive('projectThumbnails', [
+  '$document',
+  'projectThumbnailStyles',
+  function ($document, projectThumbnailStyles) {
+    return {
+      link: function (scope) {
+        var head = $document.find('head')
+          , style = angular.element('<style type="text/css"></style>');
+
+        style.text(projectThumbnailStyles(scope.projectThumbnails));
+        head.prepend(style);
+      },
+      scope: {
+        projectThumbnails: '='
+      }
+    };
+  }
+]);
