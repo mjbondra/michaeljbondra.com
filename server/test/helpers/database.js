@@ -10,7 +10,5 @@ exports.removeCollections = function (done) {
       Bluebird.promisify(Project.collection.remove, Project.collection)(),
       Bluebird.promisify(Message.collection.remove, Message.collection)()
     ];
-  }).then(function () {
-    done();
-  });
+  }).then(done);
 };
