@@ -42,6 +42,7 @@ app.factory('wrapMedia', [function () {
       mediaQuery += actions[type]();
     else if (typeof breakpoint[type] === 'number')
       mediaQuery += actions.breakpoint(type);
+    else return css;
 
     return mediaQuery + '{' + css + '}';
   };
