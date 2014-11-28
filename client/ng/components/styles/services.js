@@ -13,7 +13,7 @@ var angular = require('angular')
  * @param  {string} css  - css styles
  * @return {string}      - media query wrapped css styles
  */
-app.factory('wrapMedia', [function () {
+app.factory('wrapMediaQuery', [function () {
   return function (type, css) {
     var breakpoint = {
       mobileWide: 30, // em; 480px

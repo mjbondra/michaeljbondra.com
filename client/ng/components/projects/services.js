@@ -4,9 +4,9 @@ var angular = require('angular')
   , app = angular.module('mjbondra.components.projects.services', []);
 
 app.factory('projectThumbnailStyles', [
-  'wrapMedia',
+  'wrapMediaQuery',
   'wrapSelector',
-  function (wrapMedia, wrapSelector) {
+  function (wrapMediaQuery, wrapSelector) {
     return function (projects) {
       var css = {
         highResolution: '',
@@ -41,7 +41,7 @@ app.factory('projectThumbnailStyles', [
           css.highResolution += wrapSelector(selector, rules.highResolution);
       }
 
-      css.highResolution = wrapMedia('highResolution', css.highResolution);
+      css.highResolution = wrapMediaQuery('highResolution', css.highResolution);
       return css.lowResolution + css.highResolution;
     };
   }
