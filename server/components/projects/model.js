@@ -16,7 +16,8 @@ var ProjectSchema = new Schema({
     },
     thumbnail: {
       lowResolution: String, // 150 x 150
-      highResolution: String // 300 x 300
+      highResolution: String, // 300 x 300
+      repeat: Boolean
     }
   },
   slug: {
