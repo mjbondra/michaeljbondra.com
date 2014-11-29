@@ -4,4 +4,12 @@
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  transition: margin-top 100ms ease-out;
+
+  .project--link:hover & {
+    margin: {
+      top: -200px;
+      top: -20rem;
+    }
+  }
 }

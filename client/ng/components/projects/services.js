@@ -9,6 +9,7 @@ app.factory('projectThumbnailStyles', [
   function (wrapMediaQuery, wrapSelector) {
     return function (projects) {
       var css = {
+        colorMask: '',
         highResolution: '',
         lowResolution: ''
       };
@@ -20,12 +21,15 @@ app.factory('projectThumbnailStyles', [
           , selector = '.link--' + projects[i].slug;
 
         var rules = {
-          lowResolution: [],
-          highResolution: []
+          colorMask: [],
+          highResolution: [],
+          lowResolution: []
         };
 
-        rules.lowResolution.push('background-color:' + color);
-
+        if (color)
+          rules.colorMask.push(
+            'background-color:' + color
+          );
         if (thumb.lowResolution)
           rules.lowResolution.push(
             'background-image:url(\'' + thumb.lowResolution + '\')'
@@ -35,6 +39,8 @@ app.factory('projectThumbnailStyles', [
             'background-image:url(\'' + thumb.highResolution + '\')'
           );
 
+        if (rules.colorMask.length)
+          css.colorMask += wrapSelector(selector + ':before', rules.colorMask);
         if (rules.lowResolution.length)
           css.lowResolution += wrapSelector(selector, rules.lowResolution);
         if (rules.highResolution.length)
@@ -42,7 +48,7 @@ app.factory('projectThumbnailStyles', [
       }
 
       css.highResolution = wrapMediaQuery('highResolution', css.highResolution);
-      return css.lowResolution + css.highResolution;
+      return css.colorMask + css.lowResolution + css.highResolution;
     };
   }
 ]);

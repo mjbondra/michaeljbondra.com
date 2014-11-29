@@ -28,12 +28,11 @@
     width: 15rem;
     height: 150px;
     height: 15rem;
-    background: {
-      color: $black;
-    }
     transition: opacity 100ms ease-out;
   }
+
   &:hover {
+    color: $black;
     &:before {
       opacity: 0.5;
       filter: alpha(opacity=50);
