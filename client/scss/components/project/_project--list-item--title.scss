@@ -1,4 +1,4 @@
-.project--title {
+.project--list-item--title {
   @include font-details($height: 1.4);
 
   display: inline-block;
@@ -7,7 +7,7 @@
   vertical-align: middle;
   transition: top 100ms ease-out;
 
-  .project--link:hover & {
+  .project--list-item--link:hover & {
     top: -90px;
     top: -9rem;
     vertical-align: baseline;

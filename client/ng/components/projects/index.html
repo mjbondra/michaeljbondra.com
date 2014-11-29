@@ -4,9 +4,9 @@
      data-project-thumbnails="projects">
   <ul class="project--list">
     <li class="project--list-item" ng-repeat="project in projects">
-      <a class="project--link link--{{ project.slug }}"
+      <a class="project--list-item--link link--{{ project.slug }}"
          href="/projects/{{ project.slug }}">
-        <span class="project--title">{{ project.title }}</span>
+        <span class="project--list-item--title">{{ project.title }}</span>
       </a>
     </li>
   </ul>
