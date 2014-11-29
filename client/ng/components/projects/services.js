@@ -3,6 +3,77 @@
 var angular = require('angular')
   , app = angular.module('mjbondra.components.projects.services', []);
 
+app.factory('projectPageStyles', [
+  'hexToRgba',
+  'wrapMediaQuery',
+  'wrapSelector',
+  function (hexToRgba, wrapMediaQuery, wrapSelector) {
+    return function (project) {
+      var background = project.image.background
+        , color = project.color;
+
+      var css = {
+        colorMask: '',
+        desktop: '',
+        mobile: '',
+        mobileWide: '',
+        tablet: ''
+      };
+
+      var rules = {
+        colorMask: [],
+        desktop: [],
+        mobile: [],
+        mobileWide: [],
+        tablet: []
+      };
+
+      var selector = {
+        details: '.project--details',
+        page: '.page--main:before'
+      };
+
+      if (color)
+        rules.colorMask.push(
+          'background-color:' + hexToRgba(color, 0.2)
+        );
+      if (background.mobile)
+        rules.mobile.push(
+          'background-image:url(\'' + background.mobile + '\')'
+        );
+      if (background.mobileWide)
+        rules.mobileWide.push(
+          'background-image:url(\'' + background.mobileWide + '\')'
+        );
+      if (background.tablet)
+        rules.tablet.push(
+          'background-image:url(\'' + background.tablet + '\')'
+        );
+      if (background.desktop)
+        rules.desktop.push(
+          'background-image:url(\'' + background.desktop + '\')'
+        );
+
+      if (rules.colorMask.length)
+        css.colorMask = wrapSelector(selector.details, rules.colorMask);
+      if (rules.mobile.length)
+        css.mobile = wrapSelector(selector.page, rules.mobile);
+      if (rules.mobileWide.length)
+        css.mobileWide = wrapSelector(selector.page, rules.mobileWide);
+      if (rules.tablet.length)
+        css.tablet = wrapSelector(selector.page, rules.tablet);
+      if (rules.desktop.length)
+        css.desktop = wrapSelector(selector.page, rules.desktop);
+
+      return css.colorMask +
+        css.mobile +
+        wrapMediaQuery('mobileWide', css.mobileWide) +
+        wrapMediaQuery('tablet', css.tablet) +
+        wrapMediaQuery('desktop', css.desktop);
+    };
+  }
+]);
+
 app.factory('projectThumbnailStyles', [
   'wrapMediaQuery',
   'wrapSelector',

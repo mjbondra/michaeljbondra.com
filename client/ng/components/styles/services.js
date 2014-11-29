@@ -12,10 +12,10 @@ var angular = require('angular')
  * @param  {number} opacity - css styles
  * @return {string}         - media query wrapped css styles
  */
-app.factor('hexToRgba', [function () {
+app.factory('hexToRgba', [function () {
   return function (hex, opacity) {
     opacity = opacity || 1;
-    var matches = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+    var matches = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
     return matches ? {
       r: parseInt(matches[1], 16),

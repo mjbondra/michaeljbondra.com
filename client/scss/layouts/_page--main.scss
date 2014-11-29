@@ -1,8 +1,40 @@
 .page--main {
   position: relative;
+  z-index: 1;
   padding: 20px;
   padding: 2rem;
   background: {
     color: white;
+  }
+
+  &:before { // base styles for dynamic page backgrounds
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    filter: alpha(opacity=5);
+    opacity: 0.05;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 340px;
+    height: 34rem;
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .page--main {
+    &:before {
+      height: 500px;
+      height: 50rem;
+    }
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .page--main {
+    &:before {
+      height: 100%;
+    }
   }
 }

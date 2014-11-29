@@ -11,20 +11,39 @@ app.directive('projects', [function () {
   };
 }]);
 
-app.directive('projectThumbnails', [
+/**
+ * Project styles
+ *
+ * ex. <nav data-project="projects" data-project-styles="thumbnails">
+ * ex. <section data-project="project" data-project-styles="background">
+ *
+ * @param {object} scope.project - project or array projects
+ * @param {string} attributes.projectStyles - 'thumbnails' or 'background'
+ */
+app.directive('projectStyles', [
   '$document',
+  'projectPageStyles',
   'projectThumbnailStyles',
-  function ($document, projectThumbnailStyles) {
+  function ($document, projectPageStyles, projectThumbnailStyles) {
     return {
-      link: function (scope) {
+      link: function (scope, element, attributes) {
         var head = $document.find('head')
-          , style = angular.element('<style type="text/css"></style>');
+          , style = angular.element('<style type="text/css"></style>')
+          , type = attributes.projectStyles;
 
-        style.text(projectThumbnailStyles(scope.projectThumbnails));
+        if (type === 'thumbnails')
+          style.text(projectThumbnailStyles(scope.project));
+        else if (type === 'background')
+          style.text(projectPageStyles(scope.project));
+
         head.prepend(style);
+
+        scope.$on('$destroy', function () {
+          style.remove();
+        });
       },
       scope: {
-        projectThumbnails: '='
+        project: '='
       }
     };
   }
