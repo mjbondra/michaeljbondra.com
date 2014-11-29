@@ -32,7 +32,8 @@
   }
 
   &:hover {
-    color: $black;
+    @include font-details($color: $black);
+
     &:before {
       opacity: 0.5;
       filter: alpha(opacity=50);
