@@ -4,7 +4,37 @@ var angular = require('angular')
   , app = angular.module('mjbondra.components.styles.services', []);
 
 /**
- * Media query wrapper service
+ * Hex-to-RGBA
+ *
+ * ex. hexToRgba('#333333', 0.5);
+ *
+ * @param  {string} hex     - media query type
+ * @param  {number} opacity - css styles
+ * @return {string}         - media query wrapped css styles
+ */
+app.factor('hexToRgba', [function () {
+  return function (hex, opacity) {
+    opacity = opacity || 1;
+    var matches = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+
+    return matches ? {
+      r: parseInt(matches[1], 16),
+      g: parseInt(matches[2], 16),
+      b: parseInt(matches[3], 16),
+      a: opacity,
+      toString: function () {
+        return 'rgba(' +
+          this.r + ',' +
+          this.b + ',' +
+          this.g + ',' +
+          this.a + ')';
+      }
+    } : null;
+  };
+}]);
+
+/**
+ * CSS media query wrapper
  *
  * ex. wrapMedia('highResolution', '.foobar{color:red}');
  * ex. wrapMedia('tablet', '.foobar{color:red}')
@@ -49,7 +79,7 @@ app.factory('wrapMediaQuery', [function () {
 }]);
 
 /**
- * Project Background (CSS styles)
+ * CSS selector wrapper
  *
  * ex. wrapSelector('.foobar', ['color:red','font-size:1.6rem']);
  *
