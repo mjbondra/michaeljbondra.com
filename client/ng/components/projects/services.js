@@ -17,8 +17,8 @@ app.factory('projectThumbnailStyles', [
       var i = projects.length;
       while (i--) {
         var color = projects[i].color
-          , thumb = projects[i].image.thumbnail
-          , selector = '.link--' + projects[i].slug;
+          , selector = '.link--' + projects[i].slug
+          , thumb = projects[i].image.thumbnail;
 
         var rules = {
           colorMask: [],
@@ -29,6 +29,10 @@ app.factory('projectThumbnailStyles', [
         if (color)
           rules.colorMask.push(
             'background-color:' + color
+          );
+        if (thumb.repeat)
+          rules.lowResolution.push(
+            'background-size:auto auto!important'
           );
         if (thumb.lowResolution)
           rules.lowResolution.push(
