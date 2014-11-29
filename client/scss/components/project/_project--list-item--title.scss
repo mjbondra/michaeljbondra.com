@@ -5,7 +5,7 @@
   position: relative;
   top: 0;
   vertical-align: middle;
-  transition: top 100ms ease-out;
+  transition: top $transition-duration ease-out;
 
   .project--list-item--link:hover & {
     top: -90px;

@@ -1,5 +1,5 @@
 a {
-  transition: color 100ms ease-out;
+  transition: color $transition-duration ease-out;
   color: $blue;
   text-decoration: none;
   &:hover {

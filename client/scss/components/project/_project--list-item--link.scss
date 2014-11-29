@@ -28,7 +28,7 @@
     width: 15rem;
     height: 150px;
     height: 15rem;
-    transition: opacity 100ms ease-out;
+    transition: opacity $transition-duration ease-out;
   }
 
   &:hover {
