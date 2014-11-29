@@ -1,0 +1,7 @@
+.project--title {
+  @include font-details($height: 1.4);
+
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}

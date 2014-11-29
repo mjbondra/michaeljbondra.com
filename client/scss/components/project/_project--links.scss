@@ -1,0 +1,42 @@
+.project--link {
+  @include font-details($color: white, $height: 150px);
+  line-height: 15rem;
+
+  display: block;
+  border: {
+    radius: 50%;
+  }
+  width: 150px;
+  width: 15rem;
+  height: 150px;
+  height: 15rem;
+  background: {
+    size: 150px 150px;
+    size: 15rem 15rem;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    border: {
+      radius: 50%;
+    }
+    width: 150px;
+    width: 15rem;
+    height: 150px;
+    height: 15rem;
+    background: {
+      color: $black;
+    }
+    transition: opacity 100ms ease-out;
+  }
+  &:hover {
+    &:before {
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+    }
+  }
+}
