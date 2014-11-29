@@ -1,1 +1,17 @@
 <h2 data-ng-if="project.title" data-set-title>{{ project.title }}</h2>
+<p>{{ project.body }}</p>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li>
+      <a href="{{ project.url }}" target="_blank">Website</a>
+    </li>
+    <li>
+      <a href="{{ project.github }}" target="_blank">GitHub</a>
+    </li>
+  </ul>
+  <h3>Technology</h3>
+  <ul>
+    <li data-ng-repeat="tag in project.tags">{{ tag }}</li>
+  </ul>
+</section>
