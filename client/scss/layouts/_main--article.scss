@@ -1,7 +1,9 @@
 .main--article {
   margin: 0 auto;
-  max-width: 480px;
-  max-width: 48rem;
+  padding: 20px 20px 0;
+  padding: 2rem 2rem 0;
+  max-width: 540px;
+  max-width: 54rem;
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
@@ -16,6 +18,10 @@
     @include font-details($size: 20px);
     font-size: 2rem;
 
+    padding: {
+      right: 0;
+      left: 0;
+    }
     max-width: 640px;
     max-width: 64rem;
   }
