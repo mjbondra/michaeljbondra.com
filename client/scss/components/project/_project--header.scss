@@ -1,3 +1,15 @@
 .project--header {
-  
+  padding: 20px;
+  padding: 2rem;
+  height: map_get($project, height-px);
+  height: map_get($project, height);
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .project--header {
+    padding: 20px;
+    padding: 2rem;
+    height: map_get($project, height-tablet-px);
+    height: map_get($project, height-tablet);
+  }
 }
