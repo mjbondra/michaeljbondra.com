@@ -6,7 +6,7 @@
          data-ng-if="project.title"
          data-project="project"
          data-project-styles="background">
-  <h3>Links</h3>
+  <h3 class="project--details--heading">Links</h3>
   <ul class="project--details--list">
     <li class="project--details--list-item">
       <a class="project--details--link"
@@ -19,7 +19,7 @@
          target="_blank">GitHub</a>
     </li>
   </ul>
-  <h3>Technology</h3>
+  <h3 class="project--details--heading">Technology</h3>
   <ul class="project--details--list">
     <li class="project--details--list-item"
         data-ng-repeat="tag in project.tags">{{ tag }}</li>

@@ -1,1 +1,3 @@
-.project--details--list-item {}
+.project--details--list-item {
+  @include font-details($height: 1.5);
+}
