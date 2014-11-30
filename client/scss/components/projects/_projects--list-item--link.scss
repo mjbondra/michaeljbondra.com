@@ -1,5 +1,6 @@
-.project--list-item--link {
-  @include font-details($color: white, $height: 150px);
+.projects--list-item--link {
+  @include font-details($size: 16px, $color: white, $height: 150px);
+  font-size: 1.6rem;
   line-height: 15rem;
 
   display: block;

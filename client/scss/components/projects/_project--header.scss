@@ -15,7 +15,7 @@
 
     padding: 0;
     max-width: none;
-    height: map_get($project, height-tablet-px);
-    height: map_get($project, height-tablet);
+    height: map_get($project, height-tablet-px) - 20;
+    height: map_get($project, height-tablet) - 2;
   }
 }

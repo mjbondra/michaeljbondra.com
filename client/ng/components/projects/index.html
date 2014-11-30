@@ -1,13 +1,13 @@
-<h2>Featured Projects</h2>
-<nav class="project--navigation"
+<h2 class="projects--heading">Featured Projects</h2>
+<nav class="projects--navigation"
      data-ng-if="projects.length"
      data-project="projects"
      data-project-styles="thumbnails">
-  <ul class="project--list">
-    <li class="project--list-item" ng-repeat="project in projects">
-      <a class="project--list-item--link link--{{ project.slug }}"
+  <ul class="projects--list">
+    <li class="projects--list-item" ng-repeat="project in projects">
+      <a class="projects--list-item--link link--{{ project.slug }}"
          href="/projects/{{ project.slug }}">
-        <span class="project--list-item--title">{{ project.title }}</span>
+        <span class="projects--list-item--title">{{ project.title }}</span>
       </a>
     </li>
   </ul>

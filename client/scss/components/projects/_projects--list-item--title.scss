@@ -1,4 +1,4 @@
-.project--list-item--title {
+.projects--list-item--title {
   @include font-details($height: 1.4);
 
   display: inline-block;
@@ -6,7 +6,7 @@
   vertical-align: middle;
   transition: transform $transition-duration-extended ease-out;
 
-  .project--list-item--link:hover & {
+  .projects--list-item--link:hover & {
     transform: translateY(-9rem);
     vertical-align: baseline;
   }
