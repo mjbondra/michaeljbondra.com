@@ -1,5 +1,7 @@
-<h2 data-ng-if="project.title" data-set-title>{{ project.title }}</h2>
-<p>{{ project.body }}</p>
+<header class="project--header">
+  <h2 data-ng-if="project.title" data-set-title>{{ project.title }}</h2>
+  <p>{{ project.body }}</p>
+</header>
 <section class="project--details"
          data-ng-if="project.title"
          data-project="project"
