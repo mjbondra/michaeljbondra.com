@@ -25,8 +25,8 @@ app.factory('hexToRgba', [function () {
       toString: function () {
         return 'rgba(' +
           this.r + ',' +
-          this.b + ',' +
           this.g + ',' +
+          this.b + ',' +
           this.a + ')';
       }
     } : null;
