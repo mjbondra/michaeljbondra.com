@@ -43,7 +43,9 @@
       <p class="hero--about">I craft elite websites, libraries, and services.</p>
     </header>
     <main class="page--main">
-      <article class="main--article" data-ng-view></article>
+      <article class="main--article {{ locationPath() | locationClass }}"
+               data-ng-view
+               data-article-location></article>
       <aside class="main--aside" data-projects></aside>
     </main>
     <footer class="page--footer">
