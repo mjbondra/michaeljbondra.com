@@ -30,7 +30,7 @@ app.factory('projectPageStyles', [
 
       var selector = {
         details: '.project--details',
-        page: '.project--details:before'
+        page: '.article--projects:before'
       };
 
       if (color)
