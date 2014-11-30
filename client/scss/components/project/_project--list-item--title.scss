@@ -7,7 +7,7 @@
   transition: transform $transition-duration-extended ease-out;
 
   .project--list-item--link:hover & {
-    transform: translateY(-90px);
+    transform: translateY(-9rem);
     vertical-align: baseline;
   }
 }
