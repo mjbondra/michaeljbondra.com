@@ -3,13 +3,11 @@
 
   display: inline-block;
   position: relative;
-  top: 0;
   vertical-align: middle;
-  transition: top $transition-duration ease-out;
+  transition: transform $transition-duration-extended ease-out;
 
   .project--list-item--link:hover & {
-    top: -90px;
-    top: -9rem;
+    transform: translateY(-90px);
     vertical-align: baseline;
   }
 }
