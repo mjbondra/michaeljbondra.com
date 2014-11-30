@@ -2,3 +2,9 @@
   padding: 20px;
   padding: 2rem;
 }
+
+@include breakpoint($breakpoint-tablet) {
+  .project--details {
+    @include span(2 at 5 of 6);
+  }
+}

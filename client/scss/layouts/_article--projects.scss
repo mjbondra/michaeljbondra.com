@@ -1,4 +1,6 @@
 .article--projects {
+  @extend .clearfix;
+
   .page--main > & {
     padding: 0;
     max-width: none;
@@ -21,6 +23,15 @@
 
 @include breakpoint($breakpoint-tablet) {
   .article--projects {
+    .page--main > & {
+      padding: {
+        top: 20px;
+        top: 2rem;
+      }
+      max-width: 640px;
+      max-width: 64rem;
+    }
+
     &:before {
       height: map_get($project, height-tablet-px);
       height: map_get($project, height-tablet);
@@ -30,6 +41,11 @@
 
 @include breakpoint($breakpoint-desktop) {
   .article--projects {
+    .page--main > & {
+      max-width: 700px;
+      max-width: 70rem;
+    }
+
     &:before {
       height: 100%;
       background: {
