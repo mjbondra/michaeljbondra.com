@@ -45,11 +45,14 @@
       max-width: 700px;
       max-width: 70rem;
     }
+  }
+}
 
+@include breakpoint($breakpoint-desktop-wide) {
+  .article--projects {
     &:before {
-      height: 100%;
       background: {
-        size: cover;
+        size: 100% auto;
       }
     }
   }
