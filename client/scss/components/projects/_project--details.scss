@@ -6,5 +6,10 @@
 @include breakpoint($breakpoint-tablet) {
   .project--details {
     @include span(2 at 5 of 6);
+    
+    margin: {
+      top: 15px;
+      top: 1.5rem;
+    }
   }
 }
