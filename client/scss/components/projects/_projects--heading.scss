@@ -3,10 +3,8 @@
     right: auto;
     left: auto;
   }
-  padding: 0 20px;
-  padding: 0 2rem;
-  max-width: 540px;
-  max-width: 54rem;
+  max-width: 500px;
+  max-width: 50rem;
 }
 
 @include breakpoint($breakpoint-tablet) {
