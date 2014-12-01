@@ -45,10 +45,13 @@ app.factory('hexToRgba', [function () {
  */
 app.factory('wrapMediaQuery', [function () {
   return function (type, css) {
+    if (!css) return '';
+
     var breakpoint = {
       mobileWide: 30, // em; 480px
       tablet: 48, // em; 768px
-      desktop: 64.0625 // em; 1025px
+      desktop: 64.0625, // em; 1025px
+      desktopWide: 83.75 // em; 1340px
     };
 
     var highResolution = [
@@ -89,6 +92,8 @@ app.factory('wrapMediaQuery', [function () {
  */
 app.factory('wrapSelector', [function () {
   return function (selector, rules) {
+    if (!rules.length) return '';
+    
     return selector + '{' + rules.join(';') + '}';
   };
 }]);

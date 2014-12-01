@@ -15,6 +15,7 @@ app.factory('projectPageStyles', [
       var css = {
         colorMask: '',
         desktop: '',
+        desktopWide: '',
         mobile: '',
         mobileWide: '',
         tablet: ''
@@ -23,6 +24,7 @@ app.factory('projectPageStyles', [
       var rules = {
         colorMask: [],
         desktop: [],
+        desktopWide: [],
         mobile: [],
         mobileWide: [],
         tablet: []
@@ -53,6 +55,10 @@ app.factory('projectPageStyles', [
         rules.desktop.push(
           'background-image:url(\'' + background.desktop + '\')'
         );
+      if (background.repeat)
+        rules.desktopWide.push(
+          'background-size:auto auto!important'
+        );
 
       if (rules.colorMask.length)
         css.colorMask = wrapSelector(selector.details, rules.colorMask);
@@ -64,12 +70,15 @@ app.factory('projectPageStyles', [
         css.tablet = wrapSelector(selector.page, rules.tablet);
       if (rules.desktop.length)
         css.desktop = wrapSelector(selector.page, rules.desktop);
+      if (rules.desktopWide.length)
+        css.desktopWide = wrapSelector(selector.page, rules.desktopWide);
 
       return css.colorMask +
         css.mobile +
         wrapMediaQuery('mobileWide', css.mobileWide) +
         wrapMediaQuery('tablet', css.tablet) +
-        wrapMediaQuery('desktop', css.desktop);
+        wrapMediaQuery('desktop', css.desktop) +
+        wrapMediaQuery('desktopWide', css.desktopWide);
     };
   }
 ]);
