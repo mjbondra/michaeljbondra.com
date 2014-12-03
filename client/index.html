@@ -76,7 +76,7 @@
            data-get-title>Michael J. Bondra</title>
   </head>
   <body>
-    <header class="page--header">
+    <header class="page--header" id="page--header">
       <video autoplay class="hero--video" loop muted preload="auto">
         <source src="/vid/mjbondra.webm" type="video/webm">
         <source src="/vid/mjbondra.mp4" type="video/mp4">
@@ -88,13 +88,14 @@
         I craft elite websites, libraries, and services.
       </p>
     </header>
-    <main class="page--main">
+    <main class="page--main" id="page--main">
       <article class="main--article {{ locationPath() | locationClass }}"
+               id="main--article"
                data-ng-view
                data-article-location></article>
-      <aside class="main--aside" data-projects></aside>
+      <aside class="main--aside" id="main--aside" data-projects></aside>
     </main>
-    <footer class="page--footer">
+    <footer class="page--footer" id="page--footer">
       <ul class="connect--list">
         <li class="connect--list-item">
           <a class="connect--link link--email"
