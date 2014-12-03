@@ -17,7 +17,7 @@ app.filter('formatTitle', ['$location', function ($location) {
     return title ?
       $location.path() === '/' ?
         base + ' | ' + title :
-        title + ' | ' + base:
+        title + ' | ' + base :
       base;
   };
 }]);
