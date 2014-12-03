@@ -18,6 +18,9 @@ require('angular-resource');
 require('angular-route');
 require('angular-touch');
 
+// 3rd Party Dependencies
+require('angular-scroll');
+
 // App Dependencies
 require('./components');
 require('./config');

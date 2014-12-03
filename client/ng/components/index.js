@@ -8,6 +8,7 @@ require('./details');
 require('./google-analytics');
 require('./head');
 require('./projects');
+require('./scroll');
 require('./styles');
 
 angular.module('mjbondra.components', [
@@ -17,5 +18,6 @@ angular.module('mjbondra.components', [
   'mjbondra.components.google-analytics',
   'mjbondra.components.head',
   'mjbondra.components.projects',
+  'mjbondra.components.scroll',
   'mjbondra.components.styles'
 ]);
