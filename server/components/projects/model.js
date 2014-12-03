@@ -5,7 +5,6 @@ var mongoose = require('mongoose')
 var ProjectSchema = new Schema({
   body: String,
   color: String,
-  github: String,
   image: {
     background: {
       desktop: String, // 1340 x 700
@@ -20,6 +19,10 @@ var ProjectSchema = new Schema({
       repeat: Boolean
     }
   },
+  links: [{
+    title: String,
+    url: String
+  }],
   slug: {
     type: String,
     index: {
@@ -27,8 +30,7 @@ var ProjectSchema = new Schema({
     }
   },
   tags: [ String ],
-  title: String,
-  url: String
+  title: String
 });
 
 ProjectSchema.pre('save', function (next) {

@@ -3,7 +3,6 @@
     "title": "Q LTD",
     "body": "An Express-driven website for the creative design studio in Ann Arbor, MI.",
     "color": "#77c7c6",
-    "github": "https://github.com/qltd/qnode",
     "image": {
       "background": {
         "desktop": "/img/bg/qltd--desktop.jpg",
@@ -18,6 +17,16 @@
         "repeat": false
       }
     },
+    "links": [
+      {
+        "title": "Website",
+        "url": "http://qltd.com"
+      },
+      {
+        "title": "GitHub",
+        "url": "https://github.com/qltd/qnode"
+      }
+    ],
     "slug": "q-ltd",
     "tags": [
       "Node.js",
@@ -28,14 +37,12 @@
       "JQuery",
       "Responsive"
     ],
-    "url": "http://qltd.com",
     "__v": "0"
   },
   {
     "title": "SIGGRAPH 2014 ePromotion",
     "body": "A custom mini-site created for the 2014 SIGGRAPH conference in Vancouver.",
     "color": "#beb1a0",
-    "github": "https://github.com/qltd/s2014-epromo",
     "image": {
       "background": {
         "mobile": "/img/bg/s2014.jpg",
@@ -46,6 +53,16 @@
         "repeat": true
       }
     },
+    "links": [
+      {
+        "title": "Website",
+        "url": "http://s2014.siggraph.org/countdown"
+      },
+      {
+        "title": "GitHub",
+        "url": "https://github.com/qltd/s2014-epromo"
+      }
+    ],
     "slug": "siggraph-2014-epromotion",
     "tags": [
       "Node.js",
@@ -56,14 +73,12 @@
       "gulp.js",
       "Responsive"
     ],
-    "url": "http://s2014.siggraph.org/countdown",
     "__v": "0"
   },
   {
     "title": "SIGGRAPH 2015",
     "body": "The primary website for the 2015 SIGGRAPH conference in Los Angeles.",
     "color": "#5889b5",
-    "github": "https://github.com/qltd/s2015",
     "image": {
       "background": {
         "desktop": "/img/bg/s2015--desktop.jpg",
@@ -78,6 +93,16 @@
         "repeat": false
       }
     },
+    "links": [
+      {
+        "title": "Website",
+        "url": "http://s2015.siggraph.org"
+      },
+      {
+        "title": "GitHub",
+        "url": "https://github.com/qltd/s2015"
+      }
+    ],
     "slug": "siggraph-2015",
     "tags": [
       "Drupal",
@@ -86,14 +111,12 @@
       "Bower",
       "gulp.js"
     ],
-    "url": "http://s2015.siggraph.org",
     "__v": "0"
   },
   {
     "title": "Koa Session Mongoose",
     "body": "A JavaScript library for the Koa framework that stores session information through a Mongoose connection.",
     "color": "#303030",
-    "github": "https://github.com/mjbondra/koa-session-mongoose",
     "image": {
       "background": {
         "desktop": "/img/bg/koa-session-mongoose--desktop.jpg",
@@ -108,6 +131,16 @@
         "repeat": false
       }
     },
+    "links": [
+      {
+        "title": "NPM",
+        "url": "https://www.npmjs.org/package/koa-session-mongoose"
+      },
+      {
+        "title": "GitHub",
+        "url": "https://github.com/mjbondra/koa-session-mongoose"
+      }
+    ],
     "slug": "koa-session-mongoose",
     "tags": [
       "Node.js",
@@ -116,7 +149,6 @@
       "Mongoose",
       "gulp.js"
     ],
-    "url": "https://www.npmjs.org/package/koa-session-mongoose",
     "__v": "0"
   }
 ]
