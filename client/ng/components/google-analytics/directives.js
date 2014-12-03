@@ -5,14 +5,24 @@ var angular = require('angular')
 
 app.directive('googleAnalytics', ['$location', 'ga', function ($location, ga) {
   return {
-    link: function (scope, element, attributes) {
-      if ($location.host() !== 'mjbondra.com') return;
-
+    link: function (scope) {
       ga('create', scope.googleAnalytics, 'auto');
-      ga('send', 'pageview');
     },
     scope: {
       googleAnalytics: '@'
+    }
+  };
+}]);
+
+app.directive('sendPageview', ['$location', 'ga', function ($location, ga) {
+  return {
+    link: function (scope, element, attributes) {
+      element.ready(function () {
+        ga('send', 'pageview', {
+          page: $location.path(),
+          title: attributes.sendPageview || element.text()
+        });
+      });
     }
   };
 }]);
