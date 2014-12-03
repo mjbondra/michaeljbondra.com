@@ -3,7 +3,7 @@
       data-scroll-to
       data-send-pageview
       data-set-title>{{ project.title }}</h2>
-  <p>{{ project.body }}</p>
+  <p data-ng-if="project.body" data-set-description>{{ project.body }}</p>
 </header>
 <section class="project--details"
          data-ng-if="project.title"
