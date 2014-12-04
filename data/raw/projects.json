@@ -115,7 +115,7 @@
   },
   {
     "title": "Koa Session Mongoose",
-    "body": "In need of a session store for the Koa framework, I sought a library that would allow me to directly integrate with an existing Mongoose connection. It didn't exist, so I created Koa Session Mongoose.",
+    "body": "In need of a session store for the Koa framework, I sought a library that would directly and implicitly integrate with an existing Mongoose connection. It didn't exist, so I created Koa Session Mongoose.",
     "color": "#303030",
     "image": {
       "background": {
