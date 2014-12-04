@@ -1,7 +1,7 @@
 [
   {
     "title": "Q LTD",
-    "body": "An Express-driven website for the creative design studio in Ann Arbor, MI.",
+    "body": "After years of accumulating Expression Engine rust, the primary website for Q LTD was reborn as a single-page Express app. Behind the scenes, the Ann Arbor-based strategic design studio now has a simple, slim, custom-built interface for managing its content.",
     "color": "#77c7c6",
     "image": {
       "background": {
@@ -41,7 +41,7 @@
   },
   {
     "title": "SIGGRAPH 2014 ePromotion",
-    "body": "A custom mini-site created for the 2014 SIGGRAPH conference in Vancouver.",
+    "body": "Seeking a creative promotion for its 2014 conference, SIGGRAPH turned to Q LTD, and the result was a weekly countdown. Built with AngularJS, and backed by a Drupal-based API that was emulated with Express during development and testing.",
     "color": "#beb1a0",
     "image": {
       "background": {
@@ -77,7 +77,7 @@
   },
   {
     "title": "SIGGRAPH 2015",
-    "body": "The primary website for the 2015 SIGGRAPH conference in Los Angeles.",
+    "body": "An evolution of previous efforts, the 2015 conference site for SIGGRAPH received a new visual identity from Q LTD. On the technical side, a heavily customized Drupal installation was supplemented with modular Sass and Browserify-compiled JavaScript.",
     "color": "#5889b5",
     "image": {
       "background": {
@@ -115,7 +115,7 @@
   },
   {
     "title": "Koa Session Mongoose",
-    "body": "A JavaScript library for the Koa framework that stores session information through a Mongoose connection.",
+    "body": "In need of a session store for the Koa framework, I sought a library that would allow me to directly integrate with an existing Mongoose connection. It didn't exist, so I created Koa Session Mongoose.",
     "color": "#303030",
     "image": {
       "background": {
