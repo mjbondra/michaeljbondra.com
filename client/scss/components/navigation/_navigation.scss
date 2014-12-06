@@ -6,3 +6,12 @@
   right: 20px;
   right: 2rem;
 }
+
+@include breakpoint($breakpoint-desktop) {
+  .navigation {
+    top: 20px;
+    top: 2rem;
+    right: 40px;
+    right: 4rem;
+  }
+}

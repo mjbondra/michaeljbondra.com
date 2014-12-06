@@ -37,3 +37,40 @@
     display: block;
   }
 }
+.navigation--list-active {
+  display: block;
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .navigation--list {
+    &:before {
+      border: {
+        right: {
+          width: 13.5px;
+          width: 1.35rem;
+        }
+        left: {
+          width: 13.5px;
+          width: 1.35rem;
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .navigation--list {
+    &:before {
+      border: {
+        right: {
+          width: 15px;
+          width: 1.5rem;
+        }
+        left: {
+          width: 15px;
+          width: 1.5rem;
+        }
+      }
+    }
+  }
+}

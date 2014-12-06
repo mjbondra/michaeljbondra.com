@@ -24,3 +24,28 @@
   text-align: center;
   cursor: pointer;
 }
+
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .navigation--heading {
+    @include font-details($size: 18px);
+    font-size: 1.8rem;
+
+    height: 27px;
+    height: 2.7rem;
+    width: 27px;
+    width: 2.7rem;
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .navigation--heading {
+    @include font-details($size: 20px);
+    font-size: 2rem;
+
+    height: 30px;
+    height: 3rem;
+    width: 30px;
+    width: 3rem;
+  }
+}
