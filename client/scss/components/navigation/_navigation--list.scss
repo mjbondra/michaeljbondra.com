@@ -33,12 +33,9 @@
       left: 1.25rem solid transparent;
     }
   }
-  .navigation:hover > & {
+  .navigation-active > & {
     display: block;
   }
-}
-.navigation--list-active {
-  display: block;
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
@@ -71,6 +68,17 @@
           width: 1.5rem;
         }
       }
+    }
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .navigation--list {
+    .navigation-active > & {
+      display: none;
+    }
+    .navigation:hover & {
+      display: block;
     }
   }
 }
