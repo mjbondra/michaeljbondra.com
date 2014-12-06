@@ -1,0 +1,39 @@
+.navigation--list {
+  display: none;
+  clear: right;
+  margin: 0;
+  border: 1px solid $black;
+  border: {
+    color: $mask-black;
+  }
+  padding: 20px;
+  padding: 2rem;
+  list-style: none;
+  background: {
+    color: white;
+    color: $mask-white;
+  }
+  text-align: right;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    margin: {
+      top: -26.25px;
+      top: -2.625rem;
+    }
+    border: {
+      right: 12.5px solid transparent;
+      right: 1.25rem solid transparent;
+      bottom: 6.25px solid $black;
+      bottom: 0.625rem solid $mask-black;
+      left: 12.5px solid transparent;
+      left: 1.25rem solid transparent;
+    }
+  }
+  .navigation:hover > & {
+    display: block;
+  }
+}
