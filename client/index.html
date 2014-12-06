@@ -91,15 +91,20 @@
         <h2 class="navigation--heading">Menu</h2>
         <ul class="navigation--list">
           <li class="navigation--list-item">
-            <a class="navigation--link" href="/">Home</a>
+            <a class="navigation--link"
+               href="/"
+               data-scroll-home>Home</a>
           </li>
           <li class="navigation--list-item">
             <a class="navigation--link"
-            href="#main--article"
-            data-get-title>{{ title() }}</a>
+               href="#main--article"
+               data-get-title
+               data-scroll-on-click>{{ title() }}</a>
           </li>
           <li class="navigation--list-item">
-            <a class="navigation--link" href="#main--aside">Projects</a>
+            <a class="navigation--link"
+               href="#main--aside"
+               data-scroll-on-click>Projects</a>
           </li>
         </ul>
       </nav>
