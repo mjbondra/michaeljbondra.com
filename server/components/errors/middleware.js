@@ -54,7 +54,7 @@ exports.error = function () {
           method: this.method,
           referer: this.header.referer,
           stack: err.stack,
-          status: err.status || 500,
+          status: this.status,
           url: this.url
         });
         yield Bluebird.promisify(_error.save, _error)();
