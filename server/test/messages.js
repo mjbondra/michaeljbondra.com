@@ -11,8 +11,9 @@ describe('Messages', function () {
         agent
           .post('/api/messages')
           .send({
-            body: 'Foo bar.',
-            email: 'foobar@example.com'
+            body: 'Foo bar, foo baz.',
+            email: 'foobar@example.com',
+            name: 'Foo Baz'
           })
           .expect('Content-Type', /json/)
           .expect(201, done);

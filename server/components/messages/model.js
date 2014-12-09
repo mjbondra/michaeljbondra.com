@@ -1,15 +1,26 @@
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , validator = require('validator');
+  , validate = require('validator');
 
 var MessageSchema = new Schema({
-  body: String,
-  email: String
+  body: {
+    required: 'Comment cannot be empty.',
+    type: String
+  },
+  email: {
+    type: String,
+    validate: [{
+      validator: validate.isEmail, msg: 'Email address is not valid.'
+    }]
+  },
+  name: String,
+  ip: String
 });
 
 MessageSchema.pre('validate', function (next) {
-  validator.escape(this.body);
-  if (this.email) validator.escape(this.email);
+  validate.escape(this.body);
+  if (this.email) validate.escape(this.email);
+  if (this.name) validate.escape(this.name);
   next();
 });
 
