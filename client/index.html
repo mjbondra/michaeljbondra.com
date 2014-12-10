@@ -5,66 +5,28 @@
     <base href="/">
     <meta name="fragment" content="!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
     <meta name="description"
           content="My name is Michael J. Bondra, and I create high-quality experiences for the web's users and makers."
           data-ng-attr-content="{{ description() | formatDescription }}"
           data-get-description>
-    <meta name="google-site-verification"
-          content="1HvJnff3F5G-lbArmW8WM3XSRotpDmleJgNK3Xl2aDI">
     <link rel="shortcut icon" href="/img/fav/favicon.ico">
-    <link rel="apple-touch-icon"
-          sizes="57x57"
-          href="/img/fav/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon"
-          sizes="114x114"
-          href="/img/fav/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon"
-          sizes="72x72"
-          href="/img/fav/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon"
-          sizes="144x144"
-          href="/img/fav/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon"
-          sizes="60x60"
-          href="/img/fav/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon"
-          sizes="120x120"
-          href="/img/fav/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon"
-          sizes="76x76"
-          href="/img/fav/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon"
-          sizes="152x152"
-          href="/img/fav/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon"
-          sizes="180x180"
-          href="/img/fav/apple-touch-icon-180x180.png">
-    <link rel="icon"
-          type="image/png"
-          href="/img/fav/favicon-192x192.png"
-          sizes="192x192">
-    <link rel="icon"
-          type="image/png"
-          href="/img/fav/favicon-160x160.png"
-          sizes="160x160">
-    <link rel="icon"
-          type="image/png"
-          href="/img/fav/favicon-96x96.png"
-          sizes="96x96">
-    <link rel="icon"
-          type="image/png"
-          href="/img/fav/favicon-16x16.png"
-          sizes="16x16">
-    <link rel="icon"
-          type="image/png"
-          href="/img/fav/favicon-32x32.png"
-          sizes="32x32">
-    <meta name="msapplication-TileColor"
-          content="#ff0000">
-    <meta name="msapplication-TileImage"
-          content="/img/fav/mstile-144x144.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/fav/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/fav/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/fav/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/fav/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/fav/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/fav/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/fav/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/fav/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/fav/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#ff0000">
+    <meta name="msapplication-TileImage" content="/img/fav/mstile-144x144.png">
     <meta name="msapplication-config" content="/img/fav/browserconfig.xml">
     <link href="/css/styles.min.css" rel="stylesheet">
     <script type="text/javascript"
@@ -72,8 +34,7 @@
             async
             data-google-analytics="UA-55631366-1"></script>
     <script type="text/javascript" src="/js/app.min.js"></script>
-    <title data-ng-bind="title() | formatTitle"
-           data-get-title>Michael J. Bondra</title>
+    <title data-ng-bind="title() | formatTitle" data-get-title>Michael J. Bondra</title>
   </head>
   <body>
     <header class="page--header" id="page--header">
@@ -91,25 +52,16 @@
         <h2 class="navigation--heading">Menu</h2>
         <ul class="navigation--list">
           <li class="navigation--list-item">
-            <a class="navigation--link"
-               href="/"
-               data-scroll-home>Home</a>
+            <a class="navigation--link" href="/" data-scroll-home>Home</a>
           </li>
           <li class="navigation--list-item">
-            <a class="navigation--link"
-               href="#main--article"
-               data-get-title
-               data-scroll-on-click>{{ title() }}</a>
+            <a class="navigation--link" href="#main--article" data-get-title data-scroll-on-click>{{ title() }}</a>
           </li>
           <li class="navigation--list-item">
-            <a class="navigation--link"
-               href="#main--aside"
-               data-scroll-on-click>Projects</a>
+            <a class="navigation--link" href="#main--aside" data-scroll-on-click>Projects</a>
           </li>
           <li class="navigation--list-item">
-            <a class="navigation--link"
-               href="#main--section"
-               data-scroll-on-click>Contact</a>
+            <a class="navigation--link" href="#main--section" data-scroll-on-click>Contact</a>
           </li>
         </ul>
       </nav>
@@ -120,9 +72,7 @@
                data-ng-view
                data-article-location></article>
       <aside class="main--aside" id="main--aside" data-projects></aside>
-      <section class="main--section"
-               id="main--section"
-               data-message-form></section>
+      <section class="main--section" id="main--section" data-message-form></section>
     </main>
     <footer class="page--footer" id="page--footer">
       <ul class="connect--list">
