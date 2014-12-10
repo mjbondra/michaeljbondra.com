@@ -44,10 +44,7 @@ exports.error = function () {
       yield next;
     } catch (err) {
       try {
-        errorActions[errorActions[err.name] ?
-          err.name :
-          'defaultError'
-        ](err, this);
+        errorActions[errorActions[err.name] ? err.name : 'defaultError'](err, this);
 
         var _error = new _Error({ // record errors as Mongoose-modeled documents
           ip: this.ip,
