@@ -10,5 +10,5 @@
   <label>Comments
     <textarea type="text" data-ng-model="message.body"></textarea>
   </label>
-  <button type="submit">Send</button>
+  <button type="submit" data-ng-click="message.$save()">Send</button>
 </form>

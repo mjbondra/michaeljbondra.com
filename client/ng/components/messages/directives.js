@@ -5,7 +5,7 @@ var angular = require('angular')
 
 app.directive('messages', [function () {
   return {
-    link: function () {},
+    controller: 'messages.new',
     templateUrl: '/ng/components/messages/index.html'
   };
 }]);
