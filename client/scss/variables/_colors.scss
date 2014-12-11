@@ -7,8 +7,15 @@ $green: #55D787;
 $white: #FFFFFF;
 $yellow: #FFC83C;
 
+$light-blue: lighten($blue, 30%);
+$light-gray: lighten($gray, 30%);
+$light-orange: lighten($orange, 30%);
+$light-red: lighten($red, 30%);
+$light-green: lighten($green, 30%);
+$light-yellow: lighten($yellow, 30%);
+
 $mask-black: rgba($black, 0.6);
-$mask-blue: rgba($blue, 0.2);
+$mask-blue: rgba($blue, 0.4);
 $mask-gray: rgba($gray, 0.8);
 $mask-orange: rgba($orange, 0.2);
 $mask-red: rgba($red, 0.2);

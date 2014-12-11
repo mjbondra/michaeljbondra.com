@@ -25,13 +25,12 @@ input[type=color],
 input[type=email],
 input[type=password],
 textarea {
-  transition: background-color $transition-duration ease-out;
-
   &:focus {
     outline: none;
-    background: {
-      color: $blue;
-      color: $mask-blue;
+    border: {
+      bottom: {
+        color: $blue;
+      }
     }
   }
 }

@@ -49,8 +49,23 @@ $fa-font-path: "../lib/font-awesome/fonts";
     UNIVERSAL STYLES
 \*------------------------------------*/
 
-*, *:before, *:after {
-  box-sizing: border-box;
+* {
+  &, &:before, &:after {
+    box-sizing: border-box;
+  }
+
+  &:focus {
+    outline: {
+      color: $light-blue;
+    }
+  }
+}
+
+::selection {
+  background: {
+    color: $blue;
+    color: $mask-blue;
+  }
 }
 
 /*------------------------------------*\
