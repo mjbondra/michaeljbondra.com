@@ -4,10 +4,10 @@
   <a href="mailto:mike@mjbondra.com">mike@mjbondra.com</a>.
 </p>
 <form novalidate>
-  <label>Name<input type="text" data-ng-model="message.name"></label>
-  <label>Email<input type="text" data-ng-model="message.email"></label>
+  <label>Name<input name="name" type="text" data-ng-model="message.name"></label>
+  <label>Email<input name="email" type="email" data-ng-model="message.email"></label>
   <label>Comments
-    <textarea type="text" data-ng-model="message.body"></textarea>
+    <textarea name="body" data-ng-model="message.body" required></textarea>
   </label>
   <button type="submit" data-ng-click="message.$save()">Send</button>
 </form>
