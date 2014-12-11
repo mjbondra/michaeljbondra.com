@@ -23,8 +23,11 @@ input[type=tel],
 input[type=number],
 input[type=color],
 input[type=email],
-input[type=password],
-textarea {
+input[type=password] {
+  border: {
+    bottom: 1px solid $black;
+  }
+
   &:focus {
     outline: none;
     border: {
@@ -33,17 +36,13 @@ textarea {
       }
     }
   }
-}
 
-input[type=text],
-input[type=url],
-input[type=tel],
-input[type=number],
-input[type=color],
-input[type=email],
-input[type=password] {
-  border: {
-    bottom: 1px solid $black;
+  &.ng-dirty.ng-invalid, &.invalid {
+    border: {
+      bottom: {
+        color: $red;
+      }
+    }
   }
 }
 
@@ -55,5 +54,23 @@ button {
 }
 
 textarea {
+  @include font-details($height: 1.5);
+
+  background: {
+    image: url('/img/bg/textarea.png');
+  }
   resize: none;
+
+  &:focus {
+    outline: none;
+    background: {
+      image: url('/img/bg/textarea--focus.png');
+    }
+  }
+
+  &.ng-dirty.ng-invalid, &.invalid {
+    background: {
+      image: url('/img/bg/textarea--invalid.png');
+    }
+  }
 }
