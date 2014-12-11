@@ -15,7 +15,7 @@
 
     &:focus {
       background: {
-        image: url('/img/bg/textarea--mobile-wide--focus.png');
+        image: url('/img/bg/textarea--mobile-wide--focus.png') !important;;
       }
     }
 
@@ -37,7 +37,7 @@
 
     &:focus {
       background: {
-        image: url('/img/bg/textarea--tablet--focus.png');
+        image: url('/img/bg/textarea--tablet--focus.png') !important;;
       }
     }
 

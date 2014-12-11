@@ -32,7 +32,7 @@ input[type=password] {
     outline: none;
     border: {
       bottom: {
-        color: $blue;
+        color: $blue !important;
       }
     }
   }
@@ -64,7 +64,7 @@ textarea {
   &:focus {
     outline: none;
     background: {
-      image: url('/img/bg/textarea--focus.png');
+      image: url('/img/bg/textarea--focus.png') !important;
     }
   }
 
