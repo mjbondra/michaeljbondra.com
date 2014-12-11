@@ -1,4 +1,6 @@
 .message-form--textarea {
+  @include font-details($weight: 400);
+  
   display: block;
   width: 100%;
   height: 240px;
