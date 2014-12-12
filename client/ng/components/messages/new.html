@@ -1,9 +1,9 @@
 <h2>Contact</h2>
 <p>
-  You can contact me by filling out the following form. If you prefer email, you can send a message to
+  You can contact me by filling out the following form. If you prefer email, send a message to
   <a href="mailto:mike@mjbondra.com">mike@mjbondra.com</a>.
 </p>
-<form class="message-form" novalidate>
+<form class="message-form" name="messageForm" novalidate data-form-handler="message">
   <label class="message-form--label">Name
     <input class="message-form--text" name="name" type="text" data-ng-model="message.name">
   </label>
@@ -13,5 +13,5 @@
   <label class="message-form--label">Comments
     <textarea class="message-form--textarea" name="body" data-ng-model="message.body" required></textarea>
   </label>
-  <button class="message-form--button" type="submit" data-ng-click="message.$save()">Send</button>
+  <button class="message-form--button" type="submit" data-ng-click="save()">Send</button>
 </form>

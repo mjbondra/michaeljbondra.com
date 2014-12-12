@@ -5,6 +5,7 @@ var angular = require('angular');
 require('./body');
 require('./console');
 require('./details');
+require('./forms');
 require('./google-analytics');
 require('./head');
 require('./messages');
@@ -17,6 +18,7 @@ angular.module('mjbondra.components', [
   'mjbondra.components.body',
   'mjbondra.components.console',
   'mjbondra.components.details',
+  'mjbondra.components.forms',
   'mjbondra.components.google-analytics',
   'mjbondra.components.head',
   'mjbondra.components.messages',
