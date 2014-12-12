@@ -47,10 +47,18 @@ input[type=password] {
 }
 
 input[type=button],
-input[type=reset],
-input[type=submit],
 button {
   @extend %button;
+}
+
+input[type=submit],
+button[type=submit] {
+  @extend %button-submit;
+}
+
+input[type=reset],
+button[type=reset] {
+  @extend %button-reset;
 }
 
 textarea {

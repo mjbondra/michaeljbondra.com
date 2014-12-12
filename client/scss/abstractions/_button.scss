@@ -1,8 +1,35 @@
 %button {
-  padding: 10px 20px;
-  padding: 1rem 2rem;
+  padding: 0.5em 2.5em;
   color: white;
   background: {
     color: $black;
+  }
+  transition: background-color $transition-duration ease-out;
+
+  &:hover {
+    background: {
+      color: $blue;
+    }
+  }
+}
+
+
+%button-submit {
+  @extend %button;
+
+  &:hover {
+    background: {
+      color: $green;
+    }
+  }
+}
+
+%button-reset {
+  @extend %button;
+
+  &:hover {
+    background: {
+      color: $red;
+    }
   }
 }
