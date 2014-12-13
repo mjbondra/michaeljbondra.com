@@ -26,6 +26,7 @@ require('./config/models')(config);
 require('./config/koa')(app, config);
 require('./config/routes')(app);
 
+app.proxy = true;
 app.listen(config.port, function () {
   if (env !== 'test')
     console.log('Listening for Connections', { port: config.port });
