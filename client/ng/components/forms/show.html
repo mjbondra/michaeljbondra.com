@@ -1,0 +1,7 @@
+<div class="status-messages" data-ng-if="messages">
+  <a role="button" class="status-messages--clear" data-ng-click="clearMessages()">Clear</a>
+  <ul class="status-messages--list">
+    <li class="status-messages--list-item" data-ng-repeat="message in messages">{{ message.msg }}</li>
+  </ul>
+</div>
+<div class="form--fields" data-ng-transclude></div>

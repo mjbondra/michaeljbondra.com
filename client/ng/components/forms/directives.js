@@ -13,25 +13,32 @@ var angular = require('angular')
  */
 app.directive('formHandler', [
   'formServerError',
-  'formServerSuccess',
   'formValidationError',
-  function (formServerError, formServerSuccess, formValidationError) {
+  function (formServerError, formValidationError) {
     return {
       link: function (scope, element, attributes) {
         var form = scope[attributes.name]
           , model = scope[attributes.formHandler];
 
+        scope.clearMessages = function () {
+          scope.messages = null;
+        };
         scope.save = function () {
-          if (!form.$valid) return formValidationError(form);
+          if (!form.$valid) {
+            scope.messages = formValidationError(form);
+            return;
+          }
           model.$save()
             .then(function (res) {
-              formServerSuccess(res);
+              scope.messages = [res];
               form.$setPristine();
-            }).catch(function (err) {
-              formServerError(err);
+            }).catch(function (res) {
+              scope.messages = formServerError(res, form);
             });
         };
-      }
+      },
+      templateUrl: '/ng/components/forms/show.html',
+      transclude: true
     };
   }
 ]);
