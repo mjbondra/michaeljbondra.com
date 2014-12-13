@@ -12,8 +12,8 @@ app.config([
 
     // details
     $routeProvider.when('/', {
-      templateUrl: '/ng/components/details/index.html',
-      controller: 'details.index'
+      templateUrl: '/ng/components/details/show.html',
+      controller: 'details.show'
     });
 
     // projects
