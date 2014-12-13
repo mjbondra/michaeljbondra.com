@@ -18,14 +18,15 @@ app.directive('formHandler', [
     return {
       link: function (scope, element, attributes) {
         var form = scope[attributes.name]
-          , model = scope[attributes.formHandler];
+          , modelName = attributes.formHandler
+          , model = scope[modelName];
 
         scope.clearMessages = function () {
           scope.messages = null;
         };
         scope.save = function () {
           if (!form.$valid) {
-            scope.messages = formValidationError(form);
+            scope.messages = formValidationError(modelName, form);
             return;
           }
           model.$save()

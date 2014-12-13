@@ -1,18 +1,14 @@
 var mongoose = require('mongoose')
+  , msg = require('../../../shared/messages').validation
   , Schema = mongoose.Schema
   , validate = require('validator');
 
 var MessageSchema = new Schema({
   body: {
-    required: 'Comment cannot be empty.',
+    default: '',
     type: String
   },
-  email: {
-    type: String,
-    validate: [{
-      validator: validate.isEmail, msg: 'Email address is not valid.'
-    }]
-  },
+  email: String,
   name: String,
   ip: String
 });
@@ -23,5 +19,14 @@ MessageSchema.pre('validate', function (next) {
   if (this.name) validate.escape(this.name);
   next();
 });
+
+MessageSchema.path('body').validate(function (body) {
+  return body.length;
+}, msg.message.body.required);
+
+MessageSchema.path('email').validate(function (email) {
+  if (!email.length) return true;
+  return validate.isEmail(email);
+}, msg.message.email.email);
 
 mongoose.model('Message', MessageSchema);
