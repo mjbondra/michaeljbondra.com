@@ -4,10 +4,18 @@ var angular = require('angular')
   , app = angular.module('mjbondra.components.forms.services', [])
   , msg = require('../../../../shared/messages').validation;
 
+/**
+ * Form server error
+ *
+ * @param  {object} res  - raw response object
+ * @param  {object} form - form scope object
+ * @return {array}       - array of message-containing objects
+ */
 app.factory('formServerError', [function () {
   return function (res, form) {
-    var data = res.data || {}
-      , errors = data.errors || [];
+    var data = typeof res.data === 'object' ? res.data : {
+      msg: 'I\'m sorry, there was an error while processing your form submisson. Please try again.'
+    }, errors = data.errors || [];
 
     for (var i = 0; i < errors.length; i++) {
       if (form[errors[i].field]) {
@@ -20,6 +28,13 @@ app.factory('formServerError', [function () {
   };
 }]);
 
+/**
+ * Form validation error
+ *
+ * @param  {string} modelName - name of parameter-containing model
+ * @param  {object} form      - form scope object
+ * @return {array}            - array of message-containing objects
+ */
 app.factory('formValidationError', [function () {
   function getMessage (modelName, field, type) {
     var fieldName = field.$name || 'field';
