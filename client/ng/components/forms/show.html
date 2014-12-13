@@ -1,4 +1,4 @@
-<div class="status-messages" data-ng-if="messages">
+<div class="status-messages status-messages--{{ messagesType }}" data-ng-if="messages">
   <a role="button" class="status-messages--clear" data-ng-click="clearMessages()">Clear</a>
   <ul class="status-messages--list">
     <li class="status-messages--list-item" data-ng-repeat="message in messages">{{ message.msg }}</li>

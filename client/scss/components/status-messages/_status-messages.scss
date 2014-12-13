@@ -1,0 +1,14 @@
+.status-messages {
+  padding: 5px;
+  padding: 0.5rem;
+  color: white;
+  background: {
+    color: $green;
+  }
+}
+
+.status-messages--error {
+  background: {
+    color: $red;
+  }
+}

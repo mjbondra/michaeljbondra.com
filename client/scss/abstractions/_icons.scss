@@ -12,3 +12,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+%icon-replace {
+  @include icon-replace();
+}

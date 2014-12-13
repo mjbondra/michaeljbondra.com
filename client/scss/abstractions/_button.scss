@@ -4,12 +4,15 @@
   background: {
     color: $black;
   }
+  cursor: pointer;
   transition: background-color $transition-duration ease-out;
 
   &:hover {
+    color: white;
     background: {
       color: $blue;
     }
+    text-decoration: none;
   }
 }
 

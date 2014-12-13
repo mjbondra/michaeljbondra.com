@@ -1,0 +1,55 @@
+@import 'typography';
+
+%button-close {
+  @extend %icon-replace;
+  @extend .fa-times;
+  @include font-details($size: 16px, $color: white);
+  font-size: 1.6rem;
+
+  display: inline-block;
+  border: {
+    radius: 50%;
+  }
+  padding: {
+    top: 2px;
+    top: 0.2rem;
+  }
+  width: 20px;
+  width: 2rem;
+  height: 20px;
+  height: 2rem;
+  background: {
+    color: $black;
+  }
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  %button-close {
+    @include font-details($size: 18px);
+    font-size: 1.8rem;
+
+    width: 22.5px;
+    width: 2.25rem;
+    height: 22.5px;
+    height: 2.25rem;
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  %button-close {
+    @include font-details($size: 20px);
+    font-size: 2rem;
+    
+    width: 25px;
+    width: 2.5rem;
+    height: 25px;
+    height: 2.5rem;
+  }
+}

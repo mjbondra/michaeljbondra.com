@@ -26,14 +26,17 @@ app.directive('formHandler', [
         };
         scope.save = function () {
           if (!form.$valid) {
+            scope.messagesType = 'error';
             scope.messages = formValidationError(modelName, form);
             return;
           }
           model.$save()
             .then(function (res) {
+              scope.messagesType = 'success'; 
               scope.messages = [res];
               form.$setPristine();
             }).catch(function (res) {
+              scope.messagesType = 'error';
               scope.messages = formServerError(res, form);
             });
         };
