@@ -46,7 +46,11 @@
   %button-close {
     @include font-details($size: 20px);
     font-size: 2rem;
-    
+
+    padding: {
+      left: 1px;
+      left: 0.1rem;
+    }
     width: 25px;
     width: 2.5rem;
     height: 25px;
