@@ -25,6 +25,7 @@ app.directive('formHandler', [
           scope.messages = null;
         };
         scope.save = function () {
+          scope.messages = null;
           if (!form.$valid) {
             scope.messagesType = 'error';
             scope.messages = formValidationError(modelName, form);
@@ -32,7 +33,7 @@ app.directive('formHandler', [
           }
           model.$save()
             .then(function (res) {
-              scope.messagesType = 'success'; 
+              scope.messagesType = 'success';
               scope.messages = [res];
               form.$setPristine();
             }).catch(function (res) {

@@ -21,7 +21,7 @@ app.factory('formServerError', [function () {
 }]);
 
 app.factory('formValidationError', [function () {
-  var getMessage = function (modelName, field, type) {
+  function getMessage (modelName, field, type) {
     var fieldName = field.$name || 'field';
     if (msg[modelName] && msg[modelName][fieldName] && typeof msg[modelName][fieldName][type] === 'string')
       return msg[modelName][fieldName][type];
@@ -30,7 +30,7 @@ app.factory('formValidationError', [function () {
     else if (typeof msg[type] === 'string')
       return msg[type];
     return fieldName + ' is invalid';
-  };
+  }
 
   return function (modelName, form) {
     var errors = form.$error
