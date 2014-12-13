@@ -76,12 +76,14 @@
   @include font-details($size, $color, $weight, $height, $style, $family);
 }
 
-@mixin FontAwesome($size: null, $color: null, $height: null) {
+@mixin FontAwesome($size: null, $color: null) {
+  @include font-details($size, $color);
+
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
+  line-height: 1;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @include font-details($size, $color, null, $height);
 }

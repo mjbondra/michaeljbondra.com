@@ -1,6 +1,6 @@
 .navigation--heading {
+  @extend %icon-replace;
   @extend .fa-bars;
-  @include icon-replace();
   @include font-details($size: 16px, $color: white);
   font-size: 1.6rem;
 

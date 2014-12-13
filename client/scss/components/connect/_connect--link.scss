@@ -1,5 +1,5 @@
 .connect--link {
-  @include icon-replace();
+  @extend %icon-replace;
 
   display: block;
   margin: 0 auto;

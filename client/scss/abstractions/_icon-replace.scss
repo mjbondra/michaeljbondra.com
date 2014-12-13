@@ -1,0 +1,11 @@
+@import 'typography';
+
+%icon-replace {
+  overflow: hidden;
+  &:before {
+    @include FontAwesome();
+
+    display: block;
+    height: 150%;
+  }
+}

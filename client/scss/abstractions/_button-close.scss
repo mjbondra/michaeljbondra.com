@@ -25,7 +25,8 @@
   cursor: pointer;
 
   &:hover {
-    color: white;
+    @include font-details($color: white);
+
     text-decoration: none;
   }
 }
