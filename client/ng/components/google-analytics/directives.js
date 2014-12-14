@@ -8,11 +8,8 @@ app.directive('googleAnalytics', [
   'ga',
   function ($location, ga) {
     return {
-      link: function (scope) {
-        ga('create', scope.googleAnalytics, 'auto');
-      },
-      scope: {
-        googleAnalytics: '@'
+      link: function (scope, element, attributes) {
+        ga('create', attributes.googleAnalytics, 'auto');
       }
     };
   }
