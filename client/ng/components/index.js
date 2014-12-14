@@ -7,6 +7,7 @@ require('./console');
 require('./details');
 require('./forms');
 require('./google-analytics');
+require('./google-recaptcha');
 require('./head');
 require('./messages');
 require('./navigation');
@@ -20,6 +21,7 @@ angular.module('mjbondra.components', [
   'mjbondra.components.details',
   'mjbondra.components.forms',
   'mjbondra.components.google-analytics',
+  'mjbondra.components.google-recaptcha',
   'mjbondra.components.head',
   'mjbondra.components.messages',
   'mjbondra.components.navigation',
