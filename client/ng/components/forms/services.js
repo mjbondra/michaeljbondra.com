@@ -49,17 +49,17 @@ app.factory('formValidationError', [function () {
 
   return function (modelName, form) {
     var errors = form.$error
-      , keys = Object.keys(errors)
       , messages = [];
 
-    for (var i = 0; i < keys.length; i++) {
-      for (var k = 0; k < errors[keys[i]].length; k++) {
-        errors[keys[i]][k].$setViewValue(errors[keys[i]][k].$viewValue || ''); // set dirty
+    angular.forEach(errors, function (fieldErrors, type) {
+      for (var i = 0; i < fieldErrors.length; i++) {
+        if (fieldErrors[i].$setViewValue)
+          fieldErrors[i].$setViewValue(fieldErrors[i].$viewValue || '');
         messages.push({
-          msg: getMessage(modelName, errors[keys[i]][k], keys[i])
+          msg: getMessage(modelName, fieldErrors[i], type)
         });
       }
-    }
+    });
 
     return messages;
   };
