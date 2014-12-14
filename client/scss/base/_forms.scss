@@ -24,9 +24,13 @@ input[type=number],
 input[type=color],
 input[type=email],
 input[type=password] {
+  margin: 1px 0 0;
+  margin: 0.1rem 0 0;
   border: {
     bottom: 1px solid $black;
   }
+  padding: 0 1px;
+  padding: 0 0.1rem;
 
   &:focus {
     outline: none;
@@ -37,28 +41,13 @@ input[type=password] {
     }
   }
 
-  &.ng-dirty.ng-invalid, &.invalid {
+  &.ng-dirty.ng-invalid {
     border: {
       bottom: {
         color: $red;
       }
     }
   }
-}
-
-input[type=button],
-button {
-  @extend %button;
-}
-
-input[type=submit],
-button[type=submit] {
-  @extend %button-submit;
-}
-
-input[type=reset],
-button[type=reset] {
-  @extend %button-reset;
 }
 
 textarea {
@@ -80,9 +69,24 @@ textarea {
     }
   }
 
-  &.ng-dirty.ng-invalid, &.invalid {
+  &.ng-dirty.ng-invalid {
     background: {
       image: url('/img/bg/textarea--invalid.png');
     }
   }
+}
+
+input[type=button],
+button {
+  @extend %button;
+}
+
+input[type=submit],
+button[type=submit] {
+  @extend %button-submit;
+}
+
+input[type=reset],
+button[type=reset] {
+  @extend %button-reset;
 }
