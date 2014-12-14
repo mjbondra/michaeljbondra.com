@@ -16,5 +16,9 @@
   <label class="form--label">Comments<span class="form--label--required">*</span>
     <textarea class="form--textarea" name="body" data-ng-model="message.body" required></textarea>
   </label>
+  <div class="google-recaptcha"
+       data-recaptcha-id="gRecaptchaId"
+       data-recaptcha-model="message.gRecaptchaResponse"
+       data-recaptcha-render></div>
   <button class="form--button" type="submit" data-ng-click="save()">Send</button>
 </form>
