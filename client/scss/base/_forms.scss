@@ -64,8 +64,12 @@ button[type=reset] {
 textarea {
   @include font-details($height: 1.5);
 
+  padding: 0 1px;
+  padding: 0 0.1rem;
   background: {
     image: url('/img/bg/textarea.png');
+    position: 0 -1px;
+    position: 0 -0.1rem;
   }
   resize: none;
 
