@@ -1,6 +1,6 @@
-.message-form--textarea {
+.form--textarea {
   @include font-details($weight: 400);
-  
+
   display: block;
   width: 100%;
   height: 240px;
@@ -8,7 +8,7 @@
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
-  .message-form--textarea {
+  .form--textarea {
     height: 243px;
     height: 24.3rem;
     background: {
@@ -21,7 +21,7 @@
       }
     }
 
-    &.ng-dirty.ng-invalid, &.invalid {
+    &.ng-dirty.ng-invalid {
       background: {
         image: url('/img/bg/textarea--mobile-wide--invalid.png');
       }
@@ -30,7 +30,7 @@
 }
 
 @include breakpoint($breakpoint-tablet) {
-  .message-form--textarea {
+  .form--textarea {
     height: 240px;
     height: 24rem;
     background: {
@@ -43,7 +43,7 @@
       }
     }
 
-    &.ng-dirty.ng-invalid, &.invalid {
+    &.ng-dirty.ng-invalid {
       background: {
         image: url('/img/bg/textarea--tablet--invalid.png');
       }

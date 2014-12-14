@@ -1,0 +1,4 @@
+.form--label--required {
+  @include font-details($color: $red);
+  vertical-align: super;
+}

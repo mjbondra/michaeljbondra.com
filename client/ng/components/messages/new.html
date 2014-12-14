@@ -3,15 +3,18 @@
   You can contact me by filling out the following form. If you prefer email, send a message to
   <a href="mailto:mike@mjbondra.com">mike@mjbondra.com</a>.
 </p>
-<form class="message-form" name="messageForm" novalidate data-form-handler="message">
-  <label class="message-form--label">Name
-    <input class="message-form--text" name="name" type="text" data-ng-model="message.name">
+<p>
+  <span class="form--label--required">*</span> = Required Field
+</p>
+<form class="form" name="messageForm" novalidate data-form-handler="message">
+  <label class="form--label">Name
+    <input class="form--text" name="name" type="text" data-ng-model="message.name">
   </label>
-  <label class="message-form--label">Email
-    <input class="message-form--text" name="email" type="email" data-ng-model="message.email">
+  <label class="form--label">Email
+    <input class="form--text" name="email" type="email" data-ng-model="message.email">
   </label>
-  <label class="message-form--label">Comments
-    <textarea class="message-form--textarea" name="body" data-ng-model="message.body" required></textarea>
+  <label class="form--label">Comments<span class="form--label--required">*</span>
+    <textarea class="form--textarea" name="body" data-ng-model="message.body" required></textarea>
   </label>
-  <button class="message-form--button" type="submit" data-ng-click="save()">Send</button>
+  <button class="form--button" type="submit" data-ng-click="save()">Send</button>
 </form>
