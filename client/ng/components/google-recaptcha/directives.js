@@ -17,8 +17,9 @@ app.directive('googleRecaptcha', [
 app.directive('recaptchaRender', [
   '$window',
   'grecaptcha',
+  'recaptchaReset',
   'recaptchaSiteKey',
-  function ($window, grecaptcha, recaptchaSiteKey) {
+  function ($window, grecaptcha, recaptchaReset, recaptchaSiteKey) {
     return {
       link: function (scope, element) {
         var id;
@@ -41,12 +42,8 @@ app.directive('recaptchaRender', [
           };
         }
 
-        function resetRecaptcha (id) {
-          grecaptcha.reset(id);
-        }
-
         scope.$on('$destroy', function(){
-          resetRecaptcha(id);
+          recaptchaReset(id);
         });
 
         renderRecaptcha();

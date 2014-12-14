@@ -11,6 +11,16 @@ app.factory('grecaptcha', [
   }
 ]);
 
+app.factory('recaptchaReset', [
+  'grecaptcha',
+  function (grecaptcha) {
+    return function (id) {
+      if (grecaptcha.reset)
+        grecaptcha.reset(id);
+    };
+  }
+]);
+
 app.factory('recaptchaSiteKey', [
   function () {
     var key;
