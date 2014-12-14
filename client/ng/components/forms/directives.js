@@ -13,8 +13,9 @@ var angular = require('angular')
  */
 app.directive('formHandler', [
   'formServerError',
+  'formServerSuccess',
   'formValidationError',
-  function (formServerError, formValidationError) {
+  function (formServerError, formServerSuccess, formValidationError) {
     return {
       link: function (scope, element, attributes) {
         var form = scope[attributes.name]
@@ -26,6 +27,10 @@ app.directive('formHandler', [
         };
         scope.save = function () {
           scope.messages = null;
+          var recaptchaId = (function (id) {
+            return id;
+          })(model.gRecaptchaId);
+
           if (!form.$valid) {
             scope.messagesType = 'error';
             scope.messages = formValidationError(modelName, form);
@@ -34,8 +39,7 @@ app.directive('formHandler', [
           model.$save()
             .then(function (res) {
               scope.messagesType = 'success';
-              scope.messages = [res];
-              form.$setPristine();
+              scope.messages = formServerSuccess(res, form, recaptchaId);
             }).catch(function (res) {
               scope.messagesType = 'error';
               scope.messages = formServerError(res, form);

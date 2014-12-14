@@ -26,13 +26,13 @@ app.directive('recaptchaRender', [
 
         function getRecaptchaResponse (res) {
           scope.$apply(function () {
-            scope.recaptchaModel = res;
+            scope.recaptchaParent.gRecaptchaResponse = res;
           });
         }
 
         function renderRecaptcha () {
           if (grecaptcha.render) {
-            id = scope.recaptchaId = grecaptcha.render(element[0], {
+            id = scope.recaptchaParent.gRecaptchaId = grecaptcha.render(element[0], {
               callback: getRecaptchaResponse,
               sitekey: recaptchaSiteKey.get(),
               theme: 'dark'
@@ -49,8 +49,7 @@ app.directive('recaptchaRender', [
         renderRecaptcha();
       },
       scope: {
-        recaptchaId: '=',
-        recaptchaModel: '='
+        recaptchaParent: '='
       }
     };
   }

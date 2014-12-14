@@ -29,6 +29,26 @@ app.factory('formServerError', [function () {
 }]);
 
 /**
+ * Form server success
+ *
+ * @param  {object} res            - raw response object
+ * @param  {object} form           - form scope object
+ * @param  {number} [gRecaptchaId] - Google Recaptcha ID
+ * @return {array}                 - array of message-containing objects
+ */
+app.factory('formServerSuccess', [
+  'recaptchaReset',
+  function (recaptchaReset) {
+    return function (res, form, recaptchaId) {
+      if (typeof recaptchaId !== 'undefined')
+        recaptchaReset(recaptchaId);
+      form.$setPristine();
+      return [res];
+    };
+  }
+]);
+
+/**
  * Form validation error
  *
  * @param  {string} modelName - name of parameter-containing model
