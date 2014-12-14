@@ -1,4 +1,4 @@
-.main--section {
+.form--message {
   margin: 0 auto;
   padding: 10px 20px;
   padding: 1rem 2rem;
@@ -7,14 +7,14 @@
 }
 
 @include breakpoint($breakpoint-mobile-wide) {
-  .main--section {
+  .form--message {
     @include font-details($size: 18px);
     font-size: 1.8rem;
   }
 }
 
 @include breakpoint($breakpoint-tablet) {
-  .main--section {
+  .form--message {
     @include font-details($size: 20px);
     font-size: 2rem;
 
@@ -28,7 +28,7 @@
 }
 
 @include breakpoint($breakpoint-desktop) {
-  .main--section {
+  .form--message {
     max-width: 700px;
     max-width: 70rem;
   }
