@@ -7,6 +7,9 @@ var path = require('path')
 module.exports = {
   development: {
     env: 'development',
+    googleRecaptcha: {
+      secretKey: 'secretKey',
+    },
     mongo: {
       host: 'localhost',
       db: 'db_dev'
@@ -21,6 +24,9 @@ module.exports = {
   },
   test: {
     env: 'test',
+    googleRecaptcha: {
+      secretKey: 'secretKey',
+    },
     mongo: {
       host: 'localhost',
       db: 'db_test'
@@ -35,6 +41,9 @@ module.exports = {
   },
   production: {
     env: 'production',
+    googleRecaptcha: {
+      secretKey: 'secretKey',
+    },
     mongo: {
       host: 'localhost',
       db: 'db_prod'

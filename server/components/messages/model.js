@@ -1,4 +1,5 @@
-var mongoose = require('mongoose')
+var grecaptcha = require('../google-recaptcha/middleware')
+  , mongoose = require('mongoose')
   , msg = require('../../../shared/messages').validation
   , Schema = mongoose.Schema
   , validate = require('validator');
@@ -13,11 +14,17 @@ var MessageSchema = new Schema({
   ip: String
 });
 
+MessageSchema.virtual('gRecaptchaResponse').set(function (gRecaptchaResponse) {
+  this._gRecaptchaResponse = gRecaptchaResponse;
+}).get(function () {
+  return this._gRecaptchaResponse;
+});
+
 MessageSchema.pre('validate', function (next) {
   validate.escape(this.body);
   if (this.email) validate.escape(this.email);
   if (this.name) validate.escape(this.name);
-  next();
+  grecaptcha.validate(this, next, this.ip);
 });
 
 MessageSchema.path('body').validate(function (body) {

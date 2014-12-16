@@ -4,26 +4,26 @@
 
 function created (model) {
   model = model || 'Content';
-  return model + ' was successfully created';
+  return model + ' was successfully created.';
 }
 
 function deleted (model) {
   model = model || 'Content';
-  return model + ' was successfully deleted';
+  return model + ' was successfully deleted.';
 }
 
 function read (model) {
   model = model || 'Content';
-  return model + ' was successfully read';
+  return model + ' was successfully read.';
 }
 
 function updated (model) {
   model = model || 'Content';
-  return model + ' was successfully updated';
+  return model + ' was successfully updated.';
 }
 
 exports.crud = {
-  
+
   // Model-level CRUD messages
 
   message: {
@@ -45,14 +45,14 @@ exports.crud = {
  * Validation messages
  */
 
-function required (field) {
-  field = field || 'Field';
-  return field + ' cannot be empty';
-}
-
 function email (field) {
   field = field || 'Field';
-  return field + ' must be a valid email address';
+  return field + ' must be a valid email address.';
+}
+
+function required (field) {
+  field = field || 'Field';
+  return field + ' cannot be empty.';
 }
 
 exports.validation = {
@@ -69,6 +69,11 @@ exports.validation = {
   },
 
   // Field-level validation messages
+
+  gRecaptchaResponse: {
+    required: 'Please confirm that you are not a robot.',
+    unknown: 'I\'m sorry, there was an error related to the reCAPTCHA field. Please try again.'
+  },
 
   // Unbound validation messages
 

@@ -1,6 +1,6 @@
 {
   "name": "mjbondra",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Michael J. Bondra's personal website.",
   "private": true,
   "author": {
@@ -49,6 +49,7 @@
     "koa": "^0.13.0",
     "koa-compress": "^1.0.8",
     "koa-logger": "^1.2.2",
+    "koa-request": "^1.0.0",
     "koa-router": "^3.7.0",
     "koa-static": "^1.4.7",
     "mongoose": "^3.8.19",
