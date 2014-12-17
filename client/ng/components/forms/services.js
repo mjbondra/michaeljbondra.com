@@ -5,6 +5,27 @@ var angular = require('angular')
   , msg = require('../../../../shared/messages').validation;
 
 /**
+ * Form model reset
+ *
+ * @param  {object} model          - form model
+ * @param  {number} [gRecaptchaId] - Google Recaptcha ID
+ * @return {object}                - reset form model
+ */
+app.factory('formModelReset', [
+  'recaptchaReset',
+  function (recaptchaReset) {
+    return function (model, recaptchaId) {
+      model = {};
+      if (typeof recaptchaId !== 'undefined') {
+        recaptchaReset(recaptchaId);
+        model.recaptchaId = recaptchaId;
+      }
+      return model;
+    };
+  }
+]);
+
+/**
  * Form server error
  *
  * @param  {object} res  - raw response object
@@ -33,20 +54,14 @@ app.factory('formServerError', [function () {
  *
  * @param  {object} res            - raw response object
  * @param  {object} form           - form scope object
- * @param  {number} [gRecaptchaId] - Google Recaptcha ID
  * @return {array}                 - array of message-containing objects
  */
-app.factory('formServerSuccess', [
-  'recaptchaReset',
-  function (recaptchaReset) {
-    return function (res, form, recaptchaId) {
-      if (typeof recaptchaId !== 'undefined')
-        recaptchaReset(recaptchaId);
-      form.$setPristine();
-      return [res];
-    };
-  }
-]);
+app.factory('formServerSuccess', [function () {
+  return function (res, form) {
+    form.$setPristine();
+    return [res];
+  };
+}]);
 
 /**
  * Form validation error

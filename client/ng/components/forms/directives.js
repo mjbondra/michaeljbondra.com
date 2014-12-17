@@ -12,10 +12,11 @@ var angular = require('angular')
  * @param {string} attributes.formHandler - form model
  */
 app.directive('formHandler', [
+  'formModelReset',
   'formServerError',
   'formServerSuccess',
   'formValidationError',
-  function (formServerError, formServerSuccess, formValidationError) {
+  function (formModelReset, formServerError, formServerSuccess, formValidationError) {
     return {
       link: function (scope, element, attributes) {
         var form = scope[attributes.name]
@@ -39,7 +40,8 @@ app.directive('formHandler', [
           model.$save()
             .then(function (res) {
               scope.messagesType = 'success';
-              scope.messages = formServerSuccess(res, form, recaptchaId);
+              scope.messages = formServerSuccess(res, form);
+              scope[modelName] = formModelReset(model, recaptchaId);
             }).catch(function (res) {
               scope.messagesType = 'error';
               scope.messages = formServerError(res, form);

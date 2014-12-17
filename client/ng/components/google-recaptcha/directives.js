@@ -24,6 +24,10 @@ app.directive('recaptchaRender', [
       link: function (scope, element) {
         var id;
 
+        var classes = element.attr('class').split(' ');
+        classes.push('google-recaptcha');
+        element.attr('class', classes.join(' '));
+
         function getRecaptchaResponse (res) {
           scope.$apply(function () {
             scope.recaptchaParent.gRecaptchaResponse = res;
@@ -32,7 +36,7 @@ app.directive('recaptchaRender', [
 
         function renderRecaptcha () {
           if (grecaptcha.render) {
-            id = scope.recaptchaParent.gRecaptchaId = grecaptcha.render(element[0], {
+            id = scope.recaptchaParent.gRecaptchaId = grecaptcha.render(element.children()[0], {
               callback: getRecaptchaResponse,
               sitekey: recaptchaSiteKey.get(),
               theme: 'dark'
@@ -50,7 +54,8 @@ app.directive('recaptchaRender', [
       },
       scope: {
         recaptchaParent: '='
-      }
+      },
+      templateUrl: '/ng/components/google-recaptcha/show.html',
     };
   }
 ]);
