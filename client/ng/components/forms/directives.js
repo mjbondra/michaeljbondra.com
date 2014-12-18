@@ -6,10 +6,12 @@ var angular = require('angular')
 /**
  * Form handler
  *
- * ex. <form name="formName" data-form-handler="formModel">
+ * ex. <form name="formName" data-form-handler data-form-model="formModel" data-form-submit="Submit">
  *
- * @param {string} attributes.name        - form name
- * @param {string} attributes.formHandler - form model
+ * @param {string} attributes.formModel - form model name
+ * @param {object} scope.name           - form object
+ * @param {object} scope.formModel      - form model object
+ * @param {string} scope.formSubmit     - form submit label
  */
 app.directive('formHandler', [
   'formModelReset',
@@ -19,34 +21,48 @@ app.directive('formHandler', [
   function (formModelReset, formServerError, formServerSuccess, formValidationError) {
     return {
       link: function (scope, element, attributes) {
-        var form = scope[attributes.name]
-          , modelName = attributes.formHandler
-          , model = scope[modelName];
+        var initial = {}
+          , modelName = attributes.formModel;
 
         scope.clearMessages = function () {
-          scope.messages = null;
+          scope.statusMessages = null;
         };
         scope.save = function () {
-          scope.messages = null;
+          scope.statusMessages = null;
+
+          var form = scope.name
+            , model = scope.formModel;
+
           var recaptchaId = (function (id) {
             return id;
           })(model.gRecaptchaId);
 
           if (!form.$valid) {
-            scope.messagesType = 'error';
-            scope.messages = formValidationError(modelName, form);
+            scope.statusType = 'error';
+            scope.statusMessages = formValidationError(modelName, form);
             return;
           }
           model.$save()
             .then(function (res) {
-              scope.messagesType = 'success';
-              scope.messages = formServerSuccess(res, form);
-              scope[modelName] = formModelReset(model, recaptchaId);
+              scope.statusType = 'success';
+              scope.statusMessages = formServerSuccess(res, form);
+              scope.formModel = angular.copy(formModelReset(initial, recaptchaId));
             }).catch(function (res) {
-              scope.messagesType = 'error';
-              scope.messages = formServerError(res, form);
+              scope.statusType = 'error';
+              scope.statusMessages = formServerError(res, form);
             });
         };
+
+        element.ready(function () {
+          initial = (function (model) {
+            return angular.copy(model);
+          })(scope.formModel);
+        });
+      },
+      scope: {
+        formModel: '=',
+        formSubmit: '@',
+        name: '='
       },
       templateUrl: '/ng/components/forms/show.html',
       transclude: true

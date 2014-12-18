@@ -6,7 +6,12 @@
 <p>
   <span class="form--label--required">*</span> = Required Field
 </p>
-<form class="form" name="messageForm" novalidate data-form-handler="message">
+<form class="form"
+      name="messageForm"
+      data-form-handler
+      data-form-model="message"
+      data-form-submit="Send"
+      novalidate>
   <label class="form--label">Name
     <input class="form--text" name="name" type="text" data-ng-model="message.name">
   </label>
@@ -18,5 +23,4 @@
   </label>
   <div data-recaptcha-parent="message"
        data-recaptcha-render></div>
-  <button class="form--button" type="submit" data-ng-click="save()">Send</button>
 </form>

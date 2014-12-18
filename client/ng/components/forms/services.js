@@ -7,20 +7,19 @@ var angular = require('angular')
 /**
  * Form model reset
  *
- * @param  {object} model          - form model
+ * @param  {object} initial        - form model's initial state
  * @param  {number} [gRecaptchaId] - Google Recaptcha ID
  * @return {object}                - reset form model
  */
 app.factory('formModelReset', [
   'recaptchaReset',
   function (recaptchaReset) {
-    return function (model, recaptchaId) {
-      model = {};
+    return function (initial, recaptchaId) {
       if (typeof recaptchaId !== 'undefined') {
         recaptchaReset(recaptchaId);
-        model.recaptchaId = recaptchaId;
+        initial.gRecaptchaId = recaptchaId;
       }
-      return model;
+      return initial;
     };
   }
 ]);
