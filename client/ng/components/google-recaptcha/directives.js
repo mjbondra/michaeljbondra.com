@@ -32,6 +32,21 @@ app.directive('recaptchaRender', [
           scope.$apply(function () {
             scope.recaptchaParent.gRecaptchaResponse = res;
           });
+          removeRecaptchaDataElements();
+        }
+
+        function removeRecaptchaDataElements () {
+          var dataClass = 'pls-container'
+            , dataElement = angular.element(document.getElementsByClassName ?
+                document.getElementsByClassName(dataClass) :
+                document.querySelectorAll('.' + dataClass))
+            , dataParent = dataElement.parent()
+            , dataParentSibling = dataParent.next();
+
+          if (dataParentSibling.prop('tagName') === 'INS') dataParentSibling.remove();
+
+          if (dataParent.children().length === 1) dataParent.remove();
+          else dataElement.remove();
         }
 
         function renderRecaptcha () {
