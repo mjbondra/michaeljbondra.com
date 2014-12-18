@@ -46,7 +46,7 @@ app.directive('formHandler', [
             .then(function (res) {
               scope.statusType = 'success';
               scope.statusMessages = formServerSuccess(res, form);
-              scope.formModel = angular.copy(formModelReset(initial, recaptchaId));
+              scope.formModel = formModelReset(initial, recaptchaId);
             }).catch(function (res) {
               scope.statusType = 'error';
               scope.statusMessages = formServerError(res, form);

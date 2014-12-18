@@ -19,7 +19,7 @@ app.factory('formModelReset', [
         recaptchaReset(recaptchaId);
         initial.gRecaptchaId = recaptchaId;
       }
-      return initial;
+      return angular.copy(initial);
     };
   }
 ]);
