@@ -1,6 +1,6 @@
 {
   "name": "mjbondra",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "dependencies": {
     "compass-breakpoint": "^2.5.0",
     "font-awesome": "^4.2.0",
