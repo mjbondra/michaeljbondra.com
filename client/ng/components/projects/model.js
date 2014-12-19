@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.projects.model', ['ngResource']);
+  , app = angular.module('componentsProjectsModel', ['ngResource']);
 
 app.factory('Project', [
   '$resource',

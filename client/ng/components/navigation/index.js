@@ -4,6 +4,6 @@ var angular = require('angular');
 
 require('./directives');
 
-angular.module('mjbondra.components.navigation', [
-  'mjbondra.components.navigation.directives'
+angular.module('componentsNavigation', [
+  'componentsNavigationDirectives'
 ]);

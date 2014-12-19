@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.google-recaptcha.services', []);
+  , app = angular.module('componentsGoogleRecaptchaServices', []);
 
 app.factory('grecaptcha', [
   '$window',

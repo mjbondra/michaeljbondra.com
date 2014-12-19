@@ -1,9 +1,9 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.messages.controllers', []);
+  , app = angular.module('componentsMessagesControllers', []);
 
-app.controller('messages.new', [
+app.controller('MessagesNewController', [
   '$scope',
   'Message',
   function ($scope, Message) {

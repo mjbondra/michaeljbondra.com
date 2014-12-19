@@ -1,9 +1,9 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.projects.controllers', []);
+  , app = angular.module('componentsProjectsControllers', []);
 
-app.controller('projects.index', [
+app.controller('ProjectsIndexController', [
   '$scope',
   'Project',
   function ($scope, Project) {
@@ -11,7 +11,7 @@ app.controller('projects.index', [
   }
 ]);
 
-app.controller('projects.show', [
+app.controller('ProjectsShowController', [
   '$routeParams',
   '$scope',
   'Project',

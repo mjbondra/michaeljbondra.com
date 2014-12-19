@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.navigation.directives', []);
+  , app = angular.module('componentsNavigationDirectives', []);
 
 app.directive('navigationToggle', [function () {
   return {

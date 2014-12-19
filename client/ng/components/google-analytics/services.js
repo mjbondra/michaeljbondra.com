@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.google-analytics.services', []);
+  , app = angular.module('componentsGoogleAnalyticsServices', []);
 
 app.factory('ga', [
   '$location',

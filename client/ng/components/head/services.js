@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.head.services', []);
+  , app = angular.module('componentsHeadServices', []);
 
 app.factory('description', [function () {
   var description;

@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.body.filters', []);
+  , app = angular.module('componentsBodyFilters', []);
 
 app.filter('locationClass', [function () {
   return function (location) {

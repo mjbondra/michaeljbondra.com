@@ -1,11 +1,11 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.messages.directives', []);
+  , app = angular.module('componentsMessagesDirectives', []);
 
 app.directive('messageForm', [function () {
   return {
-    controller: 'messages.new',
+    controller: 'MessagesNewController',
     scope: {},
     templateUrl: '/ng/components/messages/new.html'
   };

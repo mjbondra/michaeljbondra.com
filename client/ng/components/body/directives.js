@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.body.directives', []);
+  , app = angular.module('componentsBodyDirectives', []);
 
 app.directive('articleLocation', [
   '$location',

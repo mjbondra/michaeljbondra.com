@@ -28,6 +28,6 @@ require('./config');
 // AngularJS/App modules
 angular.module('mjbondra', [
   'ngTouch',
-  'mjbondra.components',
-  'mjbondra.config'
+  'components',
+  'config'
 ]);

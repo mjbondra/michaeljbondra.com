@@ -1,11 +1,11 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.projects.directives', []);
+  , app = angular.module('componentsProjectsDirectives', []);
 
 app.directive('projects', [function () {
   return {
-    controller: 'projects.index',
+    controller: 'ProjectsIndexController',
     scope: {},
     templateUrl: '/ng/components/projects/index.html'
   };

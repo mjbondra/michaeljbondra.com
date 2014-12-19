@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.styles.services', []);
+  , app = angular.module('componentsStylesServices', []);
 
 /**
  * Hex-to-RGBA
@@ -93,7 +93,7 @@ app.factory('wrapMediaQuery', [function () {
 app.factory('wrapSelector', [function () {
   return function (selector, rules) {
     if (!rules.length) return '';
-    
+
     return selector + '{' + rules.join(';') + '}';
   };
 }]);

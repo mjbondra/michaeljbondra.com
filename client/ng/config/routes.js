@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.config.routes', ['ngRoute']);
+  , app = angular.module('configRoutes', ['ngRoute']);
 
 app.config([
   '$routeProvider',
@@ -13,13 +13,13 @@ app.config([
     // details
     $routeProvider.when('/', {
       templateUrl: '/ng/components/details/show.html',
-      controller: 'details.show'
+      controller: 'DetailsShowController'
     });
 
     // projects
     $routeProvider.when('/projects/:project', {
       templateUrl: '/ng/components/projects/show.html',
-      controller: 'projects.show'
+      controller: 'ProjectsShowController'
     });
 
     // default route

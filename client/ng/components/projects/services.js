@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.projects.services', []);
+  , app = angular.module('componentsProjectsServices', []);
 
 app.factory('projectPageStyles', [
   'hexToRgba',

@@ -1,6 +1,6 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.details.controllers', []);
+  , app = angular.module('componentsDetailsControllers', []);
 
-app.controller('details.show', [function () {}]);
+app.controller('DetailsShowController', [function () {}]);

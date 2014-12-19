@@ -6,8 +6,8 @@ require('./directives');
 require('./filters');
 require('./services');
 
-angular.module('mjbondra.components.head', [
-  'mjbondra.components.head.directives',
-  'mjbondra.components.head.filters',
-  'mjbondra.components.head.services'
+angular.module('componentsHead', [
+  'componentsHeadDirectives',
+  'componentsHeadFilters',
+  'componentsHeadServices'
 ]);

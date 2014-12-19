@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.google-analytics.directives', []);
+  , app = angular.module('componentsGoogleAnalyticsDirectives', []);
 
 app.directive('googleAnalytics', [
   'ga',

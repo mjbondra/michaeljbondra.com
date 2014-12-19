@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.google-recaptcha.directives', []);
+  , app = angular.module('componentsGoogleRecaptchaDirectives', []);
 
 app.directive('googleRecaptcha', [
   'recaptchaSiteKey',

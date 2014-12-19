@@ -15,17 +15,17 @@ require('./projects');
 require('./scroll');
 require('./styles');
 
-angular.module('mjbondra.components', [
-  'mjbondra.components.body',
-  'mjbondra.components.console',
-  'mjbondra.components.details',
-  'mjbondra.components.forms',
-  'mjbondra.components.google-analytics',
-  'mjbondra.components.google-recaptcha',
-  'mjbondra.components.head',
-  'mjbondra.components.messages',
-  'mjbondra.components.navigation',
-  'mjbondra.components.projects',
-  'mjbondra.components.scroll',
-  'mjbondra.components.styles'
+angular.module('components', [
+  'componentsBody',
+  'componentsConsole',
+  'componentsDetails',
+  'componentsForms',
+  'componentsGoogleAnalytics',
+  'componentsGoogleRecaptcha',
+  'componentsHead',
+  'componentsMessages',
+  'componentsNavigation',
+  'componentsProjects',
+  'componentsScroll',
+  'componentsStyles'
 ]);

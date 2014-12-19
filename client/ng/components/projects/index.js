@@ -7,9 +7,9 @@ require('./directives');
 require('./model');
 require('./services');
 
-angular.module('mjbondra.components.projects', [
-  'mjbondra.components.projects.controllers',
-  'mjbondra.components.projects.directives',
-  'mjbondra.components.projects.model',
-  'mjbondra.components.projects.services'
+angular.module('componentsProjects', [
+  'componentsProjectsControllers',
+  'componentsProjectsDirectives',
+  'componentsProjectsModel',
+  'componentsProjectsServices'
 ]);

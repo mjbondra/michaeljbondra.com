@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('mjbondra.components.head.filters', []);
+  , app = angular.module('componentsHeadFilters', []);
 
 app.filter('formatDescription', [function () {
   return function (description) {
