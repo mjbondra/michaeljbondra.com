@@ -6,6 +6,7 @@ var angular = require('angular')
 app.directive('messageForm', [function () {
   return {
     controller: 'messages.new',
+    scope: {},
     templateUrl: '/ng/components/messages/new.html'
   };
 }]);
