@@ -4,9 +4,8 @@ var angular = require('angular')
   , app = angular.module('mjbondra.components.google-analytics.directives', []);
 
 app.directive('googleAnalytics', [
-  '$location',
   'ga',
-  function ($location, ga) {
+  function (ga) {
     return {
       link: function (scope, element, attributes) {
         ga('create', attributes.googleAnalytics, 'auto');
