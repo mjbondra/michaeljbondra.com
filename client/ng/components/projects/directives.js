@@ -6,6 +6,7 @@ var angular = require('angular')
 app.directive('projects', [function () {
   return {
     controller: 'projects.index',
+    scope: {},
     templateUrl: '/ng/components/projects/index.html'
   };
 }]);
