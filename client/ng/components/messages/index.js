@@ -6,8 +6,8 @@ require('./controllers');
 require('./directives');
 require('./model');
 
-angular.module('componentsMessages', [
-  'componentsMessagesControllers',
-  'componentsMessagesDirectives',
-  'componentsMessagesModel'
+angular.module('messages', [
+  'messagesControllers',
+  'messagesDirectives',
+  'messagesModel'
 ]);

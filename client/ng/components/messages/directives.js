@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsMessagesDirectives', []);
+  , app = angular.module('messagesDirectives', []);
 
 app.directive('messageForm', [function () {
   return {

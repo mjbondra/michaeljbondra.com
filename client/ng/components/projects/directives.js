@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsProjectsDirectives', []);
+  , app = angular.module('projectsDirectives', []);
 
 app.directive('projects', [function () {
   return {

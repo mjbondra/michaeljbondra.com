@@ -1,6 +1,6 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsDetailsControllers', []);
+  , app = angular.module('detailsControllers', []);
 
 app.controller('DetailsShowController', [function () {}]);

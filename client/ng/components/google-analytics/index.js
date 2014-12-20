@@ -5,7 +5,7 @@ var angular = require('angular');
 require('./directives');
 require('./services');
 
-angular.module('componentsGoogleAnalytics', [
-  'componentsGoogleAnalyticsDirectives',
-  'componentsGoogleAnalyticsServices'
+angular.module('googleAnalytics', [
+  'googleAnalyticsDirectives',
+  'googleAnalyticsServices'
 ]);

@@ -5,7 +5,7 @@ var angular = require('angular');
 require('./directives');
 require('./filters');
 
-angular.module('componentsBody', [
-  'componentsBodyDirectives',
-  'componentsBodyFilters'
+angular.module('body', [
+  'bodyDirectives',
+  'bodyFilters'
 ]);

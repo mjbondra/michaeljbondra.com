@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsMessagesModel', ['ngResource']);
+  , app = angular.module('messagesModel', ['ngResource']);
 
 app.factory('Message', [
   '$resource',

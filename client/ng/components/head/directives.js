@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsHeadDirectives', []);
+  , app = angular.module('headDirectives', []);
 
 app.directive('getDescription', [
   'description',

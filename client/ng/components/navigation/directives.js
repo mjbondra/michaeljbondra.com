@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsNavigationDirectives', []);
+  , app = angular.module('navigationDirectives', []);
 
 app.directive('navigationToggle', [function () {
   return {

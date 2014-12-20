@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsFormsServices', [])
+  , app = angular.module('formsServices', [])
   , msg = require('../../../../shared/messages').validation;
 
 /**

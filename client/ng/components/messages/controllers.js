@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsMessagesControllers', []);
+  , app = angular.module('messagesControllers', []);
 
 app.controller('MessagesNewController', [
   '$scope',

@@ -16,16 +16,16 @@ require('./scroll');
 require('./styles');
 
 angular.module('components', [
-  'componentsBody',
-  'componentsConsole',
-  'componentsDetails',
-  'componentsForms',
-  'componentsGoogleAnalytics',
-  'componentsGoogleRecaptcha',
-  'componentsHead',
-  'componentsMessages',
-  'componentsNavigation',
-  'componentsProjects',
-  'componentsScroll',
-  'componentsStyles'
+  'body',
+  'console',
+  'details',
+  'forms',
+  'googleAnalytics',
+  'googleRecaptcha',
+  'head',
+  'messages',
+  'navigation',
+  'projects',
+  'scroll',
+  'styles'
 ]);

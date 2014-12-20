@@ -4,6 +4,6 @@ var angular = require('angular');
 
 require('./directives');
 
-angular.module('componentsNavigation', [
-  'componentsNavigationDirectives'
+angular.module('navigation', [
+  'navigationDirectives'
 ]);

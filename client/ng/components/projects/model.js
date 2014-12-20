@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsProjectsModel', ['ngResource']);
+  , app = angular.module('projectsModel', ['ngResource']);
 
 app.factory('Project', [
   '$resource',

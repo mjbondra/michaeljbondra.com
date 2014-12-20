@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsStylesServices', []);
+  , app = angular.module('stylesServices', []);
 
 /**
  * Hex-to-RGBA

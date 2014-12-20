@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsProjectsControllers', []);
+  , app = angular.module('projectsControllers', []);
 
 app.controller('ProjectsIndexController', [
   '$scope',

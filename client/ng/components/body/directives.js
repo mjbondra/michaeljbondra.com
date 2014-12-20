@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsBodyDirectives', []);
+  , app = angular.module('bodyDirectives', []);
 
 app.directive('articleLocation', [
   '$location',

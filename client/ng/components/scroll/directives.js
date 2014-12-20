@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsScrollDirectives', ['duScroll']);
+  , app = angular.module('scrollDirectives', ['duScroll']);
 
 app.directive('scrollHome', [
   '$document',

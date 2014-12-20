@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsProjectsServices', []);
+  , app = angular.module('projectsServices', []);
 
 app.factory('projectPageStyles', [
   'hexToRgba',

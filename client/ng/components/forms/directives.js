@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsFormsDirectives', []);
+  , app = angular.module('formsDirectives', []);
 
 /**
  * Form handler

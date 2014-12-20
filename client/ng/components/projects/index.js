@@ -7,9 +7,9 @@ require('./directives');
 require('./model');
 require('./services');
 
-angular.module('componentsProjects', [
-  'componentsProjectsControllers',
-  'componentsProjectsDirectives',
-  'componentsProjectsModel',
-  'componentsProjectsServices'
+angular.module('projects', [
+  'projectsControllers',
+  'projectsDirectives',
+  'projectsModel',
+  'projectsServices'
 ]);

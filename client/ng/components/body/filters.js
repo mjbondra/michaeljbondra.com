@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsBodyFilters', []);
+  , app = angular.module('bodyFilters', []);
 
 app.filter('locationClass', [function () {
   return function (location) {

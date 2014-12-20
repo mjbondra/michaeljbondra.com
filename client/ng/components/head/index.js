@@ -6,8 +6,8 @@ require('./directives');
 require('./filters');
 require('./services');
 
-angular.module('componentsHead', [
-  'componentsHeadDirectives',
-  'componentsHeadFilters',
-  'componentsHeadServices'
+angular.module('head', [
+  'headDirectives',
+  'headFilters',
+  'headServices'
 ]);

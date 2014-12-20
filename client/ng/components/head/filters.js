@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsHeadFilters', []);
+  , app = angular.module('headFilters', []);
 
 app.filter('formatDescription', [function () {
   return function (description) {

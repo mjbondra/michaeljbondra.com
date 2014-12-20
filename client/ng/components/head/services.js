@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('componentsHeadServices', []);
+  , app = angular.module('headServices', []);
 
 app.factory('description', [function () {
   var description;
