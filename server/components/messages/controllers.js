@@ -1,6 +1,6 @@
 var coBody = require('co-body')
   , mongoose = require('mongoose')
-  , msg = require('../../../shared/messages').crud
+  , msg = require('../../../shared/status-messages').crud
   , Bluebird = require('bluebird');
 
 var Message = mongoose.model('Message');

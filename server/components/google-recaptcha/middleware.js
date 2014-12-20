@@ -1,5 +1,5 @@
 var co = require('co')
-  , msg = require('../../../shared/messages').validation
+  , msg = require('../../../shared/status-messages').validation
   , querystring = require('querystring')
   , request = require('koa-request');
 

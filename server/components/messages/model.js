@@ -1,6 +1,6 @@
 var grecaptcha = require('../google-recaptcha/middleware')
   , mongoose = require('mongoose')
-  , msg = require('../../../shared/messages').validation
+  , msg = require('../../../shared/status-messages').validation
   , Schema = mongoose.Schema
   , validate = require('validator');
 

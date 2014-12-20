@@ -2,7 +2,7 @@
 
 var angular = require('angular')
   , app = angular.module('formsServices', [])
-  , msg = require('../../../../shared/messages').validation;
+  , msg = require('../../../../shared/status-messages').validation;
 
 /**
  * Form model reset
