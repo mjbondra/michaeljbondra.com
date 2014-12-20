@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular')
-  , app = angular.module('configRoutes', ['ngRoute']);
+  , app = angular.module('routes', ['ngRoute']);
 
 app.config([
   '$routeProvider',
