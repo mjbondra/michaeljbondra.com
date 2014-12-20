@@ -6,10 +6,11 @@
     <meta name="fragment" content="!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
-    <meta name="description"
-          content="My name is Michael J. Bondra, and I create high-quality experiences for the web's users and makers."
-          data-ng-attr-content="{{ description() | formatDescription }}"
-          data-get-description>
+    <meta
+      name="description"
+      content="My name is Michael J. Bondra, and I create high-quality experiences for the web's users and makers."
+      data-ng-attr-content="{{ description() | formatDescription }}"
+      data-get-description>
     <link rel="shortcut icon" href="/img/fav/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/fav/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/img/fav/apple-touch-icon-114x114.png">
@@ -29,13 +30,15 @@
     <meta name="msapplication-TileImage" content="/img/fav/mstile-144x144.png">
     <meta name="msapplication-config" content="/img/fav/browserconfig.xml">
     <link href="/css/styles.min.css" rel="stylesheet">
-    <script src="//www.google-analytics.com/analytics.js"
-            async
-            data-google-analytics="UA-55631366-1"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit"
-            async
-            defer
-            data-google-recaptcha="6Lejpv4SAAAAAI24OGr9oTSmKUMSo6QiUknU_dSp"></script>
+    <script
+      src="//www.google-analytics.com/analytics.js"
+      async
+      data-google-analytics="UA-55631366-1"></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit"
+      async
+      defer
+      data-google-recaptcha="6Lejpv4SAAAAAI24OGr9oTSmKUMSo6QiUknU_dSp"></script>
     <script src="/js/app.min.js"></script>
     <title data-ng-bind="title() | formatTitle" data-get-title>Michael J. Bondra</title>
   </head>
@@ -66,43 +69,70 @@
           <li class="navigation--list-item">
             <a class="navigation--link" href="#form--message" data-scroll-on-click>Contact</a>
           </li>
+          <li class="navigation--list-item">
+            <a class="navigation--link" href="#connect" data-scroll-on-click>Connect</a>
+          </li>
         </ul>
       </nav>
     </header>
     <main class="page--main" id="page--main">
-      <article class="main--article {{ locationPath() | locationClass }}"
-               id="main--article"
-               data-ng-view
-               data-article-location></article>
+      <article
+        class="main--article {{ locationPath() | locationClass }}"
+        id="main--article"
+        data-ng-view
+        data-article-location></article>
       <aside class="projects" id="projects" data-projects></aside>
       <section class="form--message" id="form--message" data-message-form></section>
     </main>
     <footer class="page--footer" id="page--footer">
-      <ul class="connect--list">
-        <li class="connect--list-item">
-          <a class="connect--link link--email"
-             href="mailto:mike@mjbondra.com"
-             title="Email">Email</a>
-        </li>
-        <li class="connect--list-item">
-          <a class="connect--link link--github"
-             href="https://github.com/mjbondra"
-             target="_blank"
-             title="Github">GitHub</a>
-        </li>
-        <li class="connect--list-item">
-          <a class="connect--link link--linkedin"
-             href="https://www.linkedin.com/in/mjbondra"
-             target="_blank"
-             title="LinkedIn">LinkedIn</a>
-        </li>
-        <li class="connect--list-item">
-          <a class="connect--link link--twitter"
-             href="https://twitter.com/mjbondra"
-             target="_blank"
-             title="Twitter">Twitter</a>
-        </li>
-      </ul>
+      <nav class="connect" id="connect">
+        <h2 class="connect--heading">Connect</h2>
+        <ul class="connect--list">
+          <li class="connect--list-item">
+            <a
+              class="connect--link link--email"
+              href="mailto:mike@mjbondra.com"
+              title="mike@mjbondra.com">
+              <span class="connect--title">Email</span>
+            </a>
+          </li>
+          <li class="connect--list-item">
+            <a
+              class="connect--link link--github"
+              href="https://github.com/mjbondra"
+              target="_blank">
+              <span class="connect--title">GitHub</span>
+            </a>
+          </li>
+          <li class="connect--list-item">
+            <a
+              class="connect--link link--linkedin"
+              href="https://www.linkedin.com/in/mjbondra"
+              target="_blank">
+              <span class="connect--title">LinkedIn</span>
+            </a>
+          </li>
+          <li class="connect--list-item">
+            <a
+              class="connect--link link--phone"
+              href="tel:+15862427456"
+              title="(586) 242-7456">
+              <span class="connect--title">Phone</span>
+            </a>
+          </li>
+          <li class="connect--list-item">
+            <a
+              class="connect--link link--twitter"
+              href="https://twitter.com/mjbondra"
+              target="_blank">
+              <span class="connect--title">Twitter</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        &copy; 2014 Michael J. Bondra
+      </div>
     </footer>
   </body>
 </html>

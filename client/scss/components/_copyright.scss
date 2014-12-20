@@ -1,0 +1,12 @@
+.copyright {
+  margin: {
+    top: 40px;
+    top: 4rem;
+  }
+}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .copyright {
+    text-align: right;
+  }
+}

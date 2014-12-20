@@ -1,0 +1,26 @@
+.connect--heading {
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  max-width: 500px;
+  max-width: 50rem;
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .connect--heading {
+    padding: {
+      right: 0;
+      left: 0;
+    }
+    max-width: 640px;
+    max-width: 64rem;
+  }
+}
+
+@include breakpoint($breakpoint-desktop) {
+  .connect--heading {
+    max-width: 700px;
+    max-width: 70rem;
+  }
+}

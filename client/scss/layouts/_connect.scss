@@ -1,0 +1,15 @@
+.connect {}
+
+@include breakpoint($breakpoint-mobile-wide) {
+  .connect {
+    @include font-details($size: 18px);
+    font-size: 1.8rem;
+  }
+}
+
+@include breakpoint($breakpoint-tablet) {
+  .connect {
+    @include font-details($size: 20px);
+    font-size: 2rem;
+  }
+}

@@ -1,17 +1,19 @@
-.projects--list-item--title {
+.connect--title {
   @include font-details($height: 1.4);
 
   display: inline-block;
   position: relative;
   padding: 10px 5px;
   padding: 1rem 0.5rem;
-  width: 150px;
-  width: 15rem;
+  width: 100px;
+  width: 10rem;
+  text-align: center;
   vertical-align: middle;
   transition: transform $transition-duration-extended ease-out;
 
-  .projects--list-item--link:hover > & {
-    transform: translateY(-9rem);
+  .connect--link:hover > & {
+    color: $black;
+    transform: translateY(-6.5rem);
     vertical-align: baseline;
   }
 }
